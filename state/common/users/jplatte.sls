@@ -1,6 +1,7 @@
 jplatte:
   user.present:
     - home: /home/jplatte
+    - shell: /usr/bin/zsh
     - groups:
       - admin
   ssh_auth.present:

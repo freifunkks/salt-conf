@@ -1,6 +1,7 @@
 hanspolo:
   user.present:
     - home: /home/hanspolo
+    - shell: /usr/bin/zsh
     - groups:
       - admin
   ssh_auth.present:
