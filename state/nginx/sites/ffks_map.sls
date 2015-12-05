@@ -52,7 +52,7 @@ grunt-cli:
 
 https://github.com/freifunkks/meshviewer.git:
   git.latest:
-    - branch: community-specific-adjustments
+    - rev: community-specific-adjustments
     - target: /var/www/map.ffks
     - user: ffks-map
     - require:
