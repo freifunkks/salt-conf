@@ -39,7 +39,8 @@ extend:
 node:
   pkg.installed:
     - pkgs:
-      - nodejs
+      # Legacy symlink, grunt needs this
+      - nodejs-legacy
       - npm
 
 grunt-cli:
