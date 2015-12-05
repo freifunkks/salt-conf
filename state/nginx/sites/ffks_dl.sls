@@ -11,6 +11,7 @@ dl.freifunk-kassel.de:
 
 ffks-dl:
   user.present:
+    - createhome: False
     - shell: /usr/bin/nologin
 
 /srv/http/dl.ffks:

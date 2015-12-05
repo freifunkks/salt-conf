@@ -11,6 +11,7 @@ map.freifunk-kassel.de:
 
 ffks-map:
   user.present:
+    - createhome: False
     - shell: /usr/bin/nologin
 
 /srv/http/map.ffks:
@@ -18,7 +19,7 @@ ffks-map:
     - target: /var/www/map.ffks/
     - require:
       - file: /srv/http
-      - cmd: grunt
+      - cmd: /var/www/map.ffks/build
 
 extend:
   nginx:

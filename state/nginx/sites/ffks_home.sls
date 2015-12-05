@@ -11,6 +11,7 @@ freifunk-kassel.de:
 
 ffks-home:
   user.present:
+    - createhome: False
     - shell: /usr/bin/nologin
 
 /srv/http/home.ffks:
