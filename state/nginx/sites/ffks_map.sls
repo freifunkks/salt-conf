@@ -36,12 +36,16 @@ extend:
     - file_mode: 644
     - recurse: [user, group, mode]
 
-npm: pkg.installed
+node:
+  pkg.installed:
+    - pkgs:
+      - nodejs
+      - npm
 
 grunt-cli:
   npm.installed:
     - require:
-      - pkg: npm
+      - pkg: node
 
 https://github.com/freifunkks/meshviewer.git:
   git.latest:
