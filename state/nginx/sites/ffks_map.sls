@@ -43,7 +43,7 @@ node:
       - nodejs-legacy
       - npm
 
-sass: pkg.installed
+ruby-sass: pkg.installed
 
 grunt-cli:
   npm.installed:
@@ -72,4 +72,4 @@ https://github.com/freifunkks/meshviewer.git:
     - cwd: /var/www/map.ffks
     - watch:
       - npm: https://github.com/freifunkks/meshviewer.git
-      - pkg: sass
+      - pkg: ruby-sass
