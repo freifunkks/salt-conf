@@ -16,7 +16,7 @@ ffks-map:
 
 /srv/http/map.ffks:
   file.symlink:
-    - target: /var/www/map.ffks/
+    - target: /var/www/map.ffks/build
     - require:
       - file: /srv/http
       - cmd: /var/www/map.ffks/build
@@ -45,6 +45,7 @@ grunt-cli:
 
 https://github.com/freifunkks/meshviewer.git:
   git.latest:
+    - branch: community-specific-adjustments
     - target: /var/www/map.ffks
     - user: ffks-map
     - require:
@@ -60,7 +61,7 @@ https://github.com/freifunkks/meshviewer.git:
 /var/www/map.ffks/build:
   cmd.wait:
     # default tasks without lint, could potentially be shortened
-    - name: grunt bower-install-simple saveRevision copy sass requirejs
+    - name: grunt bower-install-simple saveRevision copy sass requirejs && cp config.json build/
     - cwd: /var/www/map.ffks
     - watch:
       - npm: https://github.com/freifunkks/meshviewer.git
