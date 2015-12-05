@@ -43,7 +43,7 @@ def present(name, conf):
 
   if config == current_config.strip():
     res = __states__['file.symlink'](name=linkname, target=filename)
-    if res['result'] == False
+    if res['result'] == False:
       ret['result'] = False
       ret['comment'] = 'Failed to enable site config.'
       return ret
@@ -63,7 +63,7 @@ def present(name, conf):
       config_file.write(config)
 
     res = __states__['file.symlink'](name=linkname, target=filename)
-    if res['result'] == False
+    if res['result'] == False:
       ret['result'] = False
       ret['comment'] = 'Failed to enable site config.'
       return ret
