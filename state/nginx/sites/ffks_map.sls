@@ -38,7 +38,7 @@ extend:
 
 npm: pkg.installed
 
-grunt:
+grunt-cli:
   npm.installed:
     - require:
       - pkg: npm
@@ -53,7 +53,7 @@ https://github.com/freifunkks/meshviewer.git:
     - name: /var/www/map.ffks
     - user: ffks-map
     - require:
-      - npm: grunt
+      - npm: grunt-cli
     - watch:
       - git: https://github.com/freifunkks/meshviewer.git
 
