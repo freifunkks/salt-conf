@@ -41,7 +41,7 @@ def present(name, conf):
     with salt.utils.fopen(filename) as config_file:
       current_config = config_file.read()
 
-  if config == current_config.strip():
+  if config.strip() == current_config.strip():
     res = __states__['file.symlink'](name=linkname, target=filename)
     if res['result'] == False:
       ret['result'] = False
@@ -50,6 +50,7 @@ def present(name, conf):
 
     ret['result'] = True
     ret['comment'] = 'Site is up to date.'
+    return ret
   elif __opts__['test']:
     ret['comment'] = 'Site will be updated.'
     ret['changes'] = {
