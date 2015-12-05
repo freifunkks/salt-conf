@@ -14,14 +14,11 @@ ffks-home:
     - shell: /usr/bin/nologin
 
 /srv/http/home.ffks:
-  file.directory:
-    - user: ffks-home
-    - group: www-data
-    - dir_mode: 755
-    - file_mode: 644
-    - recurse: [user, group, mode]
+  file.symlink:
+    - target: /var/www/home.ffks/theme/wikistatic
     - require:
       - file: /srv/http
+      - git: https://github.com/freifunkks/moinmoin-theme.git
 
 extend:
   nginx:
@@ -38,12 +35,14 @@ extend:
     - file_mode: 644
     - recurse: [user, group, mode]
 
+hg: pkg.installed
+
 https://bitbucket.org/thomaswaldmann/moin-1.9:
   hg.latest:
     - target: /var/www/home.ffks/moinmoin
     - user: ffks-home
     - requre:
-      -file: /var/www/home.ffks
+      - file: /var/www/home.ffks
 
 https://github.com/freifunkks/moinmoin-theme.git:
   git.latest:
