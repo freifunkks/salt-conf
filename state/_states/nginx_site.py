@@ -53,8 +53,10 @@ def present(name, root=None, proxyurl=None, conf=None):
     return ret
 
   try:
-    with salt.utils.fopen(filename, 'w') as config_file:
-      print(config, file = config_file)
+    #with salt.utils.fopen(filename, 'w') as config_file:
+    #  print(config, file = config_file)
+    #                ^^^^^^^^^^^^^^^^^^
+    # TODO: Find out what's wrong there
 
     # TODO: Ensure linkname is a symlink to filename
 

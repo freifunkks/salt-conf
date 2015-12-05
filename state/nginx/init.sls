@@ -3,7 +3,6 @@ nginx:
   service.running:
     - watch:
       - pkg: nginx
-      - file: /etc/nginx/nginx.conf # conf.d/*, sites-enabled/* ?
 
 /etc/nginx/conf.d/ssl.conf:
   file.managed:
