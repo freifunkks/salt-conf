@@ -12,7 +12,9 @@ tools:
       - mtr
       - sudo
       - tcpdump
+      - tmux
       - vim
       - vnstat
       - vnstati
       - wget
+      - zsh
