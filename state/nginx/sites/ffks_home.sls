@@ -3,11 +3,15 @@ include:
 
 home.ffks:
   nginx_site.present:
-    - conf: salt://nginx/configs/home.ffks
+    - configfile: salt://nginx/configs/home.ffks
 
 freifunk-kassel.de:
   nginx_site.present:
-    - conf: salt://nginx/configs/home.ffks
+    - configfile: salt://nginx/configs/home.ffks
+
+www.freifunk-kassel.de:
+  nginx_site.redirect:
+    - target: https://freifunk-kassel.de
 
 ffks-home:
   user.present:
@@ -27,6 +31,7 @@ extend:
       - watch:
         - nginx_site: home.ffks
         - nginx_site: freifunk-kassel.de
+        - nginx_site: www.freifunk-kassel.de
 
 /var/www/home.ffks:
   file.directory:

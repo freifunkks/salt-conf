@@ -11,18 +11,9 @@ server {
 }
 '''
 
-# TODO: Add TLS support
-def present(name, conf):
-  '''
-  Ensure an nginx site is present and enabled.
+redirect_tpl = 'rewrite ^ %s$request_uri? permanent;'
 
-  name
-    Name of the site
-
-  conf
-    Config file, in case you need more fine-grained control over the configuration.
-    Will be included as part of the server block.
-  '''
+def _apply_config(name, config):
   ret = {
     'name': name,
     'result': None,
@@ -32,9 +23,6 @@ def present(name, conf):
 
   filename = '/etc/nginx/sites-available/' + name
   linkname = '/etc/nginx/sites-enabled/' + name
-
-  additional_config_bits = __salt__['cp.get_file_str'](conf, saltenv=__env__)
-  config = config_tpl % (name, additional_config_bits)
 
   current_config = ''
   if os.path.exists(filename):
@@ -80,3 +68,32 @@ def present(name, conf):
     ret['comment'] = 'Failed to write site config.'
 
   return ret
+
+# TODO: Add TLS support
+def present(name, configfile):
+  '''
+  Ensure an nginx site is present and enabled.
+
+  name
+    Name of the site
+
+  configfile
+    Config file, in case you need more fine-grained control over the configuration.
+    Will be included as part of the server block.
+  '''
+  additional_config_bits = __salt__['cp.get_file_str'](configfile, saltenv=__env__)
+  return _apply_config(name, config_tpl % (name, additional_config_bits))
+
+def redirect(name, target):
+  '''
+  Ensure a (sub)domain redirects to somewhere else.
+  Currently all redirects are permanent ones.
+
+  name
+    Name of the site
+
+  target
+    The target site to redirect to, without a trailing '/'. When a server requests
+    $name/somesite, the server will respond with a redirect to $target/sometime.
+  '''
+  return _apply_config(name, config_tpl % (name, redirect_tpl % target))
