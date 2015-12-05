@@ -23,12 +23,6 @@ def present(name, conf):
     Config file, in case you need more fine-grained control over the configuration.
     Will be included as part of the server block.
   '''
-  # Workaround for __states__ not being defined in older versions of Salt
-  try:
-    __states__
-  except NameError:
-    __states__ = salt.loader.states(__opts__, __salt__)
-
   ret = {
     'name': name,
     'result': None,
