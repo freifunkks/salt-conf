@@ -49,7 +49,6 @@ https://github.com/freifunkks/meshviewer.git:
     - user: ffks-map
     - require:
       - file: /var/www/map.ffks
-      - cmd: /var/www/map.ffks/build
   npm.bootstrap:
     - name: /var/www/map.ffks
     - user: ffks-map
