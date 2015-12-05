@@ -1,0 +1,4 @@
+root /srv/http/home.ffks;
+index index.html index.htm;
+
+# TODO: FastCGI
