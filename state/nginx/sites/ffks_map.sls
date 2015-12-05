@@ -26,7 +26,7 @@ extend:
     service:
       - watch:
         - nginx_site: map.ffks
-        - nginx_site: freifunk-kassel.de
+        - nginx_site: map.freifunk-kassel.de
 
 /var/www/map.ffks:
   file.directory:
