@@ -10,3 +10,10 @@ nginx:
     - user: root
     - group: root
     - mode: 644
+
+/srv/http:
+  file.directory:
+    - user: root
+    - group: root
+    - dir_mode: 755
+    - file_mode: 644

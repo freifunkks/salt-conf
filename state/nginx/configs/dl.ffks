@@ -1,0 +1,2 @@
+root /srv/http/dl.ffks;
+autoindex on;
