@@ -12,6 +12,7 @@ server {
 '''
 
 redirect_tpl = 'rewrite ^ %s$request_uri? permanent;'
+reverse_proxy_tpl = 'location / { proxy_pass %s; };'
 
 def _apply_config(name, config):
   ret = {
@@ -97,3 +98,15 @@ def redirect(name, target):
     $name/somesite, the server will respond with a redirect to $target/sometime.
   '''
   return _apply_config(name, config_tpl % (name, redirect_tpl % target))
+
+def reverse_proxy(name, target):
+  '''
+  Ensure queries to a (sub)domain are passed on to another webserver.
+
+  name
+    Name of the site
+
+  target
+    The target server that serves the website. Usually `http://localhost:PORT`.
+  '''
+  return _apply_config(name, config_tpl % (name, reverse_proxy_tpl % target))
