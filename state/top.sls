@@ -1,5 +1,6 @@
 base:
   '*':
+    - common.essentials
     - common.tools
     - common.users.flx
     - common.users.hanspolo
