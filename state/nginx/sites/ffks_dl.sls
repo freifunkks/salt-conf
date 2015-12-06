@@ -4,10 +4,14 @@ include:
 dl.ffks:
   nginx_site.present:
     - configfile: salt://nginx/configs/dl.ffks
+    - watch_in:
+      - service: nginx
 
 dl.freifunk-kassel.de:
   nginx_site.present:
     - configfile: salt://nginx/configs/dl.ffks
+    - watch_in:
+      - service: nginx
 
 ffks-dl:
   user.present:
@@ -23,10 +27,3 @@ ffks-dl:
     - recurse: [user, group, mode]
     - require:
       - file: /srv/http
-
-extend:
-  nginx:
-    service:
-      - watch:
-        - nginx_site: dl.ffks
-        - nginx_site: dl.freifunk-kassel.de

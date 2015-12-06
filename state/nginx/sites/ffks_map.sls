@@ -4,10 +4,14 @@ include:
 map.ffks:
   nginx_site.present:
     - configfile: salt://nginx/configs/map.ffks
+    - watch_in:
+      - service: nginx
 
 map.freifunk-kassel.de:
   nginx_site.present:
     - configfile: salt://nginx/configs/map.ffks
+    - watch_in:
+      - service: nginx
 
 ffks-map:
   user.present:
@@ -20,13 +24,6 @@ ffks-map:
     - require:
       - file: /srv/http
       - cmd: /var/www/map.ffks/build
-
-extend:
-  nginx:
-    service:
-      - watch:
-        - nginx_site: map.ffks
-        - nginx_site: map.freifunk-kassel.de
 
 /var/www/map.ffks:
   file.directory:

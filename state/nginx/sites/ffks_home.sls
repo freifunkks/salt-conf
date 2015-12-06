@@ -4,14 +4,20 @@ include:
 home.ffks:
   nginx_site.present:
     - configfile: salt://nginx/configs/home.ffks
+    - watch_in:
+      - service: nginx
 
 freifunk-kassel.de:
   nginx_site.present:
     - configfile: salt://nginx/configs/home.ffks
+    - watch_in:
+      - service: nginx
 
 www.freifunk-kassel.de:
   nginx_site.redirect:
     - target: https://freifunk-kassel.de
+    - watch_in:
+      - service: nginx
 
 ffks-home:
   user.present:
@@ -24,14 +30,6 @@ ffks-home:
     - require:
       - file: /srv/http
       - git: https://github.com/freifunkks/moinmoin-theme.git
-
-extend:
-  nginx:
-    service:
-      - watch:
-        - nginx_site: home.ffks
-        - nginx_site: freifunk-kassel.de
-        - nginx_site: www.freifunk-kassel.de
 
 /var/www/home.ffks:
   file.directory:
@@ -47,7 +45,7 @@ https://bitbucket.org/thomaswaldmann/moin-1.9:
   hg.latest:
     - target: /var/www/home.ffks/moinmoin
     - user: ffks-home
-    - requre:
+    - require:
       - file: /var/www/home.ffks
 
 https://github.com/freifunkks/moinmoin-theme.git:

@@ -5,22 +5,19 @@ include:
 pad.ffks:
   nginx_site.reverse_proxy:
     - target: http://localhost:10002
+    - watch_in:
+      - service: nginx
 
 pad.freifunk-kassel.de:
   nginx_site.reverse_proxy:
     - target: http://localhost:10002
+    - watch_in:
+      - service: nginx
 
 ffks-pad:
   user.present:
     - createhome: False
     - shell: /usr/bin/nologin
-
-extend:
-  nginx:
-    service:
-      - watch:
-        - nginx_site: pad.ffks
-        - nginx_site: pad.freifunk-kassel.de
 
 /var/www/pad.ffks:
   file.directory:
