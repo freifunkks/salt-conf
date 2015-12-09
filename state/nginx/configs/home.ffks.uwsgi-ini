@@ -1,4 +1,6 @@
 [uwsgi]
+plugins = python
+
 socket = /run/home.ffks.sock
 chmod-socket = 660
 

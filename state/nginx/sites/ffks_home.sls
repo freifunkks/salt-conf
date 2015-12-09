@@ -62,7 +62,10 @@ ffks-home:
     - mode: 644
 
 uwsgi:
-  pkg.installed: []
+  pkg.installed:
+    - pkgs:
+      - uwsgi
+      - uwsgi-plugin-python
   service.running:
     - watch:
       - pkg: uwsgi
