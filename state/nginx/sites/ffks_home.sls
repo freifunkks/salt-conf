@@ -75,6 +75,12 @@ uwsgi:
     - require:
       - pkg: uwsgi
 
+/etc/uwsgi/apps-enabled/home.ffks.ini:
+  file.symlink:
+    - target: /etc/uwsgi/apps-available/home.ffks.ini
+    - require:
+      - file: /etc/uwsgi/apps-available/home.ffks.ini
+
 python-moinmoin: pkg.installed
 
 https://github.com/freifunkks/moinmoin-theme.git:
