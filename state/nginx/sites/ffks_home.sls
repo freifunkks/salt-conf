@@ -35,8 +35,7 @@ ffks-home:
   file.directory:
     - user: ffks-home
     - group: www-data
-    - dir_mode: 755
-    - file_mode: 644
+    - mode: 755
 
 /var/www/home.ffks/wikicontent:
   file.directory:

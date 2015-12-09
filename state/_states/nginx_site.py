@@ -7,6 +7,10 @@ server {
   listen 80;
   server_name %s;
 
+  location /error_pages {
+    alias /srv/http/error_pages;
+  }
+
 %s
 }
 '''
