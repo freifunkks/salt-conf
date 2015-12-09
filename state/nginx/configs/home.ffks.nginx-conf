@@ -1,0 +1,12 @@
+location /
+  uwsgi_pass unix:/run/home.ffks.sock;
+  include uwsgi_params;
+}
+
+location /static {
+  alias /srv/http/home.ffks;
+}
+
+location /favicon.ico {
+  alias /srv/http/home.ffks/favicon.ico;
+}

@@ -3,13 +3,13 @@ include:
 
 home.ffks:
   nginx_site.present:
-    - configfile: salt://nginx/configs/home.ffks
+    - configfile: salt://nginx/configs/home.ffks.nginx-conf
     - watch_in:
       - service: nginx
 
 freifunk-kassel.de:
   nginx_site.present:
-    - configfile: salt://nginx/configs/home.ffks
+    - configfile: salt://nginx/configs/home.ffks.nginx-conf
     - watch_in:
       - service: nginx
 
@@ -39,14 +39,43 @@ ffks-home:
     - file_mode: 644
     - recurse: [user, group, mode]
 
-hg: pkg.installed
-
-https://bitbucket.org/thomaswaldmann/moin-1.9:
-  hg.latest:
-    - target: /var/www/home.ffks/moinmoin
+/var/www/home.ffks/wikicontent:
+  file.directory:
     - user: ffks-home
+    - group: www-data
+    - dir_mode: 755
+    - file_mode: 644
+    - recurse: [user, group, mode]
+
+/var/www/home.ffks/wikiconfig.py:
+  file.managed:
+    - source: salt://nginx/configs/home.ffks.wikiconfig.py
+    - user: ffks-home
+    - group: www-data
+    - mode: 644
+
+/var/www/home.ffks/moin.wsgi:
+  file.managed:
+    - source: salt://nginx/configs/home.ffks.wsgi
+    - user: ffks-home
+    - group: www-data
+    - mode: 644
+
+uwsgi:
+  pkg.installed: []
+  service.running:
+    - watch:
+      - pkg: uwsgi
+      - file: /var/www/home.ffks/moin.wsgi
+
+/etc/uwsgi/apps-available/home.ffks.ini:
+  file.managed:
+    - source: salt://nginx/configs/home.ffks.uwsgi-ini
+    - mode: 644
     - require:
-      - file: /var/www/home.ffks
+      - pkg: uwsgi
+
+python-moinmoin: pkg.installed
 
 https://github.com/freifunkks/moinmoin-theme.git:
   git.latest:

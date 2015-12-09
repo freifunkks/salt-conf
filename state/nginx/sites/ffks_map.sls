@@ -3,13 +3,13 @@ include:
 
 map.ffks:
   nginx_site.present:
-    - configfile: salt://nginx/configs/map.ffks
+    - configfile: salt://nginx/configs/map.ffks.nginx-conf
     - watch_in:
       - service: nginx
 
 map.freifunk-kassel.de:
   nginx_site.present:
-    - configfile: salt://nginx/configs/map.ffks
+    - configfile: salt://nginx/configs/map.ffks.nginx-conf
     - watch_in:
       - service: nginx
 

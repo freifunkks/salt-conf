@@ -3,13 +3,13 @@ include:
 
 dl.ffks:
   nginx_site.present:
-    - configfile: salt://nginx/configs/dl.ffks
+    - configfile: salt://nginx/configs/dl.ffks.nginx-conf
     - watch_in:
       - service: nginx
 
 dl.freifunk-kassel.de:
   nginx_site.present:
-    - configfile: salt://nginx/configs/dl.ffks
+    - configfile: salt://nginx/configs/dl.ffks.nginx-conf
     - watch_in:
       - service: nginx
 
