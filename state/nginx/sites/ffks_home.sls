@@ -80,6 +80,8 @@ uwsgi:
     - target: /etc/uwsgi/apps-available/home.ffks.ini
     - require:
       - file: /etc/uwsgi/apps-available/home.ffks.ini
+    - watch_in:
+      - service: uwsgi
 
 python-moinmoin: pkg.installed
 
