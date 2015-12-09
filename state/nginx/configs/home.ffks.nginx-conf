@@ -1,5 +1,5 @@
 location / {
-  uwsgi_pass unix:/run/home.ffks.sock;
+  uwsgi_pass unix:/var/www/home.ffks/uwsgi.sock;
   include uwsgi_params;
 }
 

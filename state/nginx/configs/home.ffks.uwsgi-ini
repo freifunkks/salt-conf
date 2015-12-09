@@ -1,7 +1,10 @@
 [uwsgi]
 plugins = python
 
-socket = /run/home.ffks.sock
+uid = ffks-home
+gid = www-data
+
+socket = /var/www/home.ffks/uwsgi.sock
 chmod-socket = 660
 
 chdir = /var/www/home.ffks
