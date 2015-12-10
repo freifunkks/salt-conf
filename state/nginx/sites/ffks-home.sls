@@ -27,15 +27,18 @@ ffks-home:
 /home/ffks-home/wikicontent:
   file.directory:
     - user: ffks-home
-    - group: www-data
-    - dir_mode: 755
-    - file_mode: 644
-    - recurse: [user, group, mode]
+    - group: ffks-home
+    - mode: 755
 
 {% for dir in ['data', 'underlay'] %}
 /home/ffks-home/wikicontent/{{ dir }}/pages:
   file.directory:
     - makedirs: True
+    - user: ffks-home
+    - group: ffks-home
+    - dir_mode: 755
+    - file_mode: 644
+    - recurse: [user, group, mode]
     - require:
       - file: /home/ffks-home/wikicontent
 {% endfor %}
