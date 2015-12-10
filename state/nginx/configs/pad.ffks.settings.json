@@ -8,8 +8,7 @@
   "dbType": "postgres",
     "dbSettings": {
       "user":     "ffks-pad",
-      "host":     "localhost",
-      "password": "",
+      "host":     "/var/run/postgresql",
       "database": "ffks-pad"
   },
 
