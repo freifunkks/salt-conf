@@ -3,13 +3,13 @@ include:
 
 home.ffks:
   nginx_site.present:
-    - configfile: salt://nginx/configs/ffks-dl.nginx-conf
+    - configfile: salt://nginx/configs/ffks-home.nginx-conf
     - watch_in:
       - service: nginx
 
 freifunk-kassel.de:
   nginx_site.present:
-    - configfile: salt://nginx/configs/ffks-dl.nginx-conf
+    - configfile: salt://nginx/configs/ffks-home.nginx-conf
     - watch_in:
       - service: nginx
 
@@ -34,7 +34,7 @@ ffks-home:
 
 /home/ffks-home/wikiconfig.py:
   file.managed:
-    - source: salt://nginx/configs/ffks-dl.wikiconfig.py
+    - source: salt://nginx/configs/ffks-home.wikiconfig.py
     - user: ffks-home
     - group: www-data
     - mode: 644
