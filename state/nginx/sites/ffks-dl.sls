@@ -17,6 +17,7 @@ ffks-dl:
   user.present:
     - createhome: False
     - shell: /usr/bin/nologin
+    - order: 11
 
 /srv/http/ffks-dl:
   file.directory:
