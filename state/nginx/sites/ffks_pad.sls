@@ -47,6 +47,9 @@ dependencies:
       - libssl-dev
       - pkg-config
       - build-essential
+  npm.installed:
+    - pkgs:
+      - pgpass
 
 https://github.com/ether/etherpad-lite.git:
   git.latest:
