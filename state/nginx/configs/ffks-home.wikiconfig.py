@@ -107,11 +107,13 @@ class Config(multiconfig.DefaultConfig):
   language_ignore_browser = True
 
   # Surge protection (more lax than defaults)
-  surge_action_limits = {
-      # allow max. <count> <action> requests per <dt> secs
-      'edit': (50, 120), # defaults 10, 120
-      'AttachFile': (30, 60), # defaults 10, 60
-  }
+  #surge_action_limits = {
+  #    # allow max. <count> <action> requests per <dt> secs
+  #    'edit': (50, 120), # defaults 10, 120
+  #    'AttachFile': (30, 60), # defaults 10, 60
+  #}
+  # Disable surge protection for now
+  surge_action_limits = None
 
   # Edit bar options (below main navigation bar)
   edit_bar = ['Edit', 'Comments', 'Discussion', 'Info', 'Subscribe', 'Attachments', 'ActionsMenu']
