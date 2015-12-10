@@ -22,6 +22,9 @@ class Config(multiconfig.DefaultConfig):
   # Where your own wiki pages are (make regular backups of this directory):
   data_dir = os.path.join(instance_dir, 'data', '') # path with trailing /
 
+  # Standard plugins are in the system directory
+  plugin_dir = '/usr/share/moin/data/plugin'
+
   # Additional plugin directories
   plugin_dirs = [
     base_dir + '/theme/moinmoin/wiki',
