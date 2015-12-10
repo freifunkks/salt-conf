@@ -29,9 +29,7 @@ ffks-map:
   file.directory:
     - user: ffks-map
     - group: www-data
-    - dir_mode: 755
-    - file_mode: 644
-    - recurse: [user, group, mode]
+    - mode: 755
 
 node:
   pkg.installed:
