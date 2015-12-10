@@ -16,7 +16,7 @@ server {
 '''
 
 redirect_tpl = 'rewrite ^ %s$request_uri? permanent;'
-reverse_proxy_tpl = 'location / { proxy_pass %s; };'
+reverse_proxy_tpl = 'location / { proxy_pass %s; }'
 
 def _apply_config(name, config):
   ret = {
