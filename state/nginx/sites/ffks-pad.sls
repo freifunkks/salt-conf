@@ -2,17 +2,13 @@ include:
   - nginx
   - postgresql
 
-pad.ffks:
+{% for site in ['pad.ffks', 'pad.freifunk-kassel.de', 'pad.' + grains.host + '.ffks.de'] %}
+{{ site }}:
   nginx_site.reverse_proxy:
     - target: http://localhost:10002
     - watch_in:
       - service: nginx
-
-pad.freifunk-kassel.de:
-  nginx_site.reverse_proxy:
-    - target: http://localhost:10002
-    - watch_in:
-      - service: nginx
+{% endfor %}
 
 ffks-pad:
   user.present:

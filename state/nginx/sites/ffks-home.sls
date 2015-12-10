@@ -1,17 +1,13 @@
 include:
   - nginx
 
-home.ffks:
+{% for site in ['home.ffks', 'freifunk-kassel.de', 'home.' + grains.host + '.ffks.de'] %}
+{{ site }}:
   nginx_site.present:
     - configfile: salt://nginx/configs/ffks-home.nginx-conf
     - watch_in:
       - service: nginx
-
-freifunk-kassel.de:
-  nginx_site.present:
-    - configfile: salt://nginx/configs/ffks-home.nginx-conf
-    - watch_in:
-      - service: nginx
+{% endfor %}
 
 www.freifunk-kassel.de:
   nginx_site.redirect:

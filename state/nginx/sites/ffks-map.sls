@@ -1,17 +1,13 @@
 include:
   - nginx
 
-map.ffks:
+{% for site in ['map.ffks', 'map.freifunk-kassel.de', 'map.' + grains.host + '.ffks.de'] %}
+{{ site }}:
   nginx_site.present:
     - configfile: salt://nginx/configs/ffks-map.nginx-conf
     - watch_in:
       - service: nginx
-
-map.freifunk-kassel.de:
-  nginx_site.present:
-    - configfile: salt://nginx/configs/ffks-map.nginx-conf
-    - watch_in:
-      - service: nginx
+{% endfor %}
 
 ffks-map:
   user.present:
@@ -37,7 +33,6 @@ https://github.com/freifunkks/meshviewer.git:
     - rev: community-specific-adjustments
     - target: /home/ffks-map/meshviewer
     - user: ffks-map
-
   npm.bootstrap:
     - name: /home/ffks-map/meshviewer
     - user: ffks-map

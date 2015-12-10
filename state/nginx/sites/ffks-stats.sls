@@ -1,17 +1,13 @@
 include:
   - nginx
 
-stats.ffks:
+{% for site in ['stats.ffks', 'stats.freifunk-kassel.de', 'stats.' + grains.host + '.ffks.de'] %}
+{{ site }}:
   nginx_site.reverse_proxy:
     - target: http://localhost:10001
     - watch_in:
       - service: nginx
-
-stats.freifunk-kassel.de:
-  nginx_site.reverse_proxy:
-    - target: http://localhost:10001
-    - watch_in:
-      - service: nginx
+{% endfor %}
 
 ffks-stats:
   user.present:
