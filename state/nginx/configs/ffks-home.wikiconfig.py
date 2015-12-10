@@ -42,15 +42,15 @@ class Config(multiconfig.DefaultConfig):
   # Security ----------------------------------------------------------
 
   # First page to be loaded when visiting root
-  page_front_page = u"Hallo"
+  page_front_page = u'Hallo'
 
   # This is checked by some rather critical and potentially harmful actions,
   # like despam or PackageInstaller action:
-  superuser = [u"feliks", u"JonasPlatte"]
+  superuser = [u'feliks', u'JonasPlatte']
 
   # Restrict access to read-only
-  acl_rights_default = u"All:read"
-  acl_rights_before  = u"VerifiedGroup:read,write,delete,revert,admin"
+  acl_rights_default = u'All:read'
+  acl_rights_before  = u'VerifiedGroup:read,write,delete,revert,admin'
 
   # Link spam protection for public wikis
   # Needs a reliable internet connection
@@ -63,14 +63,14 @@ class Config(multiconfig.DefaultConfig):
   # Configure to enable subscribing to pages (disabled by default)
   # or sending forgotten passwords.
 
-  # SMTP server, e.g. "mail.provider.com" (None to disable mail)
-  #mail_smarthost = ""
+  # SMTP server, e.g. 'mail.provider.com' (None to disable mail)
+  #mail_smarthost = ''
 
-  # The return address, e.g u"J�rgen Wiki <noreply@mywiki.org>" [Unicode]
-  #mail_from = u""
+  # The return address, e.g u'J�rgen Wiki <noreply@mywiki.org>' [Unicode]
+  #mail_from = u''
 
-  # "user pwd" if you need to use SMTP AUTH
-  #mail_login = ""
+  # 'user pwd' if you need to use SMTP AUTH
+  #mail_login = ''
 
 
   # User interface ----------------------------------------------------
@@ -148,7 +148,7 @@ class Config(multiconfig.DefaultConfig):
 
   # Thumbnail action plugin configuration
   thumbsizes = [160, 320, 640, 700]
-  thumbname = "%(base)s_thumb_%(size)s.jpg"
+  thumbname = '%(base)s_thumb_%(size)s.jpg'
 
   # Language options --------------------------------------------------
 
