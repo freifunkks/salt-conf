@@ -27,8 +27,8 @@ class Config(multiconfig.DefaultConfig):
 
   # Additional plugin directories
   plugin_dirs = [
-    base_dir + '/theme/moinmoin/wiki',
-    base_dir + '/plugins/wiki/data/plugin']
+    base_dir + '/theme/moinmoin/wiki/theme',
+    base_dir + '/plugins/macro-ffks']
 
   # Where system and help pages are (you may exclude this from backup):
   data_underlay_dir = os.path.join(instance_dir, 'underlay', '') # path with trailing /
