@@ -47,14 +47,14 @@ ffks-home:
   file.managed:
     - source: salt://nginx/configs/ffks-home.wikiconfig.py
     - user: ffks-home
-    - group: www-data
+    - group: ffks-home
     - mode: 644
 
 /home/ffks-home/moin.wsgi:
   file.managed:
     - source: salt://nginx/configs/ffks-home.wsgi
     - user: ffks-home
-    - group: www-data
+    - group: ffks-home
     - mode: 644
 
 uwsgi:
