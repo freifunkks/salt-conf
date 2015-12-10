@@ -3,13 +3,13 @@ include:
 
 home.ffks:
   nginx_site.present:
-    - configfile: salt://nginx/configs/home.ffks.nginx-conf
+    - configfile: salt://nginx/configs/ffks-dl.nginx-conf
     - watch_in:
       - service: nginx
 
 freifunk-kassel.de:
   nginx_site.present:
-    - configfile: salt://nginx/configs/home.ffks.nginx-conf
+    - configfile: salt://nginx/configs/ffks-dl.nginx-conf
     - watch_in:
       - service: nginx
 
@@ -21,23 +21,10 @@ www.freifunk-kassel.de:
 
 ffks-home:
   user.present:
-    - createhome: False
     - shell: /usr/bin/nologin
+    - order: 11
 
-/srv/http/home.ffks:
-  file.symlink:
-    - target: /var/www/home.ffks/theme/wikistatic
-    - require:
-      - file: /srv/http
-      - git: https://github.com/freifunkks/moinmoin-theme.git
-
-/var/www/home.ffks:
-  file.directory:
-    - user: ffks-home
-    - group: www-data
-    - mode: 755
-
-/var/www/home.ffks/wikicontent:
+/home/ffks-home/wikicontent:
   file.directory:
     - user: ffks-home
     - group: www-data
@@ -45,16 +32,16 @@ ffks-home:
     - file_mode: 644
     - recurse: [user, group, mode]
 
-/var/www/home.ffks/wikiconfig.py:
+/home/ffks-home/wikiconfig.py:
   file.managed:
-    - source: salt://nginx/configs/home.ffks.wikiconfig.py
+    - source: salt://nginx/configs/ffks-dl.wikiconfig.py
     - user: ffks-home
     - group: www-data
     - mode: 644
 
-/var/www/home.ffks/moin.wsgi:
+/home/ffks-home/moin.wsgi:
   file.managed:
-    - source: salt://nginx/configs/home.ffks.wsgi
+    - source: salt://nginx/configs/ffks-home.wsgi
     - user: ffks-home
     - group: www-data
     - mode: 644
@@ -68,20 +55,20 @@ uwsgi:
     - enable: True
     - watch:
       - pkg: uwsgi
-      - file: /var/www/home.ffks/moin.wsgi
+      - file: /home/ffks-home/moin.wsgi
 
-/etc/uwsgi/apps-available/home.ffks.ini:
+/etc/uwsgi/apps-available/ffks-home.ini:
   file.managed:
-    - source: salt://nginx/configs/home.ffks.uwsgi-ini
+    - source: salt://nginx/configs/ffks-home.uwsgi-ini
     - mode: 644
     - require:
       - pkg: uwsgi
 
-/etc/uwsgi/apps-enabled/home.ffks.ini:
+/etc/uwsgi/apps-enabled/ffks-home.ini:
   file.symlink:
-    - target: /etc/uwsgi/apps-available/home.ffks.ini
+    - target: /etc/uwsgi/apps-available/ffks-home.ini
     - require:
-      - file: /etc/uwsgi/apps-available/home.ffks.ini
+      - file: /etc/uwsgi/apps-available/ffks-home.ini
     - watch_in:
       - service: uwsgi
 
@@ -89,14 +76,10 @@ python-moinmoin: pkg.installed
 
 https://github.com/freifunkks/moinmoin-theme.git:
   git.latest:
-    - target: /var/www/home.ffks/theme
+    - target: /home/ffks-home/theme
     - user: ffks-home
-    - require:
-      - file: /var/www/home.ffks
 
 https://github.com/freifunkks/moinmoin-plugins.git:
   git.latest:
-    - target: /var/www/home.ffks/plugins
+    - target: /home/ffks-home/plugins
     - user: ffks-home
-    - require:
-      - file: /var/www/home.ffks

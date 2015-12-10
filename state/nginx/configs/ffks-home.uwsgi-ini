@@ -4,10 +4,10 @@ plugins = python
 uid = ffks-home
 gid = www-data
 
-socket = /var/www/home.ffks/uwsgi.sock
+socket = /home/ffks-home/uwsgi.sock
 chmod-socket = 660
 
-chdir = /var/www/home.ffks
+chdir = /home/ffks-home
 wsgi-file = moin.wsgi
 
 master

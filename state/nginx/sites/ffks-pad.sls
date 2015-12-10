@@ -16,8 +16,8 @@ pad.freifunk-kassel.de:
 
 ffks-pad:
   user.present:
-    - createhome: False
     - shell: /usr/bin/nologin
+    - order: 11
   postgres_user.present:
     - require:
       - pkg: postgresql
@@ -28,12 +28,6 @@ ffks-pad:
       - pkg: postgresql
     - watch_in:
       - service: postgresql
-
-/var/www/pad.ffks:
-  file.directory:
-    - user: ffks-pad
-    - group: www-data
-    - mode: 755
 
 dependencies:
   pkg.installed:
@@ -53,29 +47,27 @@ dependencies:
 
 https://github.com/ether/etherpad-lite.git:
   git.latest:
-    - target: /var/www/pad.ffks
+    - target: /home/ffks-pad/etherpad-lite
     - user: ffks-pad
-    - require:
-      - file: /var/www/pad.ffks
 
-/var/www/pad.ffks/settings.json:
+/home/ffks-pad/etherpad-lite/settings.json:
   file.managed:
-    - source: salt://nginx/configs/pad.ffks.settings.json
+    - source: salt://nginx/configs/ffks-pad.settings.json
     - user: ffks-pad
     - groups: www-data
     - mode: 644
     - require:
       - git: https://github.com/ether/etherpad-lite.git
 
-/etc/systemd/system/pad.ffks.service:
+/etc/systemd/system/ffks-pad.service:
   file.managed:
-    - source: salt://nginx/configs/pad.ffks.service
+    - source: salt://nginx/configs/ffks-pad.service
     - user: root
     - group: root
     - mode: 644
   service.running:
-    - name: pad.ffks
+    - name: ffks-pad
     - enable: True
     - watch:
-      - file: /var/www/pad.ffks/settings.json
-      - file: /etc/systemd/system/pad.ffks.service
+      - file: /home/ffks-pad/etherpad-lite/settings.json
+      - file: /etc/systemd/system/ffks-pad.service

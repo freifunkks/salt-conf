@@ -15,5 +15,4 @@ stats.freifunk-kassel.de:
 
 ffks-stats:
   user.present:
-    - createhome: False
     - shell: /usr/bin/nologin

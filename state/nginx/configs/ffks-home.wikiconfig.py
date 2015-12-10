@@ -7,7 +7,7 @@ from MoinMoin.config import multiconfig, url_prefix_static
 
 class Config(multiconfig.DefaultConfig):
   # Base --------------------------------------------------------------
-  base_dir = '/var/www/home.ffks'
+  base_dir = '/home/ffks-home'
 
   # Directory containing THIS wikiconfig:
   wikiconfig_dir = os.path.abspath(os.path.dirname(__file__))

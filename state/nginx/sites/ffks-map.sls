@@ -3,33 +3,20 @@ include:
 
 map.ffks:
   nginx_site.present:
-    - configfile: salt://nginx/configs/map.ffks.nginx-conf
+    - configfile: salt://nginx/configs/ffks-map.nginx-conf
     - watch_in:
       - service: nginx
 
 map.freifunk-kassel.de:
   nginx_site.present:
-    - configfile: salt://nginx/configs/map.ffks.nginx-conf
+    - configfile: salt://nginx/configs/ffks-map.nginx-conf
     - watch_in:
       - service: nginx
 
 ffks-map:
   user.present:
-    - createhome: False
     - shell: /usr/bin/nologin
-
-/srv/http/map.ffks:
-  file.symlink:
-    - target: /var/www/map.ffks/build
-    - require:
-      - file: /srv/http
-      - cmd: /var/www/map.ffks/build
-
-/var/www/map.ffks:
-  file.directory:
-    - user: ffks-map
-    - group: www-data
-    - mode: 755
+    - order: 11
 
 node:
   pkg.installed:
@@ -48,23 +35,22 @@ grunt-cli:
 https://github.com/freifunkks/meshviewer.git:
   git.latest:
     - rev: community-specific-adjustments
-    - target: /var/www/map.ffks
+    - target: /home/ffks-map/meshviewer
     - user: ffks-map
-    - require:
-      - file: /var/www/map.ffks
+
   npm.bootstrap:
-    - name: /var/www/map.ffks
+    - name: /home/ffks-map/meshviewer
     - user: ffks-map
     - require:
       - npm: grunt-cli
     - watch:
       - git: https://github.com/freifunkks/meshviewer.git
 
-/var/www/map.ffks/build:
+/home/ffks-map/meshviewer/build:
   cmd.wait:
     # default tasks without lint, could potentially be shortened
     - name: grunt bower-install-simple saveRevision copy sass requirejs && cp config.json build/
-    - cwd: /var/www/map.ffks
+    - cwd: /home/ffks-map/meshviewer
     - watch:
       - npm: https://github.com/freifunkks/meshviewer.git
       - pkg: ruby-sass

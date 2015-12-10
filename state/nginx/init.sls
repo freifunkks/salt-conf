@@ -5,28 +5,6 @@ nginx:
     - watch:
       - pkg: nginx
 
-/etc/nginx/conf.d/ssl.conf:
-  file.managed:
-    - source: salt://nginx/ssl.conf
-    - user: root
-    - group: root
-    - mode: 644
-    - require:
-      - pkg: nginx
-    - watch_in:
-      - service: nginx
-
-/etc/nginx/conf.d/error_pages.conf:
-  file.managed:
-    - source: salt://nginx/error_pages.conf
-    - user: root
-    - group: root
-    - mode: 644
-    - require:
-      - pkg: nginx
-    - watch_in:
-      - service: nginx
-
 /srv/http:
   file.directory:
     - user: root
@@ -38,6 +16,19 @@ nginx:
     - user: www-data
     - group: www-data
     - mode: 755
+
+{% for conf in ['error_pages.conf', 'security.conf'] %}
+/etc/nginx/conf.d/{{ conf }}:
+  file.managed:
+    - source: salt://nginx/{{ conf }}
+    - user: root
+    - group: root
+    - mode: 644
+    - require:
+      - pkg: nginx
+    - watch_in:
+      - service: nginx
+{% endfor %}
 
 # TODO: Add other error pages
 {% for error in ['404', '500'] %}
