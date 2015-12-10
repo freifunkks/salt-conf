@@ -27,3 +27,12 @@ ffks-dl:
     - recurse: [user, group, mode]
     - require:
       - file: /srv/http
+
+/srv/http/dl.ffks/.bgcolor-fix.html:
+  file.managed:
+    - source: salt://nginx/configs/dl.ffks.bgcolor-fix.html
+    - user: ffks-dl
+    - group: www-data
+    - mode: 664
+    - require:
+      - file: /srv/http/dl.ffks
