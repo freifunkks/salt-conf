@@ -18,12 +18,12 @@ ffks-pad:
   user.present:
     - createhome: False
     - shell: /usr/bin/nologin
-  postgres_user:
+  postgres_user.present:
     - require:
       - pkg: postgresql
     - watch_in:
       - service: postgresql
-  postgres_database:
+  postgres_database.present:
     - require:
       - pkg: postgresql
     - watch_in:
