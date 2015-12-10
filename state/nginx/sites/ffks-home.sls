@@ -32,6 +32,14 @@ ffks-home:
     - file_mode: 644
     - recurse: [user, group, mode]
 
+{% for dir in ['data', 'underlay'] %}
+/home/ffks-home/wikicontent/{{ dir }}/pages:
+  file.directory:
+    - makedirs: True
+    - require:
+      - file: /home/ffks-home/wikicontent
+{% endfor %}
+
 /home/ffks-home/wikiconfig.py:
   file.managed:
     - source: salt://nginx/configs/ffks-home.wikiconfig.py
