@@ -5,14 +5,13 @@
   "ip": "127.0.0.1",
   "port": 10002,
 
-  // Database: Postgres or SqLite?
-  //"dbType": "postgres",
-  //  "dbSettings": {
-  //    "user":     "ffks_pad",
-  //    "host":     "localhost",
-  //    "password": "",
-  //    "database": "ffks_pad"
-  //},
+  "dbType": "postgres",
+    "dbSettings": {
+      "user":     "ffks-pad",
+      "host":     "localhost",
+      "password": "",
+      "database": "ffks-pad"
+  },
 
   "defaultPadText": "Welcome to Etherpad!\n\nThis pad text is synchronized as you type, so that everyone viewing this page sees the same text. This allows you to collaborate seamlessly on documents!\n\nGet involved with Etherpad at http:\/\/etherpad.org\n",
 

@@ -65,6 +65,7 @@ uwsgi:
       - uwsgi
       - uwsgi-plugin-python
   service.running:
+    - enable: True
     - watch:
       - pkg: uwsgi
       - file: /var/www/home.ffks/moin.wsgi

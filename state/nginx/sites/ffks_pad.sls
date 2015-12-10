@@ -1,6 +1,6 @@
 include:
   - nginx
-  - postgres
+  - postgresql
 
 pad.ffks:
   nginx_site.reverse_proxy:
@@ -18,26 +18,35 @@ ffks-pad:
   user.present:
     - createhome: False
     - shell: /usr/bin/nologin
+  postgres_user:
+    - require:
+      - pkg: postgresql
+    - watch_in:
+      - service: postgresql
+  postgres_database:
+    - require:
+      - pkg: postgresql
+    - watch_in:
+      - service: postgresql
 
 /var/www/pad.ffks:
   file.directory:
     - user: ffks-pad
     - group: www-data
-    - dir_mode: 755
-    - file_mode: 644
-    - recurse: [user, group, mode]
+    - mode: 755
 
 dependencies:
   pkg.installed:
-    # Some of these are already in common.tools, but it doesn't hurt
-    # listing everything the official installation instructions list
-    - gzip
-    - git
-    - curl
-    - python
-    - libssl-dev
-    - pkg-config
-    - build-essential
+    - pkgs:
+      # Some of these are already in common.tools, but it doesn't hurt
+      # listing everything the official installation instructions list
+      - gzip
+      - git
+      - curl
+      - python
+      - libssl-dev
+      - pkg-config
+      - build-essential
 
 https://github.com/ether/etherpad-lite.git:
   git.latest:
@@ -49,5 +58,21 @@ https://github.com/ether/etherpad-lite.git:
 /var/www/pad.ffks/settings.json:
   file.managed:
     - source: salt://nginx/configs/pad.ffks.settings.json
-    - requires:
+    - user: ffks-pad
+    - groups: www-data
+    - mode: 644
+    - require:
       - git: https://github.com/ether/etherpad-lite.git
+
+/etc/systemd/system/pad.ffks.service:
+  file.managed:
+    - source: salt://nginx/configs/pad.ffks.service
+    - user: root
+    - group: root
+    - mode: 644
+  service.running:
+    - name: pad.ffks
+    - enable: True
+    - watch:
+      - file: /var/www/pad.ffks/settings.json
+      - file: /etc/systemd/system/pad.ffks.service

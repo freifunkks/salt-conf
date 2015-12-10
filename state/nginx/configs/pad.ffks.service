@@ -1,0 +1,11 @@
+[Unit]
+Description=pad.freifunk-kassel.de (etherpad-lite)
+After=syslog.target network.target
+
+[Service]
+Type=simple
+User=ffks-pad
+ExecStart=/var/www/pad.ffks/bin/run.sh
+
+[Install]
+WantedBy=multi-user.target
