@@ -21,7 +21,7 @@ ffks-pad:
     - watch_in:
       - service: postgresql
 
-dependencies:
+etherpad-lite-pkgs:
   pkg.installed:
     - pkgs:
       # Some of these are already in common.tools, but it doesn't hurt
@@ -61,5 +61,6 @@ https://github.com/ether/etherpad-lite.git:
     - name: ffks-pad
     - enable: True
     - watch:
+      - pkg: etherpad-lite-pkgs
       - file: /home/ffks-pad/etherpad-lite/settings.json
       - file: /etc/systemd/system/ffks-pad.service

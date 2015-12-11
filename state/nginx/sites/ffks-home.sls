@@ -58,7 +58,7 @@ ffks-home:
     - watch_in:
       - service: uwsgi
 
-dependencies:
+moinmoin-pkgs:
   pkg.installed:
     - pkgs:
       - uwsgi-plugin-python
@@ -74,7 +74,7 @@ dependencies:
     - target: /etc/uwsgi/apps-available/ffks-home.ini
     - require:
       - file: /etc/uwsgi/apps-available/ffks-home.ini
-      - pkg: dependencies
+      - pkg: moinmoin-pkgs
     - watch_in:
       - service: uwsgi
 
