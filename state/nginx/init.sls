@@ -29,8 +29,7 @@ nginx:
       - service: nginx
 {% endfor %}
 
-# TODO: Add other error pages
-{% for error in ['404', '500'] %}
+{% for error in ['403', '404', '500', '502', '503', '504'] %}
 /srv/http/error_pages/{{ error }}.html:
   file.managed:
     - source: salt://nginx/error_pages/{{ error }}.html
