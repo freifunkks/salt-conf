@@ -47,7 +47,7 @@ ffks-home:
     - group: ffks-home
     - mode: 644
     - watch_in:
-      - uwsgi: service
+      - service: uwsgi
 
 /home/ffks-home/moin.wsgi:
   file.managed:
@@ -90,4 +90,4 @@ https://github.com/freifunkks/moinmoin-plugins.git:
     - target: /home/ffks-home/plugins
     - user: ffks-home
     - watch_in:
-      - uwsgi: service
+      - service: uwsgi
