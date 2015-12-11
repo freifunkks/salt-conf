@@ -6,6 +6,9 @@ base:
     - common.users.hanspolo
     - common.users.jplatte
 
+  'I@gateway:True':
+    - common.gateway-pkgs
+
   excalipurr.ffks:
     - nginx
     - nginx.sites.ffks-dl
