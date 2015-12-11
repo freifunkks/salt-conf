@@ -15,13 +15,9 @@ ffks-pad:
     - shell: /usr/bin/nologin
     - order: 11
   postgres_user.present:
-    - require:
-      - pkg: postgresql
     - watch_in:
       - service: postgresql
   postgres_database.present:
-    - require:
-      - pkg: postgresql
     - watch_in:
       - service: postgresql
 

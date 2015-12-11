@@ -13,3 +13,5 @@ base:
     - nginx.sites.ffks-map
     - nginx.sites.ffks-pad
     #- nginx.sites.ffks-stats
+    - postgresql
+    - uwsgi

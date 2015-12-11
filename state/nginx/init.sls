@@ -1,5 +1,6 @@
 nginx:
-  pkg.installed: []
+  pkg.installed:
+    - order: 2
   service.running:
     - enable: True
     - watch:
@@ -24,8 +25,6 @@ nginx:
     - user: root
     - group: root
     - mode: 644
-    - require:
-      - pkg: nginx
     - watch_in:
       - service: nginx
 {% endfor %}
