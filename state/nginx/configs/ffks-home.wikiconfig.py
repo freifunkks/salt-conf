@@ -14,7 +14,7 @@ class Config(multiconfig.DefaultConfig):
 
   # Beautiful links
   #url_prefix = '/fixme'
-  url_prefix_static = '/static'
+  url_prefix_static = ''
 
   # Instance / repo directory
   instance_dir = base_dir + '/wikicontent'

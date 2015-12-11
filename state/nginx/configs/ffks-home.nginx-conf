@@ -1,16 +1,15 @@
 location / {
+  try_files
+    /home/ffks-home/theme/wikistatic/$uri
+    /usr/share/moin/htdocs/$uri
+    @moinmoin;
+}
+
+location @moinmoin {
   uwsgi_pass unix:/home/ffks-home/uwsgi.sock;
   include uwsgi_params;
 }
 
-location /static {
-  alias /;
-  try_files
-    /home/ffks-home/theme/wikistatic/$uri
-    /usr/share/moin/htdocs/$uri
-    =404;
-}
-
 location /favicon.ico {
-  alias /home/ffks-home/theme/wikistatic/favicon.ico;
+  alias /home/ffks-home/theme/wikistatic/icons/favicon.ico;
 }
