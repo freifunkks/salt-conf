@@ -1,4 +1,7 @@
 location / {
+  # Don't do this at home, kids!
+  root /;
+
   try_files
     /home/ffks-home/theme/wikistatic/$uri
     /usr/share/moin/htdocs/$uri
