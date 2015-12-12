@@ -1,0 +1,23 @@
+use_shadow = OFF
+
+screen_color = (CYAN,BLACK,ON)
+dialog_color = (WHITE,BLACK,OFF)
+title_color = (BLUE,WHITE,ON)
+
+# TODO Fix shadow (?) borders
+border_color = (WHITE,BLACK,ON)
+
+button_active_color = (RED,BLACK,ON)
+button_inactive_color = (YELLOW,BLACK,OFF)
+button_label_active_color = (YELLOW,BLACK,ON)
+button_label_inactive_color = (WHITE,BLACK,ON)
+menubox_color = (WHITE,BLACK,OFF)
+
+# TODO Fix shadow (?) borders
+menubox_border_color = (WHITE,BLACK,ON)
+
+item_color = (WHITE,BLACK,OFF)
+item_selected_color = (YELLOW,BLACK,ON)
+tag_key_color = (YELLOW,BLACK,OFF)
+tag_key_selected_color = (RED,BLACK,ON)
+
