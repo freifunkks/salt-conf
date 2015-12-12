@@ -6,7 +6,7 @@ base:
     - common.users.hanspolo
     - common.users.jplatte
 
-  'I@gateway:True':
+  'I@minion.gateway:True':
     - common.gateway-pkgs
 
   excalipurr.ffks:
