@@ -59,20 +59,18 @@ for i in "${repo_new[@]}"; do
 	else
 		echo -e "    ${ok} Key already available"
 	fi
-	#echo ${repo_lines[$r]}
 	grep -r "${repo_lines[$i]}" /etc/apt/sources.list* &>/dev/null || (echo -e "    ${ok} Repository added"; echo ${repo_lines[$i]} > /etc/apt/sources.list.d/${repo_names[$i]}.list) && echo -e "    ${ok} Repository already available"
 done
 [[ ${#repo_new[@]} -gt 0 ]] && echo
 
-# Check packages
+# Check system packages
 declare -a pkg_req=(salt-minion python-pip)
-declare -a pkg_new=()
 
 #echo "Updating repositories..."
-#[[ $(apt-get update 1>/dev/null 2> >(wc -l)) -gt 0 ]] && (echo "Error updating repositories..."; exit 1)
+#[[ $(apt-get update 1>/dev/null 2> >(wc -l)) -gt 0 ]] && (echo "Error updating repositories..."; exit 3)
 #echo
 
-echo "Checking installed packages..."
+echo "Checking installed system packages..."
 for p in ${pkg_req[@]}; do
 	echo -n "  "
 	if [[ $(dpkg-query -W $p 2>/dev/null) ]]; then
@@ -85,14 +83,33 @@ for p in ${pkg_req[@]}; do
 done
 echo
 
-[[ ${#pkg_new[@]} -gt 0 ]] && echo "Installing required packages..."
-#apt-get install -y ${pkg_new[@]} &>/dev/null || (echo -e "  ${err} Error installing required packages"; exit 3)
-[[ ${#pkg_new[@]} -gt 0 ]] && echo
+if [[ ${#pkg_new[@]} -gt 0 ]]; then
+	echo "Installing required system packages..."
+	#apt-get install -y ${pkg_new[@]} &>/dev/null || (echo -e "  ${err} Error installing required packages"; exit 4)
+	echo
+fi
 
-## TODO Get python packages
-#[[ ${#py_new[@]} -gt 0 ]] && echo "Installing required python packages..."
-## Install hostname selection prerequisites
-#pip2 install shyaml
+# Check python modules
+declare -a py_req=(shyaml)
+
+echo "Checking installed python modules..."
+for p in ${py_req[@]}; do
+	echo -n "  "
+	if [[ $(pip show ${p}) ]]; then
+		echo -ne "${ok}"
+	else
+		echo -ne "${noy}"
+		py_new+=($p)
+	fi
+	echo " $p"
+done
+echo
+
+if [[ ${#py_new[@]} -gt 0 ]]; then
+	echo "Installing required python modules..."
+	pip2 install ${py_new}
+	echo
+fi
 
 # Use masterless local minion mode if not already set
 echo "Configuring salt..."
@@ -113,50 +130,50 @@ for i in ${minion_pre}*; do
 done
 
 function choose_hostname() {
-	echo "  Choose available hostname:"
+echo "  Choose available hostname:"
 
-	i=1
-	for l in ${minion_list[@]}; do
-		echo -e "   ${blue}$i${nc}: $l"
-		((i++))
-	done
-	echo
+i=1
+for l in ${minion_list[@]}; do
+	echo -e "   ${blue}$i${nc}: $l"
+	((i++))
+done
+echo
 
-	echo -ne "    Hostname: ${blue}"
-	read minion_id
-	((minion_id--))
-	echo -e "${nc}"
+echo -ne "    Hostname: ${blue}"
+read minion_id
+((minion_id--))
+echo -e "${nc}"
 
-	# Check if hostname is already in use
+# Check if hostname is already in use
 
-	h="${minion_list[$minion_id]}.${domain_outer}"
-	s="${h} has address "
-	ip_dns=$(host ${h} | grep "${s}" | sed "s/${s}//")
-	ip_local=$(ip -o addr | awk '!/^[0-9]*: ?lo|link\/ether/ {print $4}' | grep -v : | sed 's/\([0-9]\{1,3\}.[0-9]\{1,3\}.[0-9]\{1,3\}.[0-9]\{1,3\}\).*/\1/')
+h="${minion_list[$minion_id]}.${domain_outer}"
+s="${h} has address "
+ip_dns=$(host ${h} | grep "${s}" | sed "s/${s}//")
+ip_local=$(ip -o addr | awk '!/^[0-9]*: ?lo|link\/ether/ {print $4}' | grep -v : | sed 's/\([0-9]\{1,3\}.[0-9]\{1,3\}.[0-9]\{1,3\}.[0-9]\{1,3\}\).*/\1/')
 
-	if [[ $minion_id =~ ^-?[0-9]+$ && $minion_id -lt ${#minion_list[@]} && $minion_id -ge 0 ]]; then
-		# Check if the IP resolved via DNS is contained within the set of local IPs
-		if [[ ${ip_dns} == *"${ip_local}"* ]]; then
+if [[ $minion_id =~ ^-?[0-9]+$ && $minion_id -lt ${#minion_list[@]} && $minion_id -ge 0 ]]; then
+	# Check if the IP resolved via DNS is contained within the set of local IPs
+	if [[ ${ip_dns} == *"${ip_local}"* ]]; then
 		#if [[ ! $(ping -W 2 -c1 ${minion_list[$minion_id]}.${domain_outer} ) ]]; then
-			echo -e "    ${ok} ${minion_list[$minion_id]} chosen"
-		else
-			echo -e "    ${err} ${minion_list[$minion_id]} has the wrong IP address"
-			echo "              local interface: ${ip_local}"
-			echo "              DNS resolution:  ${ip_dns}"
-			echo
-			echo -ne "              Choose anyways? (${green}y${nc}/${red}N${nc}) ${blue}"
-			read override
-			echo -e "${nc}"
-
-			if [[ "$override" == "y" ]]; then
-				return $minion_id
-			fi
-			choose_hostname
-		fi
+		echo -e "    ${ok} ${minion_list[$minion_id]} chosen"
 	else
-		echo -e "    ${err} Your input was not valid\n"
+		echo -e "    ${err} ${minion_list[$minion_id]} has the wrong IP address"
+		echo "              local interface: ${ip_local}"
+		echo "              DNS resolution:  ${ip_dns}"
+		echo
+		echo -ne "              Choose anyways? (${green}y${nc}/${red}N${nc}) ${blue}"
+		read override
+		echo -e "${nc}"
+
+		if [[ "$override" == "y" ]]; then
+			return $minion_id
+		fi
 		choose_hostname
 	fi
+else
+	echo -e "    ${err} Your input was not valid\n"
+	choose_hostname
+fi
 }
 
 choose_hostname
