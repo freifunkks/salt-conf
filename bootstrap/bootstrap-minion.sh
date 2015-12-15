@@ -188,7 +188,7 @@ function choose_hostname() {
 }
 
 choose_hostname
-hostname=${minion_list[$?]}
+hostname=${minion_list[$?]}.${domain_inner}
 
 # Change hostname in running session
 sysctl kernel.hostname="${hostname}" &>/dev/null
