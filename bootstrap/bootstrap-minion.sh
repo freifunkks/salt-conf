@@ -3,11 +3,14 @@
 # Sets up a salt minion gateway / web server
 # by installing salt and setting up unused host name
 
-## Make sure script is run as root
-#if [[ $EUID -ne 0 ]]; then
-#	echo "Please run this script as root" 1>&2
-#	exit 1
-#fi
+# Make sure script is run as root
+if [[ $EUID -ne 0 ]]; then
+	echo "Please run this script as root" 1>&2
+	exit 1
+fi
+
+# Change working directory to script's
+cd "$(dirname "$0")"
 
 echo "Bootstrapping minion..."
 echo
@@ -56,7 +59,7 @@ for i in "${repo_new[@]}"; do
 	echo "  ${repo_names[$i]}:"
 	# Add key if needed
 	if [[ ! $(apt-key list | grep "${repo_fingerprints[$i]}") ]]; then
-		curl -s "${repo_keys[$i]}" | apt-key add - && echo -e "    ${ok} Key added" || (echo "    ${err} Error adding key for repo ${repo_names[$i]}"; exit 2)
+		curl -s "${repo_keys[$i]}" | apt-key add - && echo -e "    ${ok} Key added" || (echo "    ${err} Error adding key for repo ${repo_names[$i]}" 1>&2; exit 2)
 	else
 		echo -e "    ${ok} Key already available"
 	fi
@@ -65,11 +68,11 @@ done
 [[ ${#repo_new[@]} -gt 0 ]] && echo
 
 # Check system packages
-declare -a pkg_req=(salt-minion python-pip)
+declare -a pkg_req=(salt-minion python-pip git)
 
-#echo "Updating repositories..."
-#[[ $(apt-get update 1>/dev/null 2> >(wc -l)) -gt 0 ]] && (echo "Error updating repositories..."; exit 3)
-#echo
+echo "Updating repositories..."
+[[ $(apt-get update 1>/dev/null 2> >(wc -l)) -gt 0 ]] && (echo "Error updating repositories..."; 1>&2 exit 3)
+echo
 
 echo "Checking installed system packages..."
 for p in ${pkg_req[@]}; do
@@ -86,7 +89,7 @@ echo
 
 if [[ ${#pkg_new[@]} -gt 0 ]]; then
 	echo "Installing required system packages..."
-	#apt-get install -y ${pkg_new[@]} &>/dev/null || (echo -e "  ${err} Error installing required packages"; exit 4)
+	apt-get install -y ${pkg_new[@]} &>/dev/null || (echo -e "  ${err} Error installing required packages"; 1>&2 exit 4)
 	echo
 fi
 
@@ -185,7 +188,22 @@ function choose_hostname() {
 }
 
 choose_hostname
-minion_id=$?
-echo ${minion_list[$minion_id]}
-echo
+hostname=${minion_list[$?]}
+
+# Change hostname in running session
+sysctl kernel.hostname="${hostname}" &>/dev/null
+# Make the change permanent
+echo ${hostname} > /etc/hostname
+
+cd /root
+[[ -d salt-conf ]] || (echo "Getting 'Freifunk Kassel' salt configuration via git..."; git clone https://github.com/freifunkks/salt-conf.git)
+[[ -d /srv ]] || mkdir /srv
+[[ -L /srv/salt ]] || ln -s /root/salt-conf/state /srv/salt
+
+# Salt's first run
+echo -e "\nSalt is taking over now...\n"
+salt-call state.highstate 2>/dev/null
+
+# Reload new hostname in newly opened shell
+exec ${SHELL}
 
