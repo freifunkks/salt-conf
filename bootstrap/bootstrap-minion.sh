@@ -22,6 +22,7 @@ nc='\033[0m' # no color
 ok="[ ${green}OK${nc} ]"
 noy="[ ${yellow}NO${nc} ]"
 err="[ ${red}ERROR${nc} ]"
+info="[ ${blue}INFO${nc} ]"
 
 # Check official salt repo
 declare -a repo_names=(saltstack-official)
@@ -151,11 +152,18 @@ function choose_hostname() {
 	ip_dns=$(host ${h} | grep "${s}" | sed "s/${s}//")
 	ip_local=$(ip -o addr | awk '!/^[0-9]*: ?lo|link\/ether/ {print $4}' | grep -v : | sed 's/\([0-9]\{1,3\}.[0-9]\{1,3\}.[0-9]\{1,3\}.[0-9]\{1,3\}\).*/\1/')
 
+	minion_yaml="${minion_pre}${minion_list[$minion_id]}.sls"
+
 	if [[ $minion_id =~ ^-?[0-9]+$ && $minion_id -lt ${#minion_list[@]} && $minion_id -ge 0 ]]; then
 		# Check if the IP resolved via DNS is contained within the set of local IPs
+		if [[ $(cat ${minion_yaml} | shyaml get-value minion.gateway) == "True" ]]; then
+			echo -e "    ${info} ${minion_list[$minion_id]} is a gateway\n"
+		else
+			echo -e "    ${info} ${minion_list[$minion_id]} seems to be a web server\n"
+		fi
 		if [[ ${ip_dns} == *"${ip_local}"* ]]; then
 			#if [[ ! $(ping -W 2 -c1 ${minion_list[$minion_id]}.${domain_outer} ) ]]; then
-			echo -e "    ${ok} ${minion_list[$minion_id]} chosen"
+			echo -e "    ${ok} ${minion_list[$minion_id]} chosen without conflicts"
 		else
 			echo -e "    ${err} ${minion_list[$minion_id]} has the wrong IP address"
 			echo "              local interface: ${ip_local}"
