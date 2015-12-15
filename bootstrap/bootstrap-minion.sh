@@ -130,50 +130,50 @@ for i in ${minion_pre}*; do
 done
 
 function choose_hostname() {
-echo "  Choose available hostname:"
+	echo "  Choose available hostname:"
 
-i=1
-for l in ${minion_list[@]}; do
-	echo -e "   ${blue}$i${nc}: $l"
-	((i++))
-done
-echo
+	i=1
+	for l in ${minion_list[@]}; do
+		echo -e "   ${blue}$i${nc}: $l"
+		((i++))
+	done
+	echo
 
-echo -ne "    Hostname: ${blue}"
-read minion_id
-((minion_id--))
-echo -e "${nc}"
+	echo -ne "    Hostname: ${blue}"
+	read minion_id
+	((minion_id--))
+	echo -e "${nc}"
 
-# Check if hostname is already in use
+	# Check if hostname is already in use
 
-h="${minion_list[$minion_id]}.${domain_outer}"
-s="${h} has address "
-ip_dns=$(host ${h} | grep "${s}" | sed "s/${s}//")
-ip_local=$(ip -o addr | awk '!/^[0-9]*: ?lo|link\/ether/ {print $4}' | grep -v : | sed 's/\([0-9]\{1,3\}.[0-9]\{1,3\}.[0-9]\{1,3\}.[0-9]\{1,3\}\).*/\1/')
+	h="${minion_list[$minion_id]}.${domain_outer}"
+	s="${h} has address "
+	ip_dns=$(host ${h} | grep "${s}" | sed "s/${s}//")
+	ip_local=$(ip -o addr | awk '!/^[0-9]*: ?lo|link\/ether/ {print $4}' | grep -v : | sed 's/\([0-9]\{1,3\}.[0-9]\{1,3\}.[0-9]\{1,3\}.[0-9]\{1,3\}\).*/\1/')
 
-if [[ $minion_id =~ ^-?[0-9]+$ && $minion_id -lt ${#minion_list[@]} && $minion_id -ge 0 ]]; then
-	# Check if the IP resolved via DNS is contained within the set of local IPs
-	if [[ ${ip_dns} == *"${ip_local}"* ]]; then
-		#if [[ ! $(ping -W 2 -c1 ${minion_list[$minion_id]}.${domain_outer} ) ]]; then
-		echo -e "    ${ok} ${minion_list[$minion_id]} chosen"
-	else
-		echo -e "    ${err} ${minion_list[$minion_id]} has the wrong IP address"
-		echo "              local interface: ${ip_local}"
-		echo "              DNS resolution:  ${ip_dns}"
-		echo
-		echo -ne "              Choose anyways? (${green}y${nc}/${red}N${nc}) ${blue}"
-		read override
-		echo -e "${nc}"
+	if [[ $minion_id =~ ^-?[0-9]+$ && $minion_id -lt ${#minion_list[@]} && $minion_id -ge 0 ]]; then
+		# Check if the IP resolved via DNS is contained within the set of local IPs
+		if [[ ${ip_dns} == *"${ip_local}"* ]]; then
+			#if [[ ! $(ping -W 2 -c1 ${minion_list[$minion_id]}.${domain_outer} ) ]]; then
+			echo -e "    ${ok} ${minion_list[$minion_id]} chosen"
+		else
+			echo -e "    ${err} ${minion_list[$minion_id]} has the wrong IP address"
+			echo "              local interface: ${ip_local}"
+			echo "              DNS resolution:  ${ip_dns}"
+			echo
+			echo -ne "              Choose anyways? (${green}y${nc}/${red}N${nc}) ${blue}"
+			read override
+			echo -e "${nc}"
 
-		if [[ "$override" == "y" ]]; then
-			return $minion_id
+			if [[ "$override" == "y" ]]; then
+				return $minion_id
+			fi
+			choose_hostname
 		fi
+	else
+		echo -e "    ${err} Your input was not valid\n"
 		choose_hostname
 	fi
-else
-	echo -e "    ${err} Your input was not valid\n"
-	choose_hostname
-fi
 }
 
 choose_hostname
