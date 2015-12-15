@@ -1,85 +1,166 @@
 #!/bin/bash
-## ffks-salt-setup.sh
-## Sets up a salt minion gateway / web server
-## by installing salt and setting up unused host name
-#
+# ffks-salt-setup.sh
+# Sets up a salt minion gateway / web server
+# by installing salt and setting up unused host name
+
 ## Make sure script is run as root
 #if [[ $EUID -ne 0 ]]; then
 #	echo "Please run this script as root" 1>&2
 #	exit 1
 #fi
-#
-## Install Saltstack from official repo
-#https://repo.saltstack.com/apt/debian/8/amd64/latest/SALTSTACK-GPG-KEY.pub | apt-key add -
-#echo "deb http://repo.saltstack.com/apt/debian/8/amd64/latest jessie main" >> /etc/apt/sources.list.d/saltstack
-#apt-get update
-#apt-get install -y salt-minion
-#
-## TODO
-## Alternatively use community repo
-## deb http://debian.saltstack.com/debian jessie-saltstack main
-#
-## Use masterless local minion mode
-## if not already set
-#minion_file=/etc/salt/minion
-#minion_local="file_client: local"
-#grep ${minion_local} ${minion_file} 1>/dev/null && echo "Local minion mode already enabled." || ( sed -i "/#file_client: remote/a ${minion_local}" ${minion_file}; echo "Enabled local minion mode." )
-#
+
+echo "Bootstrapping minion..."
+echo
+
+# Colors
+red='\033[0;31m'
+green='\033[0;32m'
+yellow='\033[0;33m'
+blue='\033[0;34m'
+nc='\033[0m' # no color
+
+ok="[ ${green}OK${nc} ]"
+noy="[ ${yellow}NO${nc} ]"
+err="[ ${red}ERROR${nc} ]"
+
+# Check official salt repo
+declare -a repo_names=(saltstack-official)
+declare -a repo_lines=('deb http://repo.saltstack.com/apt/debian/8/amd64/latest jessie main')
+declare -a repo_keys=('https://repo.saltstack.com/apt/debian/8/amd64/latest/SALTSTACK-GPG-KEY.pub')
+declare -a repo_fingerprints=('2048R/DE57BFBE')
+
+# Alternatively use community repo
+#declare -a repo_names=(saltstack-community)
+#declare -a repo_lines=('deb http://debian.saltstack.com/debian jessie-saltstack main')
+#declare -a repo_keys=('???')
+#declare -a repo_fingerprints=('???')
+
+echo "Checking required repositories..."
+i=0
+for r in "${repo_lines[@]}"; do
+	echo -n "  "
+	if [[ $(grep -r "${r}" /etc/apt/sources.list*) ]]; then
+		echo -ne "${ok}"
+	else
+		echo -ne "${noy}"
+		repo_new+=($i)
+	fi
+	echo " ${repo_names[$i]}"
+	((i++))
+done
+echo
+
+[[ ${#repo_new[@]} -gt 0 ]] && echo "Adding required repositories..."
+for i in "${repo_new[@]}"; do
+	echo "  ${repo_names[$i]}:"
+	# Add key if needed
+	if [[ ! $(apt-key list | grep "${repo_fingerprints[$i]}") ]]; then
+		curl -s "${repo_keys[$i]}" | apt-key add - && echo -e "    ${ok} Key added" || (echo "    ${err} Error adding key for repo ${repo_names[$i]}"; exit 2)
+	else
+		echo -e "    ${ok} Key already available"
+	fi
+	#echo ${repo_lines[$r]}
+	grep -r "${repo_lines[$i]}" /etc/apt/sources.list* &>/dev/null || (echo -e "    ${ok} Repository added"; echo ${repo_lines[$i]} > /etc/apt/sources.list.d/${repo_names[$i]}.list) && echo -e "    ${ok} Repository already available"
+done
+[[ ${#repo_new[@]} -gt 0 ]] && echo
+
+# Check packages
+declare -a pkg_req=(salt-minion python-pip)
+declare -a pkg_new=()
+
+#echo "Updating repositories..."
+#[[ $(apt-get update 1>/dev/null 2> >(wc -l)) -gt 0 ]] && (echo "Error updating repositories..."; exit 1)
+#echo
+
+echo "Checking installed packages..."
+for p in ${pkg_req[@]}; do
+	echo -n "  "
+	if [[ $(dpkg-query -W $p 2>/dev/null) ]]; then
+		echo -ne "${ok}"
+	else
+		echo -ne "${noy}"
+		pkg_new+=($p)
+	fi
+	echo " $p"
+done
+echo
+
+[[ ${#pkg_new[@]} -gt 0 ]] && echo "Installing required packages..."
+#apt-get install -y ${pkg_new[@]} &>/dev/null || (echo -e "  ${err} Error installing required packages"; exit 3)
+[[ ${#pkg_new[@]} -gt 0 ]] && echo
+
+## TODO Get python packages
+#[[ ${#py_new[@]} -gt 0 ]] && echo "Installing required python packages..."
 ## Install hostname selection prerequisites
-#apt-get install -y python-pip dialog
 #pip2 install shyaml
 
-# Dialog options
-export DIALOGRC="$PWD/dialogrc"
+# Use masterless local minion mode if not already set
+echo "Configuring salt..."
+
+minion_file=/etc/salt/minion
+minion_local="file_client: local"
+grep "${minion_local}" ${minion_file} &>/dev/null && echo -e "  ${ok} Local minion mode already enabled" || ( sed -i "/#file_client: remote/a ${minion_local}" ${minion_file}; echo -e "  ${ok} Enabled local minion mode" )
+echo
+
+echo "Setting up minion..."
+
 minion_pre="$PWD/../pillar/minion-"
-#minion_list=$(pre='pillar/minion-'; for i in ${pre}*; do echo $i | sed 's|'$pre'\(\w\+\)\.sls|\1:|'; cat $i | sed 's/^/  /'; done)
-minion_list=$(for i in ${minion_pre}*; do echo $i | sed 's|'${minion_pre}'\(\w\+\)\.sls|\1|'; done)
-dialog_choice=$(mktemp)
-dialog_min=7
 domain_inner="ffks"
 domain_outer="${domain_inner}.de"
 
-# Select minion's hostname and
-# thus choosing it's role and packages
+for i in ${minion_pre}*; do
+	minion_list+=($(echo "$i" | sed 's|'${minion_pre}'\(\w\+\)\.sls|\1|'))
+done
 
-function dia_host_available () {
-	dialog --msgbox "Hostname seems to be free. Starting salt setup now." 6 30
-}
+function choose_hostname() {
+	echo "  Choose available hostname:"
 
-function dia_host_unavailable () {
-	dialog --msgbox "Hostname (${1}) is not available within salt repository. Please choose another one." 6 $((44+${#1}))
-}
+	i=1
+	for l in ${minion_list[@]}; do
+		echo -e "   ${blue}$i${nc}: $l"
+		((i++))
+	done
+	echo
 
-function dia_host_already_used () {
-	dialog --msgbox "Hostname seems to be already in use. Please select another one." 6 40
-}
-
-function select_server_host() {
-	# Select hostname from gateways / webservers
-	hostnames_dialog=$(echo "${minion_list}" | sed = | sed ':a;N;$!ba;s/\n/ /g')
-	hostnames_num=$(echo "${minion_list}" | wc -l)
-	echo ${hostnames_dialog} 
-	echo ${hostnames_num}
-	dialog --menu "Select servers hostname:" $((${dialog_min}+${hostnames_num})) 29 ${hostnames_num} ${hostnames_dialog} 2> ${dialog_choice}
-	hostnames_choice=$(<"${dialog_choice}")
-	hostname=$(echo "${minion_list}" | sed -n ${hostnames_choice}p)
+	echo -ne "    Hostname: ${blue}"
+	read minion_id
+	((minion_id--))
+	echo -e "${nc}"
 
 	# Check if hostname is already in use
-	ping -W 2 -c1 ${hostname}.${domain_outer} 2>1 >/dev/null && ( dia_host_already_used; select_server_host ) || dia_hostname_available
+
+	h="${minion_list[$minion_id]}.${domain_outer}"
+	s="${h} has address "
+	ip_dns=$(host ${h} | grep "${s}" | sed "s/${s}//")
+	ip_local=$(ip -o addr | awk '!/^[0-9]*: ?lo|link\/ether/ {print $4}' | grep -v : | sed 's/\([0-9]\{1,3\}.[0-9]\{1,3\}.[0-9]\{1,3\}.[0-9]\{1,3\}\).*/\1/')
+
+	if [[ $minion_id =~ ^-?[0-9]+$ && $minion_id -lt ${#minion_list[@]} && $minion_id -ge 0 ]]; then
+		# Check if the IP resolved via DNS is contained within the set of local IPs
+		if [[ ${ip_dns} == *"${ip_local}"* ]]; then
+		#if [[ ! $(ping -W 2 -c1 ${minion_list[$minion_id]}.${domain_outer} ) ]]; then
+			echo -e "    ${ok} ${minion_list[$minion_id]} chosen"
+		else
+			echo -e "    ${err} ${minion_list[$minion_id]} has the wrong IP address"
+			echo "              local interface: ${ip_local}"
+			echo "              DNS resolution:  ${ip_dns}"
+			echo
+			echo -ne "              Choose anyways? (${green}y${nc}/${red}N${nc}) ${blue}"
+			read override
+			echo -e "${nc}"
+
+			if [[ "$override" == "y" ]]; then
+				return $minion_id
+			fi
+			choose_hostname
+		fi
+	else
+		echo -e "    ${err} Your input was not valid\n"
+		choose_hostname
+	fi
 }
 
-if [[ -z $1 ]]; then
-	select_server_host
-else
-	# TODO Unfuck variable scope
-	hostname="$1"
-	echo "${minion_list}" | grep -c "^${hostname}$" >/dev/null || ( dia_host_unavailable ${hostname}; select_server_host )
-	ping -W 2 -c1 ${hostname}.${domain_outer} 2>1 >/dev/null && ( dia_host_already_used; select_server_host )
-	echo ${hostname}.${domain_outer}
-fi
-
-echo ${hostname}.${domain_outer}
-
-# Remove dirt
-[ -f ${dialog_choice} ] && rm ${dialog_choice}
+choose_hostname
+minion_id=$?
+echo ${minion_list[$minion_id]}
+echo
 
