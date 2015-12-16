@@ -8,8 +8,6 @@ fastd:
     - keyid: CB201D9C
     - keyserver: pgp.mit.edu
   pkg.installed:
-    - pkgs:
-      - fastd
     - require:
       - pkgrepo: fastd
 
