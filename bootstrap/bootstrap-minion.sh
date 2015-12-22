@@ -123,6 +123,12 @@ minion_local="file_client: local"
 grep "${minion_local}" ${minion_file} &>/dev/null && echo -e "  ${ok} Local minion mode already enabled" || ( sed -i "/#file_client: remote/a ${minion_local}" ${minion_file}; echo -e "  ${ok} Enabled local minion mode" )
 echo
 
+# Clone salt-conf repo
+cd /root
+[[ -d salt-conf ]] || (echo "Getting 'Freifunk Kassel' salt configuration via git..."; git clone https://github.com/freifunkks/salt-conf.git)
+[[ -d /srv ]] || mkdir /srv
+[[ -L /srv/salt ]] || ln -s /root/salt-conf/state /srv/salt
+
 echo "Setting up minion..."
 
 minion_pre="$PWD/../pillar/minion-"
@@ -194,11 +200,6 @@ hostname=${minion_list[$?]}.${domain_inner}
 sysctl kernel.hostname="${hostname}" &>/dev/null
 # Make the change permanent
 echo ${hostname} > /etc/hostname
-
-cd /root
-[[ -d salt-conf ]] || (echo "Getting 'Freifunk Kassel' salt configuration via git..."; git clone https://github.com/freifunkks/salt-conf.git)
-[[ -d /srv ]] || mkdir /srv
-[[ -L /srv/salt ]] || ln -s /root/salt-conf/state /srv/salt
 
 # Salt's first run
 echo -e "\nSalt is taking over now...\n"
