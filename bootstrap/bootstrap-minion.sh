@@ -125,7 +125,7 @@ echo
 
 # Clone salt-conf repo
 cd /root
-[[ -d salt-conf ]] || (echo "Getting 'Freifunk Kassel' salt configuration via git..."; git clone https://github.com/freifunkks/salt-conf.git)
+[[ -d salt-conf ]] || (echo "Getting 'Freifunk Kassel' salt configuration via git..."; git clone -q https://github.com/freifunkks/salt-conf.git ; echo)
 [[ -d /srv ]] || mkdir /srv
 [[ -L /srv/salt ]] || ln -s /root/salt-conf/state /srv/salt
 
