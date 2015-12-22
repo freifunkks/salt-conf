@@ -71,7 +71,7 @@ done
 declare -a pkg_req=(salt-minion python-pip git)
 
 echo "Updating repositories..."
-[[ $(apt-get update 1>/dev/null 2> >(wc -l)) -gt 0 ]] && (echo "Error updating repositories..."; 1>&2 exit 3)
+[[ $(apt-get update 1>/dev/null 2> >(wc -l)) -gt 0 ]] && (echo "Error updating repositories..." 1>&2; exit 3)
 echo
 
 echo "Checking installed system packages..."
@@ -89,7 +89,7 @@ echo
 
 if [[ ${#pkg_new[@]} -gt 0 ]]; then
 	echo "Installing required system packages..."
-	apt-get install -y ${pkg_new[@]} &>/dev/null || (echo -e "  ${err} Error installing required packages"; 1>&2 exit 4)
+	apt-get install -y ${pkg_new[@]} &>/dev/null || (echo -e "  ${err} Error installing required packages" 1>&2; exit 4)
 	echo
 fi
 
