@@ -2,9 +2,7 @@ base:
   '*':
     - common.essentials
     - common.tools
-    - common.users.flx
-    - common.users.hanspolo
-    - common.users.jplatte
+    - common.users
 
   'I@minion.gateway:True':
     - common.gateway-pkgs
