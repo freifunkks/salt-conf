@@ -1,6 +1,7 @@
 base:
   '*':
     - common.essentials
+    - common.network
     - common.tools
     - common.users
 
