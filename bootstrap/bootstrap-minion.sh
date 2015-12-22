@@ -59,7 +59,7 @@ for i in "${repo_new[@]}"; do
 	echo "  ${repo_names[$i]}:"
 	# Add key if needed
 	if [[ ! $(apt-key list | grep "${repo_fingerprints[$i]}") ]]; then
-		curl -s "${repo_keys[$i]}" | apt-key add - && echo -e "    ${ok} Key added" || (echo -e "    ${err} Error adding key for repo ${repo_names[$i]}" 1>&2; exit 2)
+		wget -qO - "${repo_keys[$i]}" | apt-key add - && echo -e "    ${ok} Key added" || (echo -e "    ${err} Error adding key for repo ${repo_names[$i]}" 1>&2; exit 2)
 	else
 		echo -e "    ${ok} Key already available"
 	fi
