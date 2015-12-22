@@ -124,14 +124,15 @@ grep "${minion_local}" ${minion_file} &>/dev/null && echo -e "  ${ok} Local mini
 echo
 
 # Clone salt-conf repo
+repo_name="salt-conf"
 cd /root
-[[ -d salt-conf ]] || (echo "Getting 'Freifunk Kassel' salt configuration via git..."; git clone -q https://github.com/freifunkks/salt-conf.git ; echo)
+[[ -d ${repo_name} ]] || (echo "Getting 'Freifunk Kassel' salt configuration via git..."; git clone -q https://github.com/freifunkks/${repo_name}.git ; echo)
 [[ -d /srv ]] || mkdir /srv
 [[ -L /srv/salt ]] || ln -s /root/salt-conf/state /srv/salt
 
 echo "Setting up minion..."
 
-minion_pre="$PWD/../pillar/minion-"
+minion_pre="${repo_name}/pillar/minion-"
 domain_inner="ffks"
 domain_outer="${domain_inner}.de"
 
