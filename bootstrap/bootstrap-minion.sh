@@ -19,13 +19,13 @@ echo
 red='\033[0;31m'
 green='\033[0;32m'
 yellow='\033[0;33m'
-blue='\033[0;34m'
+cyan='\033[0;36m'
 nc='\033[0m' # no color
 
 ok="[ ${green}OK${nc} ]"
 noy="[ ${yellow}NO${nc} ]"
 err="[ ${red}ERROR${nc} ]"
-info="[ ${blue}INFO${nc} ]"
+info="[ ${cyan}INFO${nc} ]"
 
 # Check official salt repo
 declare -a repo_names=(saltstack-official)
@@ -138,12 +138,12 @@ function choose_hostname() {
 
 	i=1
 	for l in ${minion_list[@]}; do
-		echo -e "   ${blue}$i${nc}: $l"
+		echo -e "   ${cyan}$i${nc}: $l"
 		((i++))
 	done
 	echo
 
-	echo -ne "    Hostname: ${blue}"
+	echo -ne "    Hostname: ${cyan}"
 	read minion_id
 	((minion_id--))
 	echo -e "${nc}"
@@ -172,7 +172,7 @@ function choose_hostname() {
 			echo "              local interface: ${ip_local}"
 			echo "              DNS resolution:  ${ip_dns}"
 			echo
-			echo -ne "              Choose anyways? (${green}y${nc}/${red}N${nc}) ${blue}"
+			echo -ne "              Choose anyways? (${green}y${nc}/${red}N${nc}) ${cyan}"
 			read override
 			echo -e "${nc}"
 
