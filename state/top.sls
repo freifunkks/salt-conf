@@ -10,6 +10,7 @@ base:
     - common.gateway-pkgs
 
   excalipurr.ffks:
+    - grafana
     - nginx
     - nginx.sites.ffks-dl
     - nginx.sites.ffks-home
