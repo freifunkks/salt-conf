@@ -129,6 +129,7 @@ cd /root
 [[ -d ${repo_name} ]] || (echo "Getting 'Freifunk Kassel' salt configuration via git..."; git clone -q https://github.com/freifunkks/${repo_name}.git ; echo)
 [[ -d /srv ]] || mkdir /srv
 [[ -L /srv/salt ]] || ln -s /root/salt-conf/state /srv/salt
+[[ -L /srv/pillar ]] || ln -s /root/salt-conf/pillar /srv/pillar
 
 echo "Setting up minion..."
 
@@ -208,4 +209,3 @@ salt-call state.highstate 2>/dev/null
 
 # Reload new hostname in newly opened shell
 exec ${SHELL}
-
