@@ -2,7 +2,7 @@ essential_pkgs:
   pkg.installed:
     - pkgs:
       - git
-      - ssh
+      - openssh-server
       - sudo
       - zsh
     - order: 1
