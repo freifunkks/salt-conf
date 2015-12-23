@@ -4,6 +4,7 @@ base:
     - common.network
     - common.tools
     - common.users
+    - fastd
 
   'I@minion.gateway:True':
     - common.gateway-pkgs
