@@ -14,7 +14,7 @@ admin:
 
 /etc/sudoers.d/admin:
   file.managed:
-    - contents: %admin ALL=(ALL:ALL) NOPASSWD:ALL
+    - contents: '%admin ALL=(ALL:ALL) NOPASSWD:ALL'
     - user: root
     - group: root
     - mode: 640
