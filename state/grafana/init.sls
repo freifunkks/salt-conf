@@ -23,6 +23,8 @@ grafana:
     - watch_in:
       - service: postgresql
   postgres_database.present:
+    - owner: grafana
+    - owner_recurse: True
     - watch_in:
       - service: postgresql
 

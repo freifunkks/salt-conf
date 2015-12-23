@@ -18,6 +18,8 @@ ffks-pad:
     - watch_in:
       - service: postgresql
   postgres_database.present:
+    - owner: ffks-pad
+    - owner_recurse: True
     - watch_in:
       - service: postgresql
 
