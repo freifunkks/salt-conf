@@ -8,8 +8,3 @@ include:
     - watch_in:
       - service: nginx
 {% endfor %}
-
-ffks-stats:
-  user.present:
-    - shell: /usr/bin/nologin
-    - order: 11
