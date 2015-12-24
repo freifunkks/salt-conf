@@ -19,14 +19,10 @@ grafana:
   user.present:
     - shell: /usr/bin/nologin
     - order: 11
-  postgres_user.present:
-    - watch_in:
-      - service: postgresql
+  postgres_user.present: []
   postgres_database.present:
     - owner: grafana
     - owner_recurse: True
-    - watch_in:
-      - service: postgresql
 
 /etc/grafana/grafana.ini:
   file.managed:

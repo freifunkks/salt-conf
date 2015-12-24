@@ -14,14 +14,10 @@ ffks-pad:
   user.present:
     - shell: /usr/bin/nologin
     - order: 11
-  postgres_user.present:
-    - watch_in:
-      - service: postgresql
+  postgres_user.present: []
   postgres_database.present:
     - owner: ffks-pad
     - owner_recurse: True
-    - watch_in:
-      - service: postgresql
 
 etherpad-lite-pkgs:
   pkg.installed:
