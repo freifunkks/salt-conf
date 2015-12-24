@@ -31,6 +31,7 @@ grafana:
 /etc/grafana/grafana.ini:
   file.managed:
     - source: salt://grafana/grafana.ini
+    - template: jinja
     - create: False
     - require:
       - pkg: grafana
