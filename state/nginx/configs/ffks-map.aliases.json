@@ -1,0 +1,20 @@
+[
+  {
+    "node_id": "gw1 (aggrosculpture)",
+    "hostname": "aggrosculpture.ffks",
+    "network": {
+      "mesh_interfaces": [
+        "f6:b7:a2:e4:9f:08"
+      ]
+    }
+  },
+  {
+    "node_id": "gw2 (bewarewolf)",
+    "hostname": "bewarewolf.ffks",
+    "network": {
+      "mesh_interfaces": [
+        "f6:b7:a2:e4:9f:18"
+      ]
+    }
+  }
+]
