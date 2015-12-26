@@ -1,6 +1,5 @@
 include:
   - nginx
-  - postgresql
 
 {% for site in ['pad.ffks', 'pad.freifunk-kassel.de', 'pad.' + grains.host + '.ffks.de'] %}
 {{ site }}:

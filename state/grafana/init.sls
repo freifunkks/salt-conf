@@ -1,6 +1,3 @@
-include:
-  - postgresql
-
 apt-transport-https: pkg.installed
 
 grafana:
