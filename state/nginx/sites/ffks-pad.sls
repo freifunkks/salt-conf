@@ -22,7 +22,7 @@ etherpad-lite-pkgs:
   pkg.installed:
     - pkgs:
       # Some of these are already in common.tools, but it doesn't hurt
-      # listing everything the official installation instructions list
+      # listing everything from the official installation instructions list
       - gzip
       - git
       - curl
