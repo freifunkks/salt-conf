@@ -29,10 +29,19 @@ grafana:
     - require:
       - pkg: grafana
 
+/var/lib/grafana/dashboards:
+  file.directory:
+    - user: grafana
+    - group: grafana
+    - mode: 755
+    - require:
+      - pkg: grafana
+      - user: grafana
+
 grafana-server:
   service.running:
     - enable: True
     - watch:
       - pkg: grafana
-      - user: grafana
       - file: /etc/grafana/grafana.ini
+      - file: /var/lib/grafana/dashboards
