@@ -1,9 +1,10 @@
 vpn:
   aggrosculpture.ffks:
-    vpn_mac: f6:b7:a2:e4:9f:08
-    fastd_public: eff8ae86d2ee7461a0da22fda920eeb983ae867613e74db0f93d8e726cbc6d83
+    fastd_public: |
+      eff8ae86d2ee7461a0da22fda920eeb983ae867613e74db0f93d8e726cbc6d83
+    mac: f6:b7:a2:e4:9f:08
   bewarewolf.ffks:
-    vpn_mac: # TODO
+    mac: # TODO
   excalipurr.ffks:
     fastd_public: |
       a107a141ec3a6c08ed88f4aab8f9aa9b40fc1c6e29da3077fdb67c5cf10ea59b
@@ -28,8 +29,36 @@ vpn:
       =udop
       -----END PGP MESSAGE-----
 
-    vpn_mac: # TODO
+    mac: # TODO
   knocktopus.ffks:
-    vpn_mac: # TODO
+    fastd_public: |
+      4788d5947275d5f2f2ebbbaea7050e055d5e11c2c4fd1c6cc2fe875cba63a818
+    fastd_secret: |
+      -----BEGIN PGP MESSAGE-----
+      Version: GnuPG v2
+
+      hQIMAwHjiYvyHwMnAQ//WDGg01zQcvKhi0QBeexUhX/K9Hadj4titA6JmR0jOe+G
+      Mfb+C3vGorQtYTC8LRx5T8wY3tng7HTmLEfjyFdrYNSzdOV3MsJZdhIhEIt03Qyi
+      CxT7pZjRcRysPGNerHuRCytWc9MYY5fDiW68Vo5tMi9JcdcngWUa7P9qqI9ojvP4
+      t1QpDAye6ROjDxK1fza18WF4S7o48lUsYJZX8elEx5tOon4D9Jt+hOUzJfoz2ZnH
+      /UdlwLAgjof87g2lXVBACy1oREn1CiP9hjsxXlS/tD22Tc+DZ6kyI7QoRUAOXtd+
+      jL/y/Y9MyJb7iJplks4KubwCuQvkW4b2wf9TSUiKNnBVOzLukhk7ZXZVB1r2QpAq
+      AdPYGguv3I6PFT8BdM1L+tEhqJ+sp28qAxOJXLMkWx0dn4ghojMkdtQbO3op9XcN
+      QMCOhYCEdZfQyd48v7P3JqrjNA1NmBPZYcEI9krXi1ZnjTJz0UvN0XcEQqWMcqGr
+      a+tsKt61nQ+3Qp5xGCP5+PZ+S87P61lF3WLupbCUTKk8cS15atqcWXw2cIIDLJQH
+      56+Mz7BAggtx745MCZC95vXgNj0Ew+H3uWmLKK3Q3hClOYWXrXXx+PZbRUGDnqX6
+      FsyzJu8AQ7eXGEaEMJg2jBlTaC8cgRljTOmth/JcFWpuk5faPOlmKB09xLpX6dfS
+      dQGmMyYTbnK7nGR7qpWmFAxjjuE9TMHonf85rNZp5dOsPns8El7ykBXDOhFJc0Dl
+      6DmDjhM3JJZjHrzywoMy1ACLXW+2kRlb3ASH0FhzGP8vhQE8V+e/yVFA8wZHjOeb
+      caCbL+XF4PKvEvuphm8/XsMKnityPA==
+      =IB6/
+      -----END PGP MESSAGE-----
+
+    mac: # TODO
   spinchilla.ffks:
-    vpn_mac: # TODO
+    mac: # TODO
+
+fastd_peerings:
+  excalipurr.ffks:
+    - aggrosculpture.ffks
+    - bewarewolf.ffks

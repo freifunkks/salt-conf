@@ -18,6 +18,7 @@ fastd:
     - user: root
     - owner: root
     - mode: 600
+    - makedirs: True
     - require:
       - pkg: fastd
 
@@ -28,3 +29,32 @@ fastd:
     - mode: 755
     - require:
       - pkg: fastd
+
+# Peers that this minion connects to
+{% for peer in fastd_peerings[grains['id']] %}
+/etc/fastd/peers/{{ peer }}:
+  file.managed:
+    - contents: |
+      key "{{ pillar['vpn'][peer]['fastd_public'] }}";
+      remote "{{ peer }}.de" port 10000;
+    - user: root
+    - group: root
+    - mode: 644
+    - require:
+      - pkg: fastd
+{% endfor %}
+
+# Peers that are allowed to connect to this minion
+{% for minion, peers in fastd_peerings %}
+  {% if peers.count(grains['id']) > 0 %}
+/etc/fastd/peers/{{ minion }}:
+  file.managed:
+    - contents: |
+      key "{{ pillar['vpn'][minion]['fastd_public'] }}";
+    - user: root
+    - group: root
+    - mode: 644
+    - require:
+      - pkg: fastd
+  {% endif %}
+{% endfor %}
