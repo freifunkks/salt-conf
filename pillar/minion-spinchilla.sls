@@ -1,2 +1,0 @@
-minion:
-  gateway: True

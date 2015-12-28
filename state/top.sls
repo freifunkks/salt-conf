@@ -6,8 +6,9 @@ base:
     - common.users
     - fastd
 
-  'I@minion.gateway:True':
+  {% if pillar['minions'][grains['id']].gateway %}
     - common.gateway-pkgs
+  {% endif %}
 
   excalipurr.ffks:
     - grafana
