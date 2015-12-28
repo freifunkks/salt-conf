@@ -4,6 +4,8 @@ vpn:
       eff8ae86d2ee7461a0da22fda920eeb983ae867613e74db0f93d8e726cbc6d83
     mac: f6:b7:a2:e4:9f:08
   bewarewolf.ffks:
+    fastd_public: |
+      1eef194a2902f7ff2a953740c903d75654bbb6d00889fca19d98de517116fc64
     mac: # TODO
   excalipurr.ffks:
     fastd_public: |
