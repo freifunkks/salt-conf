@@ -31,7 +31,7 @@ fastd:
       - pkg: fastd
 
 # Peers that this minion connects to
-{% for peer in fastd_peerings[grains['id']] %}
+{% for peer in pillar['fastd_peerings'][grains['id']] %}
 /etc/fastd/peers/{{ peer }}:
   file.managed:
     - contents: |
