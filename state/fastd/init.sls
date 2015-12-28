@@ -10,3 +10,21 @@ fastd:
   pkg.installed:
     - require:
       - pkgrepo: fastd
+
+/etc/fastd/ffks-vpn/fastd.conf:
+  file.managed:
+    - source: salt://fastd/ffks-vpn.conf
+    - template: jinja
+    - user: root
+    - owner: root
+    - mode: 600
+    - require:
+      - pkg: fastd
+
+/etc/fastd/peers:
+  file.directory:
+    - user: root
+    - owner: root
+    - mode: 755
+    - require:
+      - pkg: fastd
