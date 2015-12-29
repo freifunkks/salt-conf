@@ -3,6 +3,7 @@ nginx:
     - order: 2
   service.running:
     - enable: True
+    - reload: True
     - watch:
       - pkg: nginx
 
