@@ -13,9 +13,9 @@ fastd:
 
 /etc/fastd/peers: file.absent
 
-/etc/fastd/ffks-vpn/fastd.conf:
+/etc/fastd/ffks_vpn/fastd.conf:
   file.managed:
-    - source: salt://fastd/ffks-vpn.conf
+    - source: salt://fastd/ffks_vpn.conf
     - template: jinja
     - user: root
     - owner: root
@@ -24,7 +24,7 @@ fastd:
     - require:
       - pkg: fastd
 
-/etc/fastd/ffks-vpn/peers:
+/etc/fastd/ffks_vpn/peers:
   file.directory:
     - user: root
     - owner: root
@@ -33,16 +33,16 @@ fastd:
     - require:
       - pkg: fastd
 
-fastd@ffks-vpn:
+fastd@ffks_vpn:
   service.running:
     - enable: True
     - reload: True
     - watch:
-      - file: /etc/fastd/ffks-vpn/fastd.conf
+      - file: /etc/fastd/ffks_vpn/fastd.conf
 
 # Peers that this minion connects to
 {% for peer in pillar['fastd_peerings'][grains['id']] %}
-/etc/fastd/ffks-vpn/peers/{{ peer }}:
+/etc/fastd/ffks_vpn/peers/{{ peer }}:
   file.managed:
     - contents: |-
         key "{{ pillar['minions'][peer]['fastd_public'] }}";
@@ -53,13 +53,13 @@ fastd@ffks-vpn:
     - require:
       - pkg: fastd
     - watch_in:
-      - service: fastd@ffks-vpn
+      - service: fastd@ffks_vpn
 {% endfor %}
 
 # Peers that are allowed to connect to this minion
 {% for minion, peers in pillar['fastd_peerings'].items() %}
   {% if peers.count(grains['id']) > 0 %}
-/etc/fastd/ffks-vpn/peers/{{ minion }}:
+/etc/fastd/ffks_vpn/peers/{{ minion }}:
   file.managed:
     - contents: |-
         key "{{ pillar['minions'][minion]['fastd_public'] }}";
@@ -69,6 +69,6 @@ fastd@ffks-vpn:
     - require:
       - pkg: fastd
     - watch_in:
-      - service: fastd@ffks-vpn
+      - service: fastd@ffks_vpn
   {% endif %}
 {% endfor %}
