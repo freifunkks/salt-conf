@@ -34,9 +34,9 @@ fastd:
 {% for peer in pillar['fastd_peerings'][grains['id']] %}
 /etc/fastd/peers/{{ peer }}:
   file.managed:
-    - contents: |
-      key "{{ pillar['vpn'][peer]['fastd_public'] }}";
-      remote "{{ peer }}.de" port 10000;
+    - contents: |-
+        key "{{ pillar['minions'][peer]['fastd_public'] }}";
+        remote "{{ peer }}.de" port 10000;
     - user: root
     - group: root
     - mode: 644
@@ -45,12 +45,12 @@ fastd:
 {% endfor %}
 
 # Peers that are allowed to connect to this minion
-{% for minion, peers in fastd_peerings %}
+{% for minion, peers in pillar['fastd_peerings'].items() %}
   {% if peers.count(grains['id']) > 0 %}
 /etc/fastd/peers/{{ minion }}:
   file.managed:
-    - contents: |
-      key "{{ pillar['vpn'][minion]['fastd_public'] }}";
+    - contents: |-
+        key "{{ pillar['minions'][minion]['fastd_public'] }}";
     - user: root
     - group: root
     - mode: 644
