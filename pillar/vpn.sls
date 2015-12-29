@@ -1,3 +1,5 @@
+#!yaml|gpg
+
 minions:
   aggrosculpture.ffks:
     fastd_public: |-
