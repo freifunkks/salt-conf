@@ -89,3 +89,12 @@ fastd_peerings:
   excalipurr.ffks:
     - aggrosculpture.ffks
     - bewarewolf.ffks
+    - knocktopus.ffks
+    - spinchilla.ffks
+  knocktopus.ffks:
+    - aggrosculpture.ffks
+    - bewarewolf.ffks
+  spinchilla.ffks:
+    - aggrosculpture.ffks
+    - bewarewolf.ffks
+    - knocktopus.ffks
