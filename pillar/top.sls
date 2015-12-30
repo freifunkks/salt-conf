@@ -1,8 +1,8 @@
 base:
   '*':
+    - fastd
     - minions
     - userdata
-    - vpn
 
   excalipurr.ffks:
     - grafana

@@ -1,0 +1,20 @@
+aggrosculpture.ffks:
+  alias: gw1
+  gateway: True
+  mac: f6:b7:a2:e4:9f:08
+bewarewolf.ffks:
+  alias: gw2
+  gateway: True
+  mac: f6:b7:a2:e4:9f:a2
+excalipurr.ffks:
+  alias: web
+  gateway: False
+  mac: f6:b7:a2:e4:9f:f0
+knocktopus.ffks:
+  alias: gw3
+  gateway: True
+  mac: f6:b7:a2:e4:9f:a3
+spinchilla.ffks:
+  alias: gw0
+  gateway: True
+  mac: f6:b7:a2:e4:9f:a0
