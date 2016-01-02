@@ -8,9 +8,11 @@ base:
 
   {% if pillar['minions'][grains['id']].gateway %}
     - common.gateway-pkgs
+    - fastd.gw-peerings
   {% endif %}
 
   excalipurr.ffks:
+    - fastd.web-peerings
     - grafana
     - nginx
     - nginx.sites.ffks-dl

@@ -80,11 +80,8 @@ minions:
       -----END PGP MESSAGE-----
 
 fastd_peerings:
-  excalipurr.ffks:
+  bewarewolf.ffks:
     - aggrosculpture.ffks
-    - bewarewolf.ffks
-    - knocktopus.ffks
-    - spinchilla.ffks
   knocktopus.ffks:
     - aggrosculpture.ffks
     - bewarewolf.ffks
