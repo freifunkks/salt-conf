@@ -1,10 +1,12 @@
+{% import_yaml 'minions.yml' as minions %}
+
 base:
   '*':
     - fastd
     - minions
     - userdata
 
-  {% if pillar['minions'][grains['id']].gateway %}
+  {% if minions[grains['id']].gateway %}
     - gw-schedule
   {% endif %}
 
