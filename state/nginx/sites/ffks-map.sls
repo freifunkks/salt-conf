@@ -32,6 +32,7 @@ https://github.com/freifunkks/meshviewer.git:
   git.latest:
     - rev: community-specific-adjustments
     - target: /home/ffks-map/meshviewer
+    - force_fetch: True
     - force_reset: True
     - user: ffks-map
 

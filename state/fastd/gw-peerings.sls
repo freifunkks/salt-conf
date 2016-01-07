@@ -37,6 +37,7 @@ include:
 https://github.com/freifunkks/fastd-keys.git:
   git.latest:
     - target: /etc/fastd/ffks_vpn/nodes
+    - force_fetch: True
     - force_reset: True
     - user: root
     - require:
