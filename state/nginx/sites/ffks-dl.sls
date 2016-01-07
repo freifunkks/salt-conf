@@ -12,7 +12,7 @@ include:
 ffks-dl:
   user.present:
     - createhome: False
-    - shell: /usr/bin/nologin
+    - shell: /usr/sbin/nologin
     - order: 11
 
 /srv/http/ffks-dl:

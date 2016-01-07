@@ -11,7 +11,7 @@ include:
 
 ffks-pad:
   user.present:
-    - shell: /usr/bin/nologin
+    - shell: /usr/sbin/nologin
     - order: 11
   postgres_user.present: []
   postgres_database.present:

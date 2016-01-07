@@ -18,7 +18,7 @@ www.freifunk-kassel.de:
 
 ffks-home:
   user.present:
-    - shell: /usr/bin/nologin
+    - shell: /usr/sbin/nologin
     - order: 11
 
 /home/ffks-home/wikicontent:

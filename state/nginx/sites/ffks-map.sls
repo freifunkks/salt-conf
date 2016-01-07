@@ -11,7 +11,7 @@ include:
 
 ffks-map:
   user.present:
-    - shell: /usr/bin/nologin
+    - shell: /usr/sbin/nologin
     - order: 11
 
 node:
