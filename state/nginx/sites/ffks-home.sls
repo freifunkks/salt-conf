@@ -68,13 +68,16 @@ moinmoin-pkgs:
   file.managed:
     - source: salt://nginx/configs/ffks-home.uwsgi-ini
     - mode: 644
+    - require:
+      - pkg: moinmoin-pkgs
+    - watch_in:
+      - service: uwsgi
 
 /etc/uwsgi/apps-enabled/ffks-home.ini:
   file.symlink:
     - target: /etc/uwsgi/apps-available/ffks-home.ini
     - require:
       - file: /etc/uwsgi/apps-available/ffks-home.ini
-      - pkg: moinmoin-pkgs
     - watch_in:
       - service: uwsgi
 
