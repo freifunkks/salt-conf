@@ -14,6 +14,7 @@ base:
   excalipurr.ffks:
     - fastd.web-peerings
     - grafana
+    - graphite
     - nginx
     - nginx.sites.ffks-dl
     - nginx.sites.ffks-home
