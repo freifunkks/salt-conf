@@ -39,7 +39,6 @@ graphite:
 
 carbon-cache:
   service.running:
-    # Still no restart?!
     - enable: True
     - watch:
       - pkg: graphite
