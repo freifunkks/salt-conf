@@ -1,3 +1,5 @@
+#!yaml|gpg
+
 grafana:
   admin-password: |
     -----BEGIN PGP MESSAGE-----
