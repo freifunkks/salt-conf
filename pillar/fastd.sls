@@ -7,6 +7,27 @@ minions:
   bewarewolf.ffks:
     fastd_public: |-
       1eef194a2902f7ff2a953740c903d75654bbb6d00889fca19d98de517116fc64
+    fastd_secret: |-
+      -----BEGIN PGP MESSAGE-----
+      Version: GnuPG v2
+
+      hQIMA9TXjJ/JWf8VAQ//Tf2oLOW/TtduvGDIxpbBNzCEG7b/l5DDpD/yZD/C8B8t
+      M4NDYwD5QuDLsi5p8MYogX3PKC2HehckFbx7hfa6v413lKSsR4dwtLIfSIQ1Dtrv
+      xjrFMszN5DyVdSAlRms9/m3Fby6unmIeWYjgiBasHJxrKG1nu/UqEi0LlknWZd/D
+      Q4KQC0Cl4WC5KWOuY4ycg33dJ4As/ktBkDAV8E915covQfgkkhOdwyu+SJX/dKTx
+      WFhWMs4M1Lkm2mIkPIL59s1UCzyoDftp0u2jBtyGoO5+NcTYsb0HtgAirguOUUvE
+      zRydFNuV51wEQX2EkYVZKdbIuP2YcjnKfVr3H7qor4qdYxBe7UmmOgShk/nx3rld
+      0V731NrQHw0Bl6hep3DKeWmnbL2U6Z0/0mSdOLZwxvaemEnCkwcCrc0GEGO632/h
+      AHBdAfAmfMH9i2iIrq+k0CMg9drbGW2GNGlo/7eQLFpQgFKIJppyG7s6ZfLtn7yb
+      OZGqEh2ny5cmSAtsyKf0h5JUueU+x0XU4w0lLboLSRt/S8eKMtGZOM8iUs5S7yhq
+      z8HtAZv5ZhvBQ/dWrz61zAoPBL+YJzCwunT07NZmOhXFsZCQL/cgWMRYIgLSNZ+O
+      Zk3VI0QaI3ns3aK4TF67ZhKMr8+XYDCNS0lKvEfZ8ZKaw1c5cGuA6Y0YMKRPADzS
+      dgEs4YzNGP1+ICWZ9paMElnlh1/meSzWyKJS0JFUcGrySkdfv1t6GQtw0qs+bYR5
+      KW02ccMavsO4pxDi/RFSaxgcuFRoh0mIdlg0mygvbdQW4nnMqMo9MNookzduy3uk
+      iS3c03aMvuhRhe5muJ4MtWmd6R4JCoI=
+      =Yeb1
+      -----END PGP MESSAGE-----
+
   excalipurr.ffks:
     fastd_public: |-
       4c1c4342d01a8ba8d558a2997b1d767b7b8070e7e941fafb86c39015238dda2f
