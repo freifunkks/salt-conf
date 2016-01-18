@@ -1,0 +1,4 @@
+location / {
+  uwsgi_pass unix:/home/graphite-api/uwsgi.sock;
+  include uwsgi_params;
+}
