@@ -4,7 +4,7 @@ include:
 
 update-fastd-keys:
   schedule.present:
-    function: state.sls
-    args:
+    - function: state.sls
+    - args:
       - fastd.gw-peerings.nodes
-    minutes: 5
+    - minutes: 5
