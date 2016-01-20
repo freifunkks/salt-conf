@@ -1,5 +1,5 @@
 include:
-  - fastd
+  - fastd.service
 
 # Gateways that this gateway actively connects to
 {% for peer in pillar['fastd_peerings'][grains['id']] %}

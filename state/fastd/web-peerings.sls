@@ -1,5 +1,5 @@
 include:
-  - fastd
+  - fastd.service
 
 {% for minion, data in pillar['minions'].items() %}
   {% if data.gateway %}

@@ -1,5 +1,5 @@
 include:
-  - fastd
+  - fastd.service
 
 https://github.com/freifunkks/fastd-keys.git:
   git.latest:

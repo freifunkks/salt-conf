@@ -1,3 +1,6 @@
+include:
+  - fastd.service
+
 fastd:
   pkgrepo.managed:
     - name: deb http://repo.universe-factory.net/debian/ sid main
@@ -24,6 +27,8 @@ fastd:
     - makedirs: True
     - require:
       - pkg: fastd
+    - watch_in:
+      - service: fastd@ffks_vpn
 
 /etc/fastd/ffks_vpn/gateways:
   file.directory:
@@ -33,10 +38,3 @@ fastd:
     - makedirs: True
     - require:
       - pkg: fastd
-
-fastd@ffks_vpn:
-  service.running:
-    - enable: True
-    - reload: True
-    - watch:
-      - file: /etc/fastd/ffks_vpn/fastd.conf
