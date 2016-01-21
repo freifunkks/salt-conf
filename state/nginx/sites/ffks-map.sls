@@ -49,6 +49,7 @@ https://github.com/freifunkks/meshviewer.git:
     # default tasks without lint, could potentially be shortened
     - name: grunt bower-install-simple saveRevision copy sass requirejs
     - cwd: /home/ffks-map/meshviewer
+    - user: ffks-map
     - watch:
       - npm: /home/ffks-map/meshviewer
       - pkg: ruby-sass
