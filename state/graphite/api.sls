@@ -16,7 +16,7 @@ graphite-api:
     - require:
       - pkg: python-pip
   nginx_site.present:
-    - name: localhost
+    - use_server_name: False
     - configfile: salt://graphite/graphite-api.nginx-conf
     - port: 7003
     - watch_in:
