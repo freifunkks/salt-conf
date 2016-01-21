@@ -41,8 +41,6 @@ https://github.com/freifunkks/meshviewer.git:
     - user: ffks-map
     - require:
       - npm: grunt-cli
-    - watch:
-      - git: https://github.com/freifunkks/meshviewer.git
 
 /home/ffks-map/meshviewer/build:
   cmd.wait:
@@ -51,6 +49,7 @@ https://github.com/freifunkks/meshviewer.git:
     - cwd: /home/ffks-map/meshviewer
     - user: ffks-map
     - watch:
+      - git: https://github.com/freifunkks/meshviewer.git
       - npm: /home/ffks-map/meshviewer
       - pkg: ruby-sass
 
