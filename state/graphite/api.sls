@@ -18,6 +18,7 @@ graphite-api:
   nginx_site.present:
     - use_server_name: False
     - configfile: salt://graphite/graphite-api.nginx-conf
+    - address: localhost
     - port: 7003
     - watch_in:
       - service: nginx
