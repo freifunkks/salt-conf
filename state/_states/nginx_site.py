@@ -49,7 +49,7 @@ listen 443 ssl;
 server_name $name;
 
 ssl_certificate /etc/nginx/tls/$name.crt;
-ssl_certificate /etc/nginx/tls/$name.key;
+ssl_certificate_key /etc/nginx/tls/$name.key;
 
 location /error_pages {
   alias /srv/http/error_pages;
