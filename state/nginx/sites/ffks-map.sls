@@ -1,13 +1,15 @@
 include:
   - nginx
 
-{% for site in ['map.ffks', 'map.freifunk-kassel.de', 'map.' + grains.host + '.ffks.de'] %}
-{{ site }}:
+map.freifunk-kassel.de:
   nginx_site.present:
     - configfile: salt://nginx/configs/ffks-map.nginx-conf
+    - server_names:
+      - map.ffks
+      - map.freifunk-kassel.de
+      - map.{{ grains.host }}.ffks.de
     - watch_in:
       - service: nginx
-{% endfor %}
 
 ffks-map:
   user.present:

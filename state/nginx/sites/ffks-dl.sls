@@ -1,13 +1,15 @@
 include:
   - nginx
 
-{% for site in ['dl.ffks', 'dl.freifunk-kassel.de', 'dl.' + grains.host + '.ffks.de'] %}
-{{ site }}:
+dl.freifunk-kassel.de:
   nginx_site.present:
     - configfile: salt://nginx/configs/ffks-dl.nginx-conf
+    - server_names:
+      - dl.ffks
+      - dl.freifunk-kassel.de
+      - dl.{{ grains.host }}.ffks.de
     - watch_in:
       - service: nginx
-{% endfor %}
 
 ffks-dl:
   user.present:

@@ -2,17 +2,33 @@ include:
   - nginx
   - uwsgi
 
-{% for site in ['home.ffks', 'freifunk-kassel.de', 'home.' + grains.host + '.ffks.de'] %}
-{{ site }}:
+freifunk-kassel.de:
   nginx_site.present:
     - configfile: salt://nginx/configs/ffks-home.nginx-conf
+    - server_names:
+      - home.ffks.de
+      - freifunk-kassel.de
+      - home.{{ grains.host }}.ffks.de
     - watch_in:
       - service: nginx
-{% endfor %}
 
-www.freifunk-kassel.de:
+ffks-home-redirects:
   nginx_site.redirect:
-    - target: https://freifunk-kassel.de
+    - server_names:
+      - ffks.de
+      - kassel-freifunk.de
+      - www.ffks.de
+      - www.freifunk-kassel.de
+      - wwww.kassel-freifunk.de
+    - target: https://freifunk-kassel.de$request_uri
+    - watch_in:
+      - service: nginx
+
+subdomain-redirects:
+  nginx_site.redirect:
+    - server_names:
+      - ~^(\w+)\.(ffks|kassel-freifunk)\.de$
+    - target: https://$1.freifunk-kassel.de$request_uri
     - watch_in:
       - service: nginx
 
