@@ -10,8 +10,8 @@ server {
 listen $addr:$port;
 $server_name
 
-location /error_pages {
-  alias /srv/http/error_pages;
+location /error_pages/ {
+  alias /srv/http/error_pages/;
   internal;
 }
 
@@ -27,13 +27,13 @@ server {
 listen 80;
 server_name $name;
 
-location /error_pages {
-  alias /srv/http/error_pages;
+location /error_pages/ {
+  alias /srv/http/error_pages/;
   internal;
 }
 
-location /.well-known/acme-challenge {
-  alias /srv/http/challenges;
+location /.well-known/acme-challenge/ {
+  alias /srv/http/challenges/;
 }
 
 # Only used when no other location block matches
@@ -51,8 +51,8 @@ server_name $name;
 ssl_certificate /etc/nginx/tls/$name.crt;
 ssl_certificate_key /etc/nginx/tls/$name.key;
 
-location /error_pages {
-  alias /srv/http/error_pages;
+location /error_pages/ {
+  alias /srv/http/error_pages/;
   internal;
 }
 
