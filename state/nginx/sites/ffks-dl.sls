@@ -25,9 +25,9 @@ ffks-dl:
 /srv/http/ffks-dl:
   file.directory:
     - user: ffks-dl
-    - group: www-data
-    - dir_mode: 775
-    - file_mode: 664
+    - group: ffks-dl
+    - dir_mode: 755
+    - file_mode: 644
     - recurse: [user, group, mode]
     - require:
       - file: /srv/http
@@ -36,7 +36,7 @@ ffks-dl:
   file.managed:
     - source: salt://nginx/configs/ffks-dl.bgcolor-fix.html
     - user: ffks-dl
-    - group: www-data
-    - mode: 664
+    - group: ffks-dl
+    - mode: 644
     - require:
       - file: /srv/http/ffks-dl
