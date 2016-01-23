@@ -19,6 +19,12 @@ nginx:
     - group: www-data
     - mode: 755
 
+openssl dhparam -out /etc/nginx/dhparams.pem 2048:
+  cmd.run:
+    - unless: test -e /etc/nginx/dhparams.pem
+    - watch_in:
+      - service: nginx
+
 {% for conf in ['error_pages.conf', 'security.conf'] %}
 /etc/nginx/conf.d/{{ conf }}:
   file.managed:
