@@ -17,6 +17,7 @@ base:
     - graphite.api
     - graphite.carbon
     - nginx
+    - nginx.lets-encrypt
     - nginx.sites.ffks-dl
     - nginx.sites.ffks-home
     - nginx.sites.ffks-map
