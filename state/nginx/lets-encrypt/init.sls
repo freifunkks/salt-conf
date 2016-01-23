@@ -5,7 +5,7 @@ acme_tiny:
     - order: 11
 
 # Will fail if /home/acme exists, but won't delete it
-[[ ! -e /home/acme_tiny ]]: cmd.run
+test ! -e /home/acme_tiny: cmd.run
 
 # Directory with all the keys, certificate requests and certificates!
 /etc/acme_tiny:
