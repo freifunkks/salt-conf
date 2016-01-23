@@ -66,5 +66,6 @@ https://github.com/ether/etherpad-lite.git:
     - enable: True
     - watch:
       - pkg: etherpad-lite-pkgs
+      - git: https://github.com/ether/etherpad-lite.git
       - file: /home/ffks-pad/etherpad-lite/settings.json
       - file: /etc/systemd/system/ffks-pad.service
