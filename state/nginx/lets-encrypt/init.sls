@@ -37,7 +37,8 @@ https://github.com/diafygi/acme-tiny.git:
     - group: root
     - mode: 755
   cron.present:
-    - identifier: update-fastd-keys
+    - identifier: renew-lets-encrypt-certs
+    - user: acme_tiny
     - minute: 42
     - hour: 1
     - daymonth: 19
