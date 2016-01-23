@@ -12,14 +12,14 @@ python /opt/acme-tiny/acme_tiny.py \
   || exit
 
 # Download intermediate certificate
-wget -O /etc/acme_tiny/intermediate.pem \
+wget -qO /etc/acme_tiny/intermediate.pem \
   https://letsencrypt.org/certs/lets-encrypt-x1-cross-signed.pem
 
 # Combine both into the full certificate chain
 cat \
   /etc/acme_tiny/${domain}.crt \
   /etc/acme_tiny/intermediate.pem \
-  > /etc_acme_tiny/${domain}.pem
+  > /etc/acme_tiny/${domain}.pem
 
 # Have nginx reload the certificate file
 service nginx reload
