@@ -113,7 +113,7 @@ def _save_config(name, config):
 
 def _generate_config(template, name, server_names, **kwargs):
   names = server_names if len(server_names) > 0 else [name]
-  return template.substitute(name=name, server_names=names, **kwargs)
+  return template.substitute(name=name, server_names=' '.join(names), **kwargs)
 
 def _create_config(template, name, **kwargs):
   return _save_config(name, _generate_config(template, name, **kwargs))
@@ -224,5 +224,5 @@ def redirect(name, target, address='*', port=80, server_names=[]):
   server_names
     Domains this server block should apply for. When none are provided, name is used.
   '''
-  return _create_config(name, server_names=server_names, addr=address, port=port,
-    config=('return 301 %s$request_uri;' % target))
+  return _create_config(default_tpl, name, server_names=server_names,
+    addr=address, port=port, config=('return 301 %s$request_uri;' % target))

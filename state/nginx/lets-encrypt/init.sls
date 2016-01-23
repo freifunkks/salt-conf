@@ -5,11 +5,13 @@ acme_tiny:
     - order: 11
 
 # Will fail if /home/acme exists, but won't delete it
-test ! -e /home/acme_tiny: cmd.run
+exit 1:
+  cmd.run:
+    - onlyif: test -e /home/acme_tiny
 
 # Directory with all the keys, certificate requests and certificates!
 /etc/acme_tiny:
-  file.direcory:
+  file.directory:
     - mode: 700
     - user: acme_tiny
     - group: acme_tiny
