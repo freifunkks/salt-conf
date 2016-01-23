@@ -9,6 +9,13 @@ exit 1:
   cmd.run:
     - onlyif: test -e /home/acme_tiny
 
+/etc/sudoers.d/reload_nginx:
+  file.managed:
+    - contents: 'acme_tiny ALL=(root) NOPASSWD:/bin/systemctl reload nginx'
+    - user: root
+    - group: root
+    - mode: 640
+
 # Directory with all the keys, certificate requests and certificates!
 /etc/acme_tiny:
   file.directory:
@@ -16,6 +23,14 @@ exit 1:
     - user: acme_tiny
     - group: acme_tiny
 
+# Document root for .well-known/acme-challenge/
+/srv/http/challenges:
+  file.directory:
+    - mode: 755
+    - user: acme_tiny
+    - group: acme_tiny
+
+# Actual acme-tiny script
 https://github.com/diafygi/acme-tiny.git:
   git.latest:
     - target: /opt/acme-tiny

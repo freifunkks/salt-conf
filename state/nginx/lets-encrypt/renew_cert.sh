@@ -22,4 +22,4 @@ cat \
   > /etc/acme_tiny/${domain}.pem
 
 # Have nginx reload the certificate file
-service nginx reload
+sudo systemctl reload nginx
