@@ -41,4 +41,5 @@ carbon-cache:
     - mode: 700
   cron.present:
     - identifier: update-node-statistics
+    - user: graphite-carbon
     # frequency defaults to every minute
