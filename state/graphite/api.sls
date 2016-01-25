@@ -44,3 +44,7 @@ graphite-api:
     - user: graphite-api
     - group: graphite-api
     - mode: 755
+
+/srv/graphite/whisper:
+  file.symlink:
+    - target: /var/lib/graphite/whisper
