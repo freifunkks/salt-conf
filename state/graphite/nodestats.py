@@ -19,7 +19,7 @@ def get_socket(host, port):
 
 def write_to_graphite(data, prefix='ffks'):
     now = time.time()
-    with get_socket('localhost', 7003) as s:
+    with get_socket('localhost', 2003) as s:
         for key, value in data.items():
             line = "%s.%s %s %s\n" % (prefix, key, float(value), now)
             #print(line)
