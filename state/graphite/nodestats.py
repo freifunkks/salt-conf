@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 
 import json
-import requests
+import sys
 from contextlib import contextmanager
 import time
 import socket
@@ -17,25 +17,26 @@ def get_socket(host, port):
     yield sock
     sock.close()
 
-
-def write_to_graphite(data, prefix='fffd'):
+def write_to_graphite(data, prefix='ffks'):
     now = time.time()
-    with get_socket('nms.services.fffd', 2003) as s:
+    with get_socket('localhost', 7003) as s:
         for key, value in data.items():
             line = "%s.%s %s %s\n" % (prefix, key, float(value), now)
+            #print(line)
+            #sys.stdout.write(line)
             s.sendall(line.encode('latin-1'))
 
 def main():
     logging.basicConfig(level=logging.WARN)
 
-    URL = 'http://meshviewer.fulda.freifunk.net/data/nodes.json'
+    path = '/home/ffks-map/meshviewer/build/data/nodes.json'
 
     gateways = []
 
     try:
         client_count = 0
 
-        data = requests.get(URL, timeout=1).json()
+        data = json.load(open(path, 'r'))
         nodes = data['nodes']
         known_nodes = len(nodes.keys())
         online_nodes = 0
