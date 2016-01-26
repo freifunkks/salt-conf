@@ -42,7 +42,7 @@ def main():
         gateway_count = 0
         for node_mac, node in nodes.items():
             try:
-                hostname = node['nodeinfo']['hostname']
+                hostname = node['nodeinfo']['hostname'].replace('.', '-')
 
                 flags = node['flags']
                 if flags['online']:
