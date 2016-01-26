@@ -17,7 +17,7 @@ def get_socket(host, port):
     yield sock
     sock.close()
 
-def write_to_graphite(data, prefix='ffks.nodes'):
+def write_to_graphite(data, prefix='ffks'):
     now = time.time()
     with get_socket('localhost', 2003) as s:
         for key, value in data.items():
@@ -55,42 +55,42 @@ def main():
                 statistics = node['statistics']
                 try:
                   loadavg = statistics['loadavg']
-                  update['%s.loadavg' % hostname] = loadavg
+                  update['nodes.%s.loadavg' % hostname] = loadavg
                 except KeyError:
                   pass
                 try:
                   uptime = statistics['uptime']
-                  update['%s.uptime' % hostname] = uptime
+                  update['nodes.%s.uptime' % hostname] = uptime
                 except KeyError:
                   pass
                 try:
                   mem = statistics['memory_usage']
-                  update['%s.memory' % hostname] = mem
+                  update['nodes.%s.memory' % hostname] = mem
                 except KeyError:
                   pass
 
                 try:
                   clients = statistics['clients']
                   client_count += int(clients)
-                  update['%s.clients' % hostname] = clients
+                  update['nodes.%s.clients' % hostname] = clients
                 except KeyError:
                   pass
 
                 try:
                   traffic = statistics['traffic']
                   for key in ['tx', 'rx', 'mgmt_tx', 'mgmt_rx', 'forward']:
-                      update['%s.traffic.%s.packets' % (hostname, key)] = traffic[key]['packets']
-                      update['%s.traffic.%s.bytes' % (hostname, key)] = traffic[key]['bytes']
+                      update['nodes.%s.traffic.%s.packets' % (hostname, key)] = traffic[key]['packets']
+                      update['nodes.%s.traffic.%s.bytes' % (hostname, key)] = traffic[key]['bytes']
                 except KeyError:
                   pass
             except KeyError as e:
                 print(time.time())
                 print('error while reading ', node_mac)
 
-        update['clients'] = client_count
-        update['known_nodes'] = known_nodes
-        update['online_nodes'] = online_nodes
-        update['gateways'] = gateway_count
+        update['collect.clients'] = client_count
+        update['collect.known_nodes'] = known_nodes
+        update['collect.online_nodes'] = online_nodes
+        update['collect.gateways'] = gateway_count
         write_to_graphite(update)
     except Exception as e:
         print(e)
