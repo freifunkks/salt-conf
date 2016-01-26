@@ -19,6 +19,9 @@ graphite-api:
 graphite.freifunk-kassel.de:
   nginx_site.present_le:
     - configfile: salt://graphite/graphite-api.nginx-conf
+    - server_names:
+      - graphite.freifunk-kassel.de
+      - graphite.{{ grains.host }}.ffks.de
     - watch_in:
       - service: nginx
 
