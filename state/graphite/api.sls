@@ -15,10 +15,10 @@ graphite-api:
   pip.installed:
     - require:
       - pkg: python-pip
-  nginx_site.present:
+
+graphite.freifunk-kassel.de:
+  nginx_site.present_le:
     - configfile: salt://graphite/graphite-api.nginx-conf
-    - address: localhost
-    - port: 7003
     - watch_in:
       - service: nginx
 
