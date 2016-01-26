@@ -17,7 +17,7 @@ def get_socket(host, port):
     yield sock
     sock.close()
 
-def write_to_graphite(data, prefix='ffks'):
+def write_to_graphite(data, prefix='ffks.nodes'):
     now = time.time()
     with get_socket('localhost', 2003) as s:
         for key, value in data.items():
