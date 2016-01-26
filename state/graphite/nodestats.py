@@ -22,8 +22,6 @@ def write_to_graphite(data, prefix='ffks'):
     with get_socket('localhost', 2003) as s:
         for key, value in data.items():
             line = "%s.%s %s %s\n" % (prefix, key, float(value), now)
-            #print(line)
-            #sys.stdout.write(line)
             s.sendall(line.encode('latin-1'))
 
 def main():
