@@ -3,7 +3,7 @@ include:
 
 fastd:
   pkgrepo.managed:
-    - name: deb http://repo.universe-factory.net/debian/ sid main
+    - name: deb https://repo.universe-factory.net/debian/ sid main
     - humanname: fastd
     - dist: sid
     - file: /etc/apt/sources.list.d/fastd.list
