@@ -1,6 +1,7 @@
 essential_pkgs:
   pkg.installed:
     - pkgs:
+      - apt-transport-https
       - git
       - openssh-server
       - sudo
