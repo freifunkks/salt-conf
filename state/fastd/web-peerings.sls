@@ -7,6 +7,7 @@ include:
   file.managed:
     - contents: |-
         key "{{ data['fastd_public'] }}";
+        remote "{{ minion }}.de" port 10000;
     - user: root
     - group: root
     - mode: 644
