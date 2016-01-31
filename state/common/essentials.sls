@@ -42,6 +42,6 @@ grml-etc-core:
 /etc/zsh/zshrc.local:
   file.managed:
     - contents: |
-      color='{{ pillar['minions'][grains['id']]['zsh_host_color'] }}'
-      zstyle ':prompt:grml:*:items:host' pre "%F{$color}"
-      zstyle ':prompt:grml:*:items:path' pre '%B%f'
+        color='{{ pillar['minions'][grains['id']]['zsh_host_color'] }}'
+        zstyle ':prompt:grml:*:items:host' pre "%F{$color}"
+        zstyle ':prompt:grml:*:items:path' pre '%B%f'
