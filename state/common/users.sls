@@ -1,4 +1,4 @@
-{% for user in ['flx', 'hanspolo', 'jplatte'] %}
+{% for user in pillar['users'] %}
 {{ user }}:
   user.present:
     - home: /home/{{ user }}
@@ -8,7 +8,7 @@
 
 /home/{{ user }}/.ssh/authorized_keys:
   file.managed:
-    - contents_pillar: userdata:{{ user }}:ssh_auth_keys
+    - contents_pillar: users:{{ user }}:ssh_auth_keys
     - user: {{ user }}
     - group: {{ user }}
     - mode: 600

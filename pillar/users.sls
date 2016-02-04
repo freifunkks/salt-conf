@@ -1,4 +1,4 @@
-userdata:
+users:
   flx:
     ssh_auth_keys: |
       ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDBrhuhbnS7JyXwdFLoc2WMebc++GjxiXbhZVToBT2ijWwaZxzdHkq5zEfsEH6uW/NXI1hIhRjsB4dgLylczrpgRF3KGTAivLVvYUju25VlI+kBW/9z77iLDDPAY4ET5jdW2nKlLSFj3iTAtt1DV6whivpbwybsLfqG66wZaX0RL5NC/EgEeVKsfRQGzQDMPc/sIwxaW5rwzgJOUs09lnR6YkqMbizoUCU5RHKY9dEULn8QnlqdpONgD5/JZz41kh2UaT+yQQUEY2rbKn/X8+dzR1fL2yZ3o0QqvcqgnqROV2ALIyJQSDTF0kwf8q4HfhJq/Y/jtxVPNf31H3fxhbuj

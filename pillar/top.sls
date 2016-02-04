@@ -2,7 +2,7 @@ base:
   '*':
     - fastd
     - minions
-    - userdata
+    - users
 
   excalipurr.ffks:
     - grafana
