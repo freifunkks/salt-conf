@@ -10,3 +10,7 @@ network:
   file.managed:
     - source: salt://network/ffks_vpn
     - template: jinja
+
+/etc/iptables2/rt_tables:
+  file.managed:
+    - source: salt://network/rt_tables
