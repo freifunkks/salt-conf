@@ -131,15 +131,13 @@ cd /root
 [[ -L /srv/salt ]] || ln -s /root/salt-conf/state /srv/salt
 [[ -L /srv/pillar ]] || ln -s /root/salt-conf/pillar /srv/pillar
 
+
 echo "Setting up minion..."
 
-minion_pre="${repo_name}/pillar/minion-"
+minion_file="${repo_name}/pillar/minions.yml"
 domain_inner="ffks"
 domain_outer="${domain_inner}.de"
-
-for i in ${minion_pre}*; do
-	minion_list+=($(echo "$i" | sed 's|'${minion_pre}'\(\w\+\)\.sls|\1|'))
-done
+minion_list=($(cat "${minion_file}" | shyaml keys))
 
 function choose_hostname() {
 	echo "  Choose available hostname:"
@@ -166,12 +164,16 @@ function choose_hostname() {
 	minion_yaml="${minion_pre}${minion_list[$minion_id]}.sls"
 
 	if [[ $minion_id =~ ^-?[0-9]+$ && $minion_id -lt ${#minion_list[@]} && $minion_id -ge 0 ]]; then
+		minion_name=${minion_list[${minion_id}]}
+		minion_name_escaped=$(echo "${minion_name}" | sed 's/\./\\./g')
+
 		# Check if the IP resolved via DNS is contained within the set of local IPs
-		if [[ $(cat ${minion_yaml} | shyaml get-value minion.gateway) == "True" ]]; then
+		if [[ $(cat ${minion_file} | shyaml get-value ${minion_name_escaped}.gateway) == "True" ]]; then
 			echo -e "    ${info} ${minion_list[$minion_id]} is a gateway\n"
 		else
 			echo -e "    ${info} ${minion_list[$minion_id]} seems to be a web server\n"
 		fi
+
 		if [[ ${ip_dns} == *"${ip_local}"* ]]; then
 			#if [[ ! $(ping -W 2 -c1 ${minion_list[$minion_id]}.${domain_outer} ) ]]; then
 			echo -e "    ${ok} ${minion_list[$minion_id]} chosen without conflicts"
