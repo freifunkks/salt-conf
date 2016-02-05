@@ -9,7 +9,6 @@ minions:
     dhcp_range_end: 10.54.30.0
     dhcp_range_begin6: fdca:55e1:baca:baca::20:2
     dhcp_range_end6: fdca:55e1:baca:baca::30:0
-  excalipurr.ffks:
   knocktopus.ffks:
     dhcp_range_begin: 10.54.30.2
     dhcp_range_end: 10.54.40.0
