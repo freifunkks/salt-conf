@@ -1,4 +1,4 @@
-#! /bin/sh
+#!/bin/sh
 
 openvpn_interface="tun0"
 fastd_interface="ffks-vpn"
