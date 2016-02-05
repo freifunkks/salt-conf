@@ -1,0 +1,6 @@
+no-resolv
+cache-size=4096
+#log-queries
+# Forward DNS requests via wan-vpn
+server=85.214.20.141@eth0 # FoeBud
+server=213.73.91.35@eth0 # dnscache.berlin.ccc.de

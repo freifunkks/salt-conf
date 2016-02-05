@@ -1,0 +1,4 @@
+interface=bat0
+interface=ffks-vpn
+bind-interfaces
+log-facility=/var/log/dnsmasq.log
