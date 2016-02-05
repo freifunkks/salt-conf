@@ -134,7 +134,7 @@ cd /root
 
 echo "Setting up minion..."
 
-minion_file="${repo_name}/pillar/minions.yml"
+minion_file="${repo_name}/pillar/minions.sls"
 domain_inner="ffks"
 domain_outer="${domain_inner}.de"
 minion_list=($(cat "${minion_file}" | shyaml keys))
