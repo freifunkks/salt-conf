@@ -38,3 +38,8 @@ fastd:
     - makedirs: True
     - require:
       - pkg: fastd
+
+/etc/network/interfaces.d/ffks_vpn:
+  file.managed:
+    - source: salt://network/ffks_vpn
+    - template: jinja

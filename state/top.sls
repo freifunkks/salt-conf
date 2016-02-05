@@ -1,7 +1,6 @@
 base:
   '*':
     - common.essentials
-    - common.network
     - common.tools
     - common.users
     - fastd
@@ -9,6 +8,7 @@ base:
   {% if pillar['minions'][grains['id']].gateway %}
     - common.gateway-pkgs
     - fastd.gw-peerings
+    - network.batman
   {% endif %}
 
   excalipurr.ffks:
