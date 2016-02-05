@@ -137,7 +137,8 @@ echo "Setting up minion..."
 minion_file="${repo_name}/pillar/minions.sls"
 domain_inner="ffks"
 domain_outer="${domain_inner}.de"
-minion_list=($(cat "${minion_file}" | shyaml keys minions))
+minion_root="minions"
+minion_list=($(cat "${minion_file}" | shyaml keys ${minion_root}))
 
 function choose_hostname() {
 	echo "  Choose available hostname:"
@@ -168,7 +169,7 @@ function choose_hostname() {
 		minion_name_escaped=$(echo "${minion_name}" | sed 's/\./\\./g')
 
 		# Check if the IP resolved via DNS is contained within the set of local IPs
-		if [[ $(cat ${minion_file} | shyaml get-value ${minion_name_escaped}.gateway) == "True" ]]; then
+		if [[ $(cat ${minion_file} | shyaml get-value ${minion_root}.${minion_name_escaped}.gateway) == "True" ]]; then
 			echo -e "    ${info} ${minion_list[$minion_id]} is a gateway\n"
 		else
 			echo -e "    ${info} ${minion_list[$minion_id]} seems to be a web server\n"
