@@ -1,5 +1,13 @@
 dnsmasq:
   pkg.installed: []
+  service.running:
+    - enable: True
+    - reload: True
+    - watch:
+      - pkg: dnsmasq
+      - file: /etc/dnsmasq.d/shared
+      - file: /etc/dnsmasq.d/dns
+      - file: /etc/dnsmasq.d/dhcp
 
 /etc/dnsmasq.d/shared:
   file.managed:
