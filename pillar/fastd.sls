@@ -2,9 +2,11 @@
 
 minions:
   aggrosculpture.ffks:
+    fastd_mac: f6:b7:a2:e4:9f:a1
     fastd_public: |-
       eff8ae86d2ee7461a0da22fda920eeb983ae867613e74db0f93d8e726cbc6d83
   bewarewolf.ffks:
+    fastd_mac: f6:b7:a2:e4:9f:a2
     fastd_public: |-
       1eef194a2902f7ff2a953740c903d75654bbb6d00889fca19d98de517116fc64
     fastd_secret: |-
@@ -29,6 +31,7 @@ minions:
       -----END PGP MESSAGE-----
 
   excalipurr.ffks:
+    fastd_mac: f6:b7:a2:e4:9f:f0
     fastd_public: |-
       4c1c4342d01a8ba8d558a2997b1d767b7b8070e7e941fafb86c39015238dda2f
     fastd_secret: |-
@@ -53,6 +56,7 @@ minions:
       -----END PGP MESSAGE-----
 
   knocktopus.ffks:
+    fastd_mac: f6:b7:a2:e4:9f:a3
     fastd_public: |-
       4ad16102b0c693f4e1127f23c97cf48ce3b4378d3201fb0c2fbd3e9760e790d3
     fastd_secret: |-
@@ -77,6 +81,7 @@ minions:
       -----END PGP MESSAGE-----
 
   spinchilla.ffks:
+    fastd_mac: f6:b7:a2:e4:9f:a0
     fastd_public: |-
       8bd3d122c28685f0519756715890eebb863e4efb28d933b8d27499a8a5bb688c
     fastd_secret: |-

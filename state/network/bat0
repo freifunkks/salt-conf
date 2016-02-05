@@ -1,0 +1,7 @@
+# Virtual interface used by batman
+iface bat0 inet static
+  hwaddress ether {{ pillar['minions'][grains['id']]['bat_mac'] }}
+  address         {{ pillar['minions'][grains['id']]['bat_ip'] }}/16
+  mtu             1426
+  up              ip address add {{ pillar['minions'][grains['id']]['bat_ip6'] }}/64 dev $IFACE
+  post-up         batctl -m $IFACE gw server 96mbit/96mbit
