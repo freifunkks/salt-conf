@@ -1,5 +1,5 @@
 include:
-  - fastd.fastd_vpn.service
+  - fastd.ffks_vpn.service
 
 https://github.com/freifunkks/fastd-keys.git:
   git.latest:
