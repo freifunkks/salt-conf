@@ -26,13 +26,14 @@ grafana:
       - pkg: grafana
 
 /var/lib/grafana/dashboards:
-  file.directory:
+  file.recurse:
     - user: grafana
     - group: grafana
-    - mode: 755
+    - dir_mode: 755
     - require:
       - pkg: grafana
       - user: grafana
+    - source: salt://grafana/dashboards
 
 /usr/share/grafana/public/img/fav32.png:
   file.managed:
