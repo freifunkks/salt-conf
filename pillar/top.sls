@@ -1,5 +1,6 @@
 base:
   '*':
+    - batman
     - fastd
     - minions
     - users
