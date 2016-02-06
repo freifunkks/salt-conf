@@ -39,6 +39,11 @@ grafana:
     - source: salt://grafana/fav32.png
     - create: False
 
+/usr/share/grafana/public/dashboards/home.json:
+  file.managed:
+    - source: salt://grafana/dashboards/home.json
+    - crete: False
+
 grafana-server:
   service.running:
     - enable: True
