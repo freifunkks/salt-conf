@@ -3,11 +3,11 @@
 openvpn_interface="tun0"
 fastd_interface="ffks-vpn"
 
-ip route add table ffks default via {{ pillar['minions'][grains['id']]['openvpn_gw'] }}
-ip route add table ffks {{ pillar['minions'][grains['id']]['bat_ip'] }} dev bat0
-ip rule  add table ffks from {{ pillar['minions'][grains['id']]['openvpn_net'] }} to {{ pillar['minions'][grains['id']]['bat_ip'] }}/16
+ip route add table ffks default via {{ pillar.minions[grains.id].openvpn_gw }}
+ip route add table ffks {{ pillar.minions[grains.id].bat_ip }} dev bat0
+ip rule  add table ffks from {{ pillar.minions[grains.id].openvpn_net }} to {{ pillar.minions[grains.id].bat_ip }}/16
 
-ip rule  add table ffks from {{ pillar['minions'][grains['id']]['bat_ip'] }} priority 9970
+ip rule  add table ffks from {{ pillar.minions[grains.id].bat_ip }} priority 9970
 ip route add table ffks 128.0.0.0/1 via eth0 dev $openvpn_interface
 
 ip route flush cache
