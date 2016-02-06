@@ -42,7 +42,7 @@ grafana:
 /usr/share/grafana/public/dashboards/home.json:
   file.managed:
     - source: salt://grafana/dashboards/home.json
-    - crete: False
+    - create: False
 
 grafana-server:
   service.running:
