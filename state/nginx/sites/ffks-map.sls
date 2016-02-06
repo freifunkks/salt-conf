@@ -18,7 +18,8 @@ map.freifunk-kassel.de:
 
 ffks-map:
   user.present:
-    - shell: /usr/sbin/nologin
+    # temporarily disabled
+    #- shell: /usr/sbin/nologin
     - order: 11
 
 node:
