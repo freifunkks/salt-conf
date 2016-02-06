@@ -2,11 +2,11 @@ include:
   - fastd.ffks_vpn.service
 
 # Gateways that this gateway actively connects to
-{% for peer in pillar['fastd_peerings'][grains['id']] %}
+{% for peer in pillar.fastd_peerings[grains.id] %}
 /etc/fastd/ffks_vpn/gateways/{{ peer }}:
   file.managed:
     - contents: |-
-        key "{{ pillar['minions'][peer]['fastd_public'] }}";
+        key "{{ pillar.minions[peer].fastd_public }}";
         remote "{{ peer }}.de" port 10000;
     - user: root
     - group: root
@@ -18,12 +18,12 @@ include:
 {% endfor %}
 
 # Gateways that are allowed to connect to this gateway
-{% for minion, peers in pillar['fastd_peerings'].items() %}
-  {% if peers.count(grains['id']) > 0 %}
+{% for minion, peers in pillar.fastd_peerings.items() %}
+  {% if peers.count(grains.id) > 0 %}
 /etc/fastd/ffks_vpn/gateways/{{ minion }}:
   file.managed:
     - contents: |-
-        key "{{ pillar['minions'][minion]['fastd_public'] }}";
+        key "{{ pillar.minions[minion].fastd_public }}";
     - user: root
     - group: root
     - mode: 644

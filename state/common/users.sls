@@ -1,4 +1,4 @@
-{% for user in pillar['users'] %}
+{% for user in pillar.users %}
 {{ user }}:
   user.present:
     - home: /home/{{ user }}

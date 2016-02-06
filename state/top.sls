@@ -5,7 +5,7 @@ base:
     - common.users
     - fastd
 
-  {% if pillar['minions'][grains['id']].gateway %}
+  {% if pillar.minions[grains.id].gateway %}
     - common.gateway-pkgs
     - fastd.ffks_vpn.gw-peerings
     - network.batman
