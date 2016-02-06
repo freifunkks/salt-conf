@@ -10,7 +10,7 @@ base:
     - common.gateway_pkgs
     - fastd.ffks_vpn.gw_peerings
     - network.batman
-    - openvpn
+    - openvpn.airvpn
   {% endif %}
 
   excalipurr.ffks:
