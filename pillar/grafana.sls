@@ -1,7 +1,7 @@
 #!yaml|gpg
 
 grafana:
-  admin-password: |
+  admin_password: |
     -----BEGIN PGP MESSAGE-----
     Version: GnuPG v2
 
