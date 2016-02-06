@@ -7,12 +7,12 @@ base:
 
   {% if pillar['minions'][grains['id']].gateway %}
     - common.gateway-pkgs
-    - fastd.gw-peerings
+    - fastd.ffks_vpn.gw-peerings
     - network.batman
   {% endif %}
 
   excalipurr.ffks:
-    - fastd.web-peerings
+    - fastd.ffks_vpn.web-peerings
     - grafana
     - graphite.api
     - graphite.carbon
