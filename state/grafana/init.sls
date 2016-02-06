@@ -34,6 +34,11 @@ grafana:
       - pkg: grafana
       - user: grafana
 
+/usr/share/grafana/public/img/fav32.png
+  file.managed:
+    - source: salt://grafana/fav32.png
+    - create: False
+
 grafana-server:
   service.running:
     - enable: True
