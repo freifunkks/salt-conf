@@ -1,4 +1,4 @@
-gateway-pkgs:
+gateway_pkgs:
   pkg.installed:
     - pkgs:
       - batctl

@@ -6,18 +6,18 @@ base:
     - fastd
 
   {% if pillar.minions[grains.id].gateway %}
-    - common.gateway-pkgs
-    - fastd.ffks_vpn.gw-peerings
+    - common.gateway_pkgs
+    - fastd.ffks_vpn.gw_peerings
     - network.batman
   {% endif %}
 
   excalipurr.ffks:
-    - fastd.ffks_vpn.web-peerings
+    - fastd.ffks_vpn.web_peerings
     - grafana
     - graphite.api
     - graphite.carbon
     - nginx
-    - nginx.lets-encrypt
+    - nginx.lets_encrypt
     - nginx.sites.ffks-dl
     - nginx.sites.ffks-home
     - nginx.sites.ffks-map
