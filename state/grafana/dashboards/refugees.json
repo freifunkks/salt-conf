@@ -85,8 +85,13 @@
               "textEditor": true
             },
             {
+              "refId": "E",
+              "target": "alias(sumSeries(ffks.nodes.ffks-ap0*.clients), 'Vellmar')",
+              "textEditor": true
+            },
+            {
               "refId": "D",
-              "target": "alias(sumSeries(ffks.nodes.ffks-frankenberg*.clients, ffks.nodes.Bachstr_Node*.clients, ffks.nodes.calden*.clients), 'Total')",
+              "target": "alias(sumSeries(#A, #B, #C, #E), 'Total')",
               "textEditor": true
             }
           ],
@@ -135,55 +140,63 @@
             "threshold1": null,
             "threshold1Color": "rgba(216, 200, 27, 0.27)",
             "threshold2": null,
-            "threshold2Color": "rgba(234, 112, 112, 0.22)"
+            "threshold2Color": "rgba(234, 112, 112, 0.22)",
+            "thresholdLine": false
           },
           "id": 2,
           "isNew": true,
           "legend": {
             "avg": false,
-            "current": false,
+            "current": true,
             "max": false,
             "min": false,
             "show": true,
             "total": false,
-            "values": false
+            "values": true,
+            "rightSide": true,
+            "alignAsTable": true
           },
           "lines": true,
           "linewidth": 2,
           "links": [],
           "nullPointMode": "null",
-          "percentage": true,
+          "percentage": false,
           "pointradius": 5,
           "points": false,
           "renderer": "flot",
           "seriesOverrides": [
             {
               "alias": "Total",
-              "lines": false
+              "fill": 0
             }
           ],
           "span": 12,
-          "stack": true,
+          "stack": false,
           "steppedLine": false,
           "targets": [
             {
               "refId": "A",
               "target": "alias(countSeries(ffks.nodes.ffks-frankenberg*.uptime), 'Frankenberg')",
-              "textEditor": false
+              "textEditor": true
             },
             {
               "refId": "B",
               "target": "alias(countSeries(ffks.nodes.Bachstr_Node*.uptime), 'Bad Zwesten')",
-              "textEditor": false
+              "textEditor": true
             },
             {
               "refId": "C",
-              "target": "alias(countSeries(ffks.nodes.calden-*.uptime.select metric), 'Calden')",
+              "target": "alias(countSeries(ffks.nodes.calden-*.uptime), 'Calden')",
+              "textEditor": true
+            },
+            {
+              "refId": "E",
+              "target": "alias(countSeries(ffks.nodes.ffks-ap0*.uptime), 'Calden')",
               "textEditor": true
             },
             {
               "refId": "D",
-              "target": "alias(countSeries(ffks.nodes.ffks-frankenberg*.clients, ffks.nodes.Bachstr_Node*.clients, ffks.nodes.calden*.clients), 'Total')",
+              "target": "alias(sumSeries(#A, #B, #C, #E), 'Total')",
               "textEditor": true
             }
           ],
@@ -200,7 +213,8 @@
           "y_formats": [
             "short",
             "short"
-          ]
+          ],
+          "decimals": 0
         }
       ],
       "title": "New row"
