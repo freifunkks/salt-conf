@@ -40,14 +40,14 @@ https://github.com/diafygi/acme-tiny.git:
 # Previous comment applies to these scripts as well
 /etc/acme_tiny/renew_cert.sh:
   file.managed:
-    - source: salt://nginx/lets-encrypt/renew_cert.sh
+    - source: salt://nginx/lets_encrypt/renew_cert.sh
     - user: root
     - group: root
     - mode: 755
 
 /etc/acme_tiny/renew_all_certs.sh:
   file.managed:
-    - source: salt://nginx/lets-encrypt/renew_all_certs.sh
+    - source: salt://nginx/lets_encrypt/renew_all_certs.sh
     - user: root
     - group: root
     - mode: 755
