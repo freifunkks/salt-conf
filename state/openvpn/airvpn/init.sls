@@ -12,12 +12,14 @@ include:
   file.managed:
     - source: salt://openvpn/airvpn/route-up.sh
     - makedirs: True
+    - mode: 755
     - template: jinja
 
 /etc/openvpn/airvpn/down.sh:
   file.managed:
     - source: salt://openvpn/airvpn/down.sh
     - makedirs: True
+    - mode: 755
     - template: jinja
 
 openvpn@airvpn:
