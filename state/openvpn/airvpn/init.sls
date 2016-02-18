@@ -26,5 +26,5 @@ openvpn@airvpn:
     - watch:
       - pkg: openvpn
       #- file: /etc/openvpn/airvpn.conf
-      - file: /etc/openvpn/airvpn/up.sh
+      - file: /etc/openvpn/airvpn/route-up.sh
       - file: /etc/openvpn/airvpn/down.sh
