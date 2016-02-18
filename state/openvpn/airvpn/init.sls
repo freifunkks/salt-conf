@@ -8,9 +8,9 @@ include:
 #    - makedirs: True
 #    - ...
 
-/etc/openvpn/airvpn/up.sh:
+/etc/openvpn/airvpn/route-up.sh:
   file.managed:
-    - source: salt://openvpn/airvpn/up.sh
+    - source: salt://openvpn/airvpn/route-up.sh
     - makedirs: True
     - template: jinja
 
