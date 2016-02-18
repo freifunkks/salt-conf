@@ -3,7 +3,6 @@ base:
     - batman
     - fastd
     - minions
-    - openvpn
     - users
 
   excalipurr.ffks:
