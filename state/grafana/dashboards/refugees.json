@@ -17,11 +17,6 @@
       "height": "450px",
       "panels": [
         {
-          "aliasColors": {
-            "Calden": "#508642",
-            "Frankenberg": "#0A50A1",
-            "Rothwesten": "#CCA300"
-          },
           "bars": false,
           "datasource": null,
           "editable": true,
@@ -85,13 +80,13 @@
               "textEditor": true
             },
             {
-              "refId": "E",
+              "refId": "D",
               "target": "alias(sumSeries(ffks.nodes.ffks-ap0*.clients), 'Vellmar')",
               "textEditor": true
             },
             {
-              "refId": "D",
-              "target": "alias(sumSeries(#A, #B, #C, #E), 'Total')",
+              "refId": "E",
+              "target": "alias(sumSeries(#A, #B, #C, #D), 'Total')",
               "textEditor": true
             }
           ],
@@ -119,12 +114,6 @@
       "height": "250px",
       "panels": [
         {
-          "aliasColors": {
-            "Calden": "#508642",
-            "Frankenberg": "#0A50A1",
-            "Rothwesten": "#CCA300",
-            "Total": "#EF843C"
-          },
           "bars": false,
           "datasource": null,
           "editable": true,
@@ -190,13 +179,13 @@
               "textEditor": true
             },
             {
-              "refId": "E",
-              "target": "alias(countSeries(ffks.nodes.ffks-ap0*.uptime), 'Calden')",
+              "refId": "D",
+              "target": "alias(countSeries(ffks.nodes.ffks-ap0*.uptime), 'Vellmar')",
               "textEditor": true
             },
             {
-              "refId": "D",
-              "target": "alias(sumSeries(#A, #B, #C, #E), 'Total')",
+              "refId": "E",
+              "target": "alias(sumSeries(#A, #B, #C, #D), 'Total')",
               "textEditor": true
             }
           ],
