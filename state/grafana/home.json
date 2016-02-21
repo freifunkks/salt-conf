@@ -1,12 +1,12 @@
 {
-  "id": 21,
-  "title": "Home",
-  "originalTitle": "Home",
+  "id": 28,
+  "title": "Network Overview (Home)",
+  "originalTitle": "Network Overview (Home)",
   "tags": [],
   "style": "dark",
   "timezone": "browser",
   "editable": true,
-  "hideControls": false,
+  "hideControls": true,
   "sharedCrosshair": false,
   "rows": [
     {
@@ -17,128 +17,45 @@
         {
           "content": "<div class=\"text-center\" style=\"padding: 10px 0 20px 0\">\n<img src=\"https://raw.githubusercontent.com/freifunkks/optik/master/logo/ffks-logo-dark-170x205.png\" width=\"170px\"> \n</div>",
           "editable": true,
-          "id": 1,
+          "id": 7,
+          "links": [],
           "mode": "html",
           "span": 3,
           "style": {},
           "title": "",
+          "transparent": true,
           "type": "text"
         },
         {
-          "content": "Statistiken\n--\nVerschaffe dir einen Überblick über unser Netzwerk. Weitere Informationen findest du auf unserer [Webseite](https://freifunk-kassel.de/).\n\nBitte wähle ein Dashboard unterhalb aus.",
+          "content": "## Statistiken\n\nVerschaffe dir einen Überblick über unser Netzwerk. Weitere Informationen findest du auf unserer [Webseite](https://freifunk-kassel.de/).",
           "editable": true,
           "error": false,
-          "id": 4,
+          "id": 8,
           "isNew": true,
           "links": [],
           "mode": "markdown",
-          "span": 5,
+          "span": 4,
           "style": {},
           "title": "",
+          "transparent": true,
           "type": "text"
         },
         {
-          "cacheTimeout": null,
-          "colorBackground": true,
-          "colorValue": false,
-          "colors": [
-            "rgba(245, 54, 54, 0.9)",
-            "rgba(237, 129, 40, 0.89)",
-            "rgba(50, 172, 45, 0)"
-          ],
-          "datasource": null,
           "editable": true,
           "error": false,
-          "format": "none",
-          "height": "70px",
           "id": 6,
-          "interval": null,
           "isNew": true,
+          "limit": 0,
           "links": [],
-          "maxDataPoints": 100,
-          "nullPointMode": "connected",
-          "nullText": null,
-          "postfix": "",
-          "postfixFontSize": "50%",
-          "prefix": "",
-          "prefixFontSize": "50%",
-          "span": 2,
-          "sparkline": {
-            "fillColor": "rgba(167, 31, 189, 0.18)",
-            "full": true,
-            "lineColor": "rgb(150, 31, 193)",
-            "show": true
-          },
-          "targets": [
-            {
-              "hide": false,
-              "refId": "A",
-              "target": "ffks.collect.online_nodes"
-            }
+          "mode": "search",
+          "query": "",
+          "span": 5,
+          "tags": [
+            "!"
           ],
-          "thresholds": "100,50,10",
-          "title": "Nodes",
-          "type": "singlestat",
-          "valueFontSize": "80%",
-          "valueMaps": [
-            {
-              "op": "=",
-              "text": "N/A",
-              "value": "null"
-            }
-          ],
-          "valueName": "avg"
-        },
-        {
-          "cacheTimeout": null,
-          "colorBackground": true,
-          "colorValue": false,
-          "colors": [
-            "rgba(245, 54, 54, 0.9)",
-            "rgba(237, 129, 40, 0.89)",
-            "rgba(50, 172, 45, 0)"
-          ],
-          "datasource": null,
-          "editable": true,
-          "error": false,
-          "format": "none",
-          "height": "70px",
-          "id": 7,
-          "interval": null,
-          "isNew": true,
-          "links": [],
-          "maxDataPoints": 100,
-          "nullPointMode": "connected",
-          "nullText": null,
-          "postfix": "",
-          "postfixFontSize": "50%",
-          "prefix": "",
-          "prefixFontSize": "50%",
-          "span": 2,
-          "sparkline": {
-            "fillColor": "rgba(31, 118, 189, 0.18)",
-            "full": true,
-            "lineColor": "rgb(31, 120, 193)",
-            "show": true
-          },
-          "targets": [
-            {
-              "refId": "A",
-              "target": "ffks.collect.clients"
-            }
-          ],
-          "thresholds": "100,50,10",
-          "title": "Clients",
-          "type": "singlestat",
-          "valueFontSize": "80%",
-          "valueMaps": [
-            {
-              "op": "=",
-              "text": "N/A",
-              "value": "null"
-            }
-          ],
-          "valueName": "current"
+          "title": "",
+          "transparent": true,
+          "type": "dashlist"
         }
       ],
       "title": "New row"
@@ -146,63 +63,107 @@
     {
       "collapse": false,
       "editable": true,
-      "height": "100px",
+      "height": "500px",
       "panels": [
         {
-          "id": 2,
-          "limit": 10,
-          "links": [],
-          "mode": "search",
-          "query": "",
-          "span": 4,
-          "tags": [
-            "󠀠"
-          ],
-          "title": "",
-          "transparent": true,
-          "type": "dashlist"
-        },
-        {
-          "id": 3,
-          "limit": 10,
-          "links": [],
-          "mode": "search",
-          "query": "",
-          "span": 4,
-          "tags": [
-            "󠀠󠀠"
-          ],
-          "title": "",
-          "transparent": true,
-          "type": "dashlist"
-        },
-        {
+          "aliasColors": {
+            "Clients": "#447EBC",
+            "Nodes known": "#CCA300",
+            "Nodes online": "#962D82",
+            "ffks.clients": "#447EBC",
+            "ffks.known_nodes": "#EAB839",
+            "ffks.online_nodes": "#BA43A9"
+          },
+          "bars": false,
+          "datasource": null,
           "editable": true,
           "error": false,
-          "id": 5,
+          "fill": 1,
+          "grid": {
+            "leftLogBase": 1,
+            "leftMax": null,
+            "leftMin": 0,
+            "rightLogBase": 1,
+            "rightMax": null,
+            "rightMin": null,
+            "threshold1": null,
+            "threshold1Color": "rgba(216, 200, 27, 0.27)",
+            "threshold2": null,
+            "threshold2Color": "rgba(234, 112, 112, 0.22)"
+          },
+          "id": 1,
           "isNew": true,
-          "limit": 10,
+          "legend": {
+            "alignAsTable": true,
+            "avg": true,
+            "current": true,
+            "hideEmpty": false,
+            "max": true,
+            "min": true,
+            "show": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 2,
           "links": [],
-          "mode": "search",
-          "query": "",
-          "span": 4,
-          "tags": [
-            "󠀠󠀠󠀠"
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [
+            {
+              "alias": "Nodes known",
+              "fill": 0
+            }
           ],
-          "title": "",
-          "transparent": true,
-          "type": "dashlist"
+          "span": 12,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "hide": false,
+              "refId": "A",
+              "target": "alias(ffks.collect.online_nodes, 'Nodes online')",
+              "textEditor": true
+            },
+            {
+              "hide": false,
+              "refId": "B",
+              "target": "alias(ffks.collect.known_nodes, 'Nodes known')",
+              "textEditor": true
+            },
+            {
+              "refId": "C",
+              "target": "alias(ffks.collect.clients, 'Clients')",
+              "textEditor": true
+            }
+          ],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Network Overview",
+          "tooltip": {
+            "shared": true,
+            "value_type": "cumulative"
+          },
+          "type": "graph",
+          "x-axis": true,
+          "y-axis": true,
+          "y_formats": [
+            "short",
+            "short"
+          ]
         }
       ],
-      "title": "Row"
+      "title": "New row"
     }
   ],
   "time": {
-    "from": "now-30d",
+    "from": "now-7d",
     "to": "now"
   },
   "timepicker": {
-    "enable": false,
     "now": true,
     "refresh_intervals": [
       "5s",
@@ -226,8 +187,7 @@
       "2d",
       "7d",
       "30d"
-    ],
-    "type": "timepicker"
+    ]
   },
   "templating": {
     "list": []
@@ -235,7 +195,8 @@
   "annotations": {
     "list": []
   },
+  "refresh": false,
   "schemaVersion": 8,
-  "version": 10,
+  "version": 8,
   "links": []
 }
