@@ -1,0 +1,333 @@
+{
+  "id": 23,
+  "title": "Mesh Metrics",
+  "originalTitle": "Mesh Metrics",
+  "tags": [
+    "!"
+  ],
+  "style": "dark",
+  "timezone": "browser",
+  "editable": true,
+  "hideControls": true,
+  "sharedCrosshair": false,
+  "rows": [
+    {
+      "collapse": false,
+      "editable": true,
+      "height": "250px",
+      "panels": [
+        {
+          "aliasColors": {},
+          "bars": false,
+          "datasource": null,
+          "editable": true,
+          "error": false,
+          "fill": 1,
+          "grid": {
+            "leftLogBase": 1,
+            "leftMax": 1,
+            "leftMin": 0,
+            "rightLogBase": 1,
+            "rightMax": null,
+            "rightMin": null,
+            "threshold1": null,
+            "threshold1Color": "rgba(216, 200, 27, 0.27)",
+            "threshold2": null,
+            "threshold2Color": "rgba(234, 112, 112, 0.22)"
+          },
+          "id": 2,
+          "isNew": true,
+          "legend": {
+            "avg": false,
+            "current": false,
+            "max": false,
+            "min": false,
+            "show": false,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 2,
+          "links": [],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "span": 9,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "refId": "A",
+              "target": "alias(ffks.collect.mesh_rate, 'Mesh rate')"
+            }
+          ],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Mesh rate",
+          "tooltip": {
+            "shared": true,
+            "value_type": "cumulative"
+          },
+          "type": "graph",
+          "x-axis": true,
+          "y-axis": true,
+          "y_formats": [
+            "percentunit",
+            "short"
+          ]
+        },
+        {
+          "content": "This metric basically describes how far we are from being independent from the internet. If it were to reach 100%, every node in the network would be able to create a connection to any other node solely through local wires and wireless connections. At 0%, there would be no direct connections between nodes of the network.",
+          "editable": true,
+          "error": false,
+          "id": 4,
+          "isNew": true,
+          "links": [],
+          "mode": "markdown",
+          "span": 3,
+          "style": {},
+          "title": "",
+          "type": "text"
+        }
+      ],
+      "title": "Row"
+    },
+    {
+      "collapse": false,
+      "editable": true,
+      "height": "250px",
+      "panels": [
+        {
+          "aliasColors": {},
+          "bars": false,
+          "datasource": null,
+          "editable": true,
+          "error": false,
+          "fill": 1,
+          "grid": {
+            "leftLogBase": 1,
+            "leftMax": null,
+            "leftMin": 1,
+            "rightLogBase": 1,
+            "rightMax": null,
+            "rightMin": null,
+            "threshold1": null,
+            "threshold1Color": "rgba(216, 200, 27, 0.27)",
+            "threshold2": null,
+            "threshold2Color": "rgba(234, 112, 112, 0.22)"
+          },
+          "id": 3,
+          "isNew": true,
+          "legend": {
+            "avg": false,
+            "current": false,
+            "max": false,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 2,
+          "links": [],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [
+            {
+              "alias": "Average device count",
+              "color": "#70DBED"
+            },
+            {
+              "alias": "Maximum device count",
+              "color": "#0A50A1"
+            }
+          ],
+          "span": 9,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "refId": "A",
+              "target": "alias(ffks.collect.meshsize_avg, 'Average device count')"
+            },
+            {
+              "refId": "B",
+              "target": "alias(ffks.collect.meshsize_max, 'Maximum device count')"
+            }
+          ],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Phsyical mesh device counts",
+          "tooltip": {
+            "shared": true,
+            "value_type": "cumulative"
+          },
+          "type": "graph",
+          "x-axis": true,
+          "y-axis": true,
+          "y_formats": [
+            "short",
+            "short"
+          ]
+        },
+        {
+          "content": "TODO: Description",
+          "editable": true,
+          "error": false,
+          "id": 5,
+          "isNew": true,
+          "links": [],
+          "mode": "markdown",
+          "span": 3,
+          "style": {},
+          "title": "",
+          "type": "text"
+        }
+      ],
+      "title": "New row"
+    },
+    {
+      "collapse": false,
+      "editable": true,
+      "height": "250px",
+      "panels": [
+        {
+          "aliasColors": {},
+          "bars": false,
+          "datasource": null,
+          "editable": true,
+          "error": false,
+          "fill": 1,
+          "grid": {
+            "leftLogBase": 1,
+            "leftMax": null,
+            "leftMin": 0,
+            "rightLogBase": 1,
+            "rightMax": null,
+            "rightMin": null,
+            "threshold1": null,
+            "threshold1Color": "rgba(216, 200, 27, 0.27)",
+            "threshold2": null,
+            "threshold2Color": "rgba(234, 112, 112, 0.22)"
+          },
+          "id": 1,
+          "isNew": true,
+          "legend": {
+            "avg": false,
+            "current": false,
+            "max": false,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 2,
+          "links": [],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [
+            {
+              "alias": "Link count",
+              "color": "#EF843C"
+            },
+            {
+              "alias": "Nodes online",
+              "color": "#6D1F62"
+            }
+          ],
+          "span": 9,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "refId": "A",
+              "target": "alias(ffks.collect.link_count, 'Link count')"
+            },
+            {
+              "refId": "B",
+              "target": "alias(ffks.collect.online_nodes, 'Nodes online')"
+            }
+          ],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Node-to-node connections (links)",
+          "tooltip": {
+            "shared": true,
+            "value_type": "cumulative"
+          },
+          "type": "graph",
+          "x-axis": true,
+          "y-axis": true,
+          "y_formats": [
+            "short",
+            "short"
+          ]
+        },
+        {
+          "content": "The link count is the amount of physical mesh connections there are in the whole network.\n\nIt would be nice to have at least as many mesh connections as there are nodes, but we haven't achieved that yet.",
+          "editable": true,
+          "error": false,
+          "id": 6,
+          "isNew": true,
+          "links": [],
+          "mode": "markdown",
+          "span": 3,
+          "style": {},
+          "title": "",
+          "type": "text"
+        }
+      ],
+      "title": "New row"
+    }
+  ],
+  "time": {
+    "from": "now-14d",
+    "to": "now"
+  },
+  "timepicker": {
+    "now": true,
+    "refresh_intervals": [
+      "5s",
+      "10s",
+      "30s",
+      "1m",
+      "5m",
+      "15m",
+      "30m",
+      "1h",
+      "2h",
+      "1d"
+    ],
+    "time_options": [
+      "5m",
+      "15m",
+      "1h",
+      "6h",
+      "12h",
+      "24h",
+      "2d",
+      "7d",
+      "30d"
+    ]
+  },
+  "templating": {
+    "list": []
+  },
+  "annotations": {
+    "list": []
+  },
+  "refresh": false,
+  "schemaVersion": 8,
+  "version": 12,
+  "links": []
+}
