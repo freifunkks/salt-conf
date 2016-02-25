@@ -86,7 +86,12 @@
             },
             {
               "refId": "E",
-              "target": "alias(sumSeries(#A, #B, #C, #D), 'Total')",
+              "target": "alias(sumSeries(ffks.nodes.ffks-fh-industriestr-*.clients), 'Bergshausen')",
+              "textEditor": true
+            },
+            {
+              "refId": "F",
+              "target": "alias(sumSeries(#A, #B, #C, #D, #E), 'Total')",
               "textEditor": true
             }
           ],
@@ -103,7 +108,8 @@
           "y_formats": [
             "short",
             "short"
-          ]
+          ],
+          "aliasColors": {}
         }
       ],
       "title": "Row"
@@ -116,6 +122,7 @@
         {
           "bars": false,
           "datasource": null,
+          "decimals": 0,
           "editable": true,
           "error": false,
           "fill": 1,
@@ -135,15 +142,15 @@
           "id": 2,
           "isNew": true,
           "legend": {
+            "alignAsTable": true,
             "avg": false,
             "current": true,
             "max": false,
             "min": false,
+            "rightSide": true,
             "show": true,
             "total": false,
-            "values": true,
-            "rightSide": true,
-            "alignAsTable": true
+            "values": true
           },
           "lines": true,
           "linewidth": 2,
@@ -185,6 +192,11 @@
             },
             {
               "refId": "E",
+              "target": "alias(countSeries(ffks.nodes.ffks-fh-industriestr-*.uptime), 'Bergshausen')",
+              "textEditor": true
+            },
+            {
+              "refId": "F",
               "target": "alias(sumSeries(#A, #B, #C, #D), 'Total')",
               "textEditor": true
             }
@@ -203,7 +215,7 @@
             "short",
             "short"
           ],
-          "decimals": 0
+          "aliasColors": {}
         }
       ],
       "title": "New row"
