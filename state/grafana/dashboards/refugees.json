@@ -17,6 +17,7 @@
       "height": "450px",
       "panels": [
         {
+          "aliasColors": {},
           "bars": false,
           "datasource": null,
           "editable": true,
@@ -91,7 +92,12 @@
             },
             {
               "refId": "F",
-              "target": "alias(sumSeries(#A, #B, #C, #D, #E), 'Total')",
+              "target": "alias(sumSeries(ffks.nodes.ffks-SBW-Muenden*.clients), 'Münden')",
+              "textEditor": true
+            },
+            {
+              "refId": "G",
+              "target": "alias(sumSeries(#A, #B, #C, #D, #E, #F), 'Total')",
               "textEditor": true
             }
           ],
@@ -108,8 +114,7 @@
           "y_formats": [
             "short",
             "short"
-          ],
-          "aliasColors": {}
+          ]
         }
       ],
       "title": "Row"
@@ -120,6 +125,7 @@
       "height": "250px",
       "panels": [
         {
+          "aliasColors": {},
           "bars": false,
           "datasource": null,
           "decimals": 0,
@@ -197,7 +203,12 @@
             },
             {
               "refId": "F",
-              "target": "alias(sumSeries(#A, #B, #C, #D), 'Total')",
+              "target": "alias(countSeries(ffks.nodes.ffks-SBW-Muenden*.uptime), 'Münden')",
+              "textEditor": true
+            },
+            {
+              "refId": "G",
+              "target": "alias(sumSeries(#A, #B, #C, #D, #E, #F), 'Total')",
               "textEditor": true
             }
           ],
@@ -214,8 +225,7 @@
           "y_formats": [
             "short",
             "short"
-          ],
-          "aliasColors": {}
+          ]
         }
       ],
       "title": "New row"
