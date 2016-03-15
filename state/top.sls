@@ -22,6 +22,7 @@ base:
     - nginx.sites.ffks-home
     - nginx.sites.ffks-map
     - nginx.sites.ffks-pad
+    - nginx.sites.ffks-quassel
     - nginx.sites.ffks-stats
     - postgresql
     - quassel
