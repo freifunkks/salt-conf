@@ -26,6 +26,10 @@ ssh:
     - enable: True
     - order: 2
 
+systemd-timesyncd:
+  service.running:
+    - enable: True
+
 grml-etc-core:
   pkgrepo.managed:
     - name: deb http://deb.grml.org grml-stable main
