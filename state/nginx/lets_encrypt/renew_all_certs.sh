@@ -1,6 +1,6 @@
 #!/bin/bash
 
-[[ "$pwd" = "/etc/acme_tiny" ]] || exit 1
+cd '/etc/acme_tiny'
 
 shopt -s extglob
 
