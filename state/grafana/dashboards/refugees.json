@@ -96,8 +96,13 @@
               "textEditor": true
             },
             {
+              "refId": "H",
+              "target": "alias(sumSeries(ffks.nodes.ffks-14cc20e13f*.clients), 'Niedenstein')",
+              "textEditor": true
+            },
+            {
               "refId": "G",
-              "target": "alias(sumSeries(#A, #B, #C, #D, #E, #F), 'Total')",
+              "target": "alias(sumSeries(#A, #B, #C, #D, #E, #F, #H), 'Total')",
               "textEditor": true
             }
           ],
@@ -207,8 +212,13 @@
               "textEditor": true
             },
             {
+              "refId": "H",
+              "target": "alias(countSeries(ffks.nodes.ffks-14cc20e13f*.uptime), 'Niedenstein')",
+              "textEditor": true
+            },
+            {
               "refId": "G",
-              "target": "alias(sumSeries(#A, #B, #C, #D, #E, #F), 'Total')",
+              "target": "alias(sumSeries(#A, #B, #C, #D, #E, #F, H#), 'Total')",
               "textEditor": true
             }
           ],
