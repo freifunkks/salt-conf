@@ -8,7 +8,7 @@ include:
 #    - makedirs: True
 #    - ...
 
-/etc/systemd/system/airvpn@openvpn.service.d/service.conf:
+/etc/systemd/system/openvpn@airvpn.service.d/service.conf:
   file.managed:
     - makedirs: True
     - contents: |
@@ -34,7 +34,7 @@ openvpn@airvpn:
     - enable: True
     - watch:
       - pkg: openvpn
-      - file: /etc/systemd/system/airvpn@openvpn.service.d/service.conf
+      - file: /etc/systemd/system/openvpn@airvpn.service.d/service.conf
       #- file: /etc/openvpn/airvpn.conf
       - file: /etc/openvpn/airvpn/route-up.sh
       - file: /etc/openvpn/airvpn/down.sh
