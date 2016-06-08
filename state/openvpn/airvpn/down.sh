@@ -1,7 +1,6 @@
 #!/bin/sh
 
 openvpn_interface="tun0"
-fastd_interface="ffks-vpn"
 
 ip route del table ffks default
 

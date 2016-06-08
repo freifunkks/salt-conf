@@ -1,7 +1,8 @@
 # Virtual interface for fastd meshing
+# TODO: Does the up line do anything?
 iface ffks-vpn inet6 manual
   hwaddress ether {{ pillar.minions[grains.id].fastd_mac }}
+  up              ip link set dev $IFACE up
   {% if pillar.minions[grains.id].gateway %}
   post-up         batctl -m bat0 if add $IFACE
-  post-up         ifup bat0
   {% endif %}

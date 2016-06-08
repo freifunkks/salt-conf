@@ -13,7 +13,7 @@ include:
     - makedirs: True
     - contents: |
         [Unit]
-        Requires=ffks_vpn@fastd.service
+        Requires=fastd@ffks_vpn.service
 
 /etc/openvpn/airvpn/route-up.sh:
   file.managed:

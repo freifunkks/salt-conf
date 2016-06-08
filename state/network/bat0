@@ -1,4 +1,6 @@
 # Virtual interface used by batman
+# TODO: Properly align bat0 and ffks-vpn mtu's!
+allow-hotplug bat0
 iface bat0 inet static
   hwaddress ether {{ pillar.minions[grains.id].bat_mac }}
   address         {{ pillar.minions[grains.id].bat_ip }}/16
