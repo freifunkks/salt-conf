@@ -4,7 +4,7 @@ grafana:
     - humanname: grafana
     - dist: jessie
     - file: /etc/apt/sources.list.d/grafana.list
-    - refresh_db: true
+    - refresh_db: True
     - key_url: https://packagecloud.io/gpg.key
   pkg.installed:
     - require:

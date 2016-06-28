@@ -1,0 +1,13 @@
+[Unit]
+Description=Node.js IRC bridge for Matrix
+Requires=matrix-synapse.service
+After=matrix-synapse.service
+
+[Service]
+Type=simple
+User=matrix-appservice-irc
+WorkingDirectory=/home/matrix-appservice-irc
+ExecStart=node node_modules/matrix-appservice-irc/app.js -c config.yaml
+
+[Install]
+WantedBy=multi-user.target

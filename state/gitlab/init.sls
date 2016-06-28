@@ -4,7 +4,7 @@ gitlab-ce:
     - humanname: gitlab
     - dist: jessie
     - file: /etc/apt/sources.list.d/gitlab.list
-    - refresh_db: true
+    - refresh_db: True
     - key_url: https://packagecloud.io/gpg.key
     - clean_file: True
   pkg.installed:
