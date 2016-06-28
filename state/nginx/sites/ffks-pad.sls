@@ -1,5 +1,6 @@
 include:
   - nginx
+  - nodejs
 
 pad.ffks:
   nginx_site.reverse_proxy:
@@ -40,6 +41,8 @@ etherpad-lite-pkgs:
   npm.installed:
     - pkgs:
       - pgpass
+    - require:
+      - pkg: nodejs
 
 https://github.com/ether/etherpad-lite.git:
   git.latest:

@@ -8,8 +8,5 @@ nodejs:
     - refresh_db: true
     - order: 2
   pkg.installed:
-    - pkgs:
-      - nodejs
-      - npm
     - require:
       - pkgrepo: nodejs
