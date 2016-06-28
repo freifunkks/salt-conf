@@ -1,11 +1,11 @@
 include:
   - nginx
 
-quassel.freifunk-kassel.de:
+matrix.ffks.de:
   nginx_site.present_le:
     - configfile: salt://nginx/configs/empty.nginx-conf
     - server_names:
-      - quassel.freifunk-kassel.de
-      - quassel.{{ grains.host }}.ffks.de
+      - matrix.ffks.de
+      - matrix.{{ grains.host }}.ffks.de
     - watch_in:
       - service: nginx
