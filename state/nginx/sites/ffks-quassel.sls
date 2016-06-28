@@ -3,7 +3,7 @@ include:
 
 quassel.freifunk-kassel.de:
   nginx_site.present_le:
-    - configfile: salt://nginx/configs/empty.nginx-conf
+    - configfile: salt://nginx/configs/ffks-quassel.nginx-conf
     - server_names:
       - quassel.freifunk-kassel.de
       - quassel.{{ grains.host }}.ffks.de
