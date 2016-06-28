@@ -1,5 +1,6 @@
 include:
   - nginx
+  - nodejs
 
 map.ffks:
   nginx_site.present:
@@ -22,19 +23,15 @@ ffks-map:
     #- shell: /usr/sbin/nologin
     - order: 11
 
-node:
-  pkg.installed:
-    - pkgs:
-      # Legacy symlink, grunt needs this
-      - nodejs-legacy
-      - npm
-
+# Legacy symlink, grunt needs this
+nodejs-legacy: pkg.installed
 ruby-sass: pkg.installed
 
 grunt-cli:
   npm.installed:
     - require:
-      - pkg: node
+      - pkg: nodejs
+      - pkg: nodejs-legacy
 
 https://github.com/freifunkks/meshviewer.git:
   git.latest:

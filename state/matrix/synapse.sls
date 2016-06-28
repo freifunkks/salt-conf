@@ -1,4 +1,4 @@
-matrix:
+matrix-synapse:
   pkgrepo.managed:
     - name: deb http://matrix.org/packages/debian/ jessie main
     - humanname: matrix
@@ -6,11 +6,9 @@ matrix:
     - file: /etc/apt/sources.list.d/matrix.list
     - key_url: https://matrix.org/packages/debian/repo-key.asc
     - refresh_db: true
-    - order: 2
-
-matrix-synapse:
   pkg.installed:
-    - order: 3
+    - require:
+      - pkgrepo: matrix-synapse
   service.running:
     - enable: true
     - reload: true
