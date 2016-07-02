@@ -48,3 +48,9 @@ tunneldigger:
     - source: salt://tunneldigger/mtu-changed.sh
     - makedirs: True
     - user: tunneldigger
+
+/home/tunneldigger/hooks/bridge-functions.sh:
+  file.managed:
+    - source: salt://tunneldigger/bridge-functions.sh
+    - makedirs: True
+    - user: tunneldigger
