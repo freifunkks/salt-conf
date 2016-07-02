@@ -5,30 +5,6 @@ minions:
     fastd_mac: f6:b7:a2:e4:9f:a1
     fastd_public: |-
       eff8ae86d2ee7461a0da22fda920eeb983ae867613e74db0f93d8e726cbc6d83
-  bewarewolf.ffks:
-    fastd_mac: f6:b7:a2:e4:9f:a2
-    fastd_public: |-
-      1eef194a2902f7ff2a953740c903d75654bbb6d00889fca19d98de517116fc64
-    fastd_secret: |-
-      -----BEGIN PGP MESSAGE-----
-      Version: GnuPG v2
-
-      hQIMA48MoEcLDET7AQ/9EqIjh3OK7gx3Us+IAH93ig/18KOWkeUB81wa16PJsBzl
-      Anb9dFO0ECnqB7uDYSvixSCv+RYyothjSteY8qNdihfh0P0eHFWyAFvZCEnrep+z
-      Ubn8d5FLu/ix3OIXAYew8s6PNH82gGZIHU17un08pjHfC0spKcAnOlUXboJAKbxr
-      RjMX+59TmarVftHaLg5MLJTEVJEB3nmn7Qht+IzSEDS1orDJyQGmKL4RMMx0zIU9
-      4Yp2jGCt+dbEt4k1aLCa3EUUiD+2iItvwkQ64HH8TYyRbuAedMGpg0PTAbcFUHNZ
-      uw309v9CD6CWiboESkeUZP5Nz67xpdV1B5ZWb/dfq934Fsa8njVIxOJqgafT6wc8
-      8RHyAvbsN8ynIERYrTnPAO6vbosMGd3Z+8d13C9KAiMAJzG/ADGEJUXuNca6Gqeb
-      i5Gus6J2KkG6BpkzzvyAivAd+wOqfAobG4r4c9mSvN8teR50iUy+6YtnzaCe2mrR
-      ZPDGASHKt9F2m+PJhRvq9Pdp5GcONaviMDan0Yl9I6IL0+28pd1tyacqM+IxyiBc
-      5ev47Q8IE+enYBvKTbnLdmvWWop5KHK1/6z7qxmyEywHc8mRSRgHpdYbSziMLbau
-      qTtZy5UpXap4APAJPCm43PIraiKoy/sFK0Q5WGzSeFJQsbPXlyjTMlinCiMt61TS
-      cwGeOI36jvsUGvrm9YeTPZ89GEIYVi6iwObLt+ZyBntyONqH1mpWI4yYiWoR1ifv
-      FqgbrMLmMeEeoznyKB9LenNPmzR3mGeYYnmMaPN/Krj6bl7JM9yvsYn77soTU5Jp
-      5XDB8JmYVIK+UNd5YliePi0lRTY=
-      =eg+b
-      -----END PGP MESSAGE-----
 
   excalipurr.ffks:
     fastd_mac: f6:b7:a2:e4:9f:f0
@@ -81,7 +57,7 @@ minions:
       -----END PGP MESSAGE-----
 
   spinchilla.ffks:
-    fastd_mac: f6:b7:a2:e4:9f:a0
+    fastd_mac: f6:b7:a2:e4:9f:a4
     fastd_public: |-
       8bd3d122c28685f0519756715890eebb863e4efb28d933b8d27499a8a5bb688c
     fastd_secret: |-
@@ -106,12 +82,12 @@ minions:
       -----END PGP MESSAGE-----
 
 fastd_peerings:
-  bewarewolf.ffks:
-    - aggrosculpture.ffks
   knocktopus.ffks:
     - aggrosculpture.ffks
-    - bewarewolf.ffks
   spinchilla.ffks:
     - aggrosculpture.ffks
-    - bewarewolf.ffks
     - knocktopus.ffks
+  meowgician.ffks:
+    - aggrosculpture.ffks
+    - knocktopus.ffks
+    - spinchilla.ffks
