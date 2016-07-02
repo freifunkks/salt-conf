@@ -16,6 +16,7 @@ base:
     - grafana
     - graphite.api
     - graphite.carbon
+    - matrix.appservice-irc
     - matrix.synapse
     - nginx
     - nginx.lets_encrypt

@@ -6,7 +6,7 @@ matrix-appservice-irc:
     - shell: /usr/sbin/nologin
   npm.installed:
     - user: matrix-appservice-irc
-    - dir: /home/matrix-appservice-irc/matrix-appservice-irc
+    - dir: /home/matrix-appservice-irc
     - require:
       - user: matrix-appservice-irc
       - pkg: nodejs
