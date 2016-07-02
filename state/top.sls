@@ -9,6 +9,7 @@ base:
     - common.gateway_pkgs
     - fastd.ffks_vpn.gw_peerings
     - network.batman
+    - tunneldigger
   {% endif %}
 
   excalipurr.ffks:
