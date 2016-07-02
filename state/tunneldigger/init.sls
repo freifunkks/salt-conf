@@ -12,16 +12,39 @@ tunneldigger:
     - shell: /usr/sbin/nologin
   git.latest:
     - name: https://github.com/wlanslovenija/tunneldigger.git
-    - target: /srv/tunneldigger
+    - target: /home/tunneldigger/tunneldigger
     - rev: v0.2.0
     - user: tunneldigger
     - require:
       - pkg: tunneldigger
       - user: tunneldigger
 
-/srv/tunneldigger:
+/home/tunneldigger/tunneldigger/virtualenv:
   virtualenv.managed:
-    - requirements: /srv/tunneldigger/broker/requirements.txt
+    - requirements: /home/tunneldigger/tunneldigger/broker/requirements.txt
     - user: tunneldigger
     - require:
         - git: tunneldigger
+
+/var/log/tunneldigger:
+  file.directory:
+    - user: tunneldigger
+    - mode: 755
+
+/home/tunneldigger/hooks/up.sh:
+  file.managed:
+    - source: salt://tunneldigger/up.sh
+    - makedirs: True
+    - user: tunneldigger
+
+/home/tunneldigger/hooks/pre-down.sh:
+  file.managed:
+    - source: salt://tunneldigger/pre-down.sh
+    - makedirs: True
+    - user: tunneldigger
+
+/home/tunneldigger/hooks/mtu-changed.sh:
+  file.managed:
+    - source: salt://tunneldigger/mtu-changed.sh
+    - makedirs: True
+    - user: tunneldigger
