@@ -14,7 +14,7 @@ ensure_bridge()
     ip link set dev $brname up
     ip addr add {{ pillar.minions[grains.id].l2tp_ip }}/16 dev $brname
     # TODO Policy routing should probably not be hardcoded here?
-    ensure_policy from all iif $brname lookup mesh prio 1000
+    ensure_policy from all iif $brname lookup ffks prio 1000
     # Disable forwarding between bridge ports
     ebtables -A FORWARD --logical-in $brname -j DROP
   fi
