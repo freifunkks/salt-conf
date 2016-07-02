@@ -6,8 +6,8 @@ After=matrix-synapse.service
 [Service]
 Type=simple
 User=matrix-appservice-irc
-WorkingDirectory=/home/matrix-appservice-irc
-ExecStart=node node_modules/matrix-appservice-irc/app.js -c config.yaml
+WorkingDirectory=/home/matrix-appservice-irc/node_modules/matrix-appservice-irc
+ExecStart=/usr/bin/node app.js -c config.yaml -f appservice-registration-irc.yaml -p 8118
 
 [Install]
 WantedBy=multi-user.target
