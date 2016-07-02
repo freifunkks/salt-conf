@@ -19,7 +19,7 @@ ffks-home-redirects:
       - kassel-freifunk.de
       - www.ffks.de
       - www.freifunk-kassel.de
-      - wwww.kassel-freifunk.de
+      - www.kassel-freifunk.de
     - target: https://freifunk-kassel.de
     - watch_in:
       - service: nginx
