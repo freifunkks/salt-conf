@@ -87,7 +87,7 @@ fastd_peerings:
   spinchilla.ffks:
     - aggrosculpture.ffks
     - knocktopus.ffks
-  meowgician.ffks:
-    - aggrosculpture.ffks
-    - knocktopus.ffks
-    - spinchilla.ffks
+#  meowgician.ffks:
+#    - aggrosculpture.ffks
+#    - knocktopus.ffks
+#    - spinchilla.ffks
