@@ -13,7 +13,7 @@ python /opt/acme-tiny/acme_tiny.py \
 
 # Download intermediate certificate
 wget -qO /etc/acme_tiny/intermediate.pem \
-  https://letsencrypt.org/certs/lets-encrypt-x1-cross-signed.pem
+  https://letsencrypt.org/certs/lets-encrypt-x3-cross-signed.pem
 
 # Combine both into the full certificate chain
 cat \
