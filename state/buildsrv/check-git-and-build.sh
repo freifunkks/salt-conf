@@ -18,6 +18,7 @@ declare -aU build_branches=()
 
 build_script="build.sh"
 
+
 #
 # FUNCTIONS
 #
@@ -105,6 +106,7 @@ build() {
     "./${build_script}"
     # TODO Check output and notify
 }
+
 
 #
 # EXECUTION
