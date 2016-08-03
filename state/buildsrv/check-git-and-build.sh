@@ -13,7 +13,6 @@ site_dir="${gluon_dir}/site"
 gluon_repo="https://github.com/freifunk-gluon/gluon.git"
 site_repo="https://github.com/freifunkks/site-ffks.git"
 
-gluon_branch="v2016.1.x"
 declare -aU site_branches=(beta stable)
 declare -aU build_branches=()
 
@@ -45,13 +44,13 @@ clone_repo() {
     fi
 }
 
-# Clones a repo, if folder does not exist
+# Fetches newest commit and fast-forward on changes while returning 0
 #
 #   ${1} dir (of clone)
 #   ${2} branch
-fetch() {
+fetch_branch() {
     if [[ "${#}" -lt 2 ]]; then
-        die "'fetch_and_build' needs at least 2 arguments."
+        die "'fetch_branch' needs at least 2 arguments."
     fi
     repo_dir="${1}"
     branch="${2}"
@@ -69,6 +68,29 @@ fetch() {
     fi
 }
 
+# Fetches specific tag and ...
+#
+#   ${1} dir (of clone)
+#   ${2} tag
+fetch_tag() {
+    if [[ "${#}" -lt 2 ]]; then
+        die "'fetch_tag' needs at least 2 arguments."
+    fi
+    repo_dir="${1}"
+    tag="${2}"
+
+    cd "${1}"
+    git fetch -q
+    tag_old=$(git rev-parse HEAD)
+    tag_new=$(git rev-parse "${tag}")
+    if [[ "${tag_old}" == "${tag_new}" ]]; then
+        return 1
+    else
+        git reset --hard -q "${tag_new}"
+        return 0
+    fi
+}
+
 # Builds a branch of the site via the script
 # included in its directory
 build() {
@@ -76,7 +98,10 @@ build() {
     branch="${1}"
     cd "${site_dir}"
     [[ -f "${build_script}" ]] || die "Build script '${build_script}' not found."
-    git checkout "${branch}"
+    git checkout -q "${branch}"
+    tag=$(make -f site.mk print_default_release)
+    fetch_tag "${gluon_dir}" "${tag}"
+    cd "${site_dir}"
     "./${build_script}"
     # TODO Check output and notify
 }
@@ -91,11 +116,8 @@ clone_repo "${site_dir}" "${site_repo}"
 
 # Check out and notice changes
 # and build on change
-if fetch "${gluon_dir}" "${gluon_branch}" "all"; then
-    build_branches=("${site_branches[@]}")
-fi
 for branch in "${site_branches[@]}"; do
-    if fetch "${site_dir}" "${branch}"; then
+    if fetch_branch "${site_dir}" "${branch}"; then
         build_branches+="${branch}"
     fi
 done
