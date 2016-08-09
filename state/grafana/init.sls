@@ -17,17 +17,19 @@ grafana:
     - owner: grafana
     - owner_recurse: True
 
-/etc/grafana/grafana.ini:
+/etc/grafana/grafana-ffks.ini:
   file.managed:
     - source: salt://grafana/grafana.ini
     - template: jinja
     - create: False
     - require:
       - pkg: grafana
+    - context:
+      path: /var/lib/grafana/dashboards
 
-/var/lib/grafana/dashboards:
+/var/lib/grafana/dashboards/ffks:
   file.recurse:
-    - source: salt://grafana/dashboards
+    - source: salt://grafana/dashboards/ffks
     - clean: True
     - dir_mode: 755
     - user: grafana
@@ -51,5 +53,5 @@ grafana-server:
     - enable: True
     - watch:
       - pkg: grafana
-      - file: /etc/grafana/grafana.ini
-      - file: /var/lib/grafana/dashboards
+      - file: /etc/grafana/grafana-ffks.ini
+      - file: /var/lib/grafana/dashboards/ffks
