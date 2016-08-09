@@ -1,7 +1,9 @@
-#!/usr/bin/env python2
+#!/usr/bin/env python3
+from contextlib import contextmanager
 from datetime import datetime
 import sys
-import httplib
+import socket
+import http.client
 import json
 import time
 
@@ -17,6 +19,7 @@ API_IG = {
 }
 
 
+@contextmanager
 def get_socket(host, port):
     sock = socket.socket()
     sock.settimeout(1)
@@ -35,16 +38,17 @@ def main():
     update = {}
 
     # Get user data
-    conn = httplib.HTTPConnection(SERVER_FD)
+    conn = http.client.HTTPConnection(SERVER_FD)
     conn.request('GET', API_FD['status'])
     r = conn.getresponse()
+    content = r.read().decode('utf-8')
 
-    data = json.loads(r.read())
+    data = json.loads(content)
     conn.close()
 
     try:
         known_users = len(data['known_users'])
-        known_users_names = map(lambda x: x['nick'], data['known_users'])
+        known_users_names = [x['nick'] for x in data['known_users']]
     except KeyError:
         known_users = 0
         known_users_names = []
@@ -70,9 +74,9 @@ def main():
 
     # Get temperature data
     # TODO: integrate power consumption in space api
-    conn = httplib.HTTPConnection(SERVER_IG)
+    conn = http.client.HTTPConnection(SERVER_IG)
     conn.request('GET', API_IG['power'])
-    power_consumption = conn.getresponse().read()
+    power_consumption = conn.getresponse().read().decode('utf-8')
     power_consumption = power_consumption.split(',')[-1].strip()
     power_consumption = int(power_consumption)
 
