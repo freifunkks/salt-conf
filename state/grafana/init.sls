@@ -43,7 +43,7 @@ grafana:
 
 /usr/share/grafana/public/dashboards/home.json:
   file.managed:
-    - source: salt://grafana/home.json
+    - source: salt://grafana/home-ffks.json
     - create: False
 
 grafana-server:
