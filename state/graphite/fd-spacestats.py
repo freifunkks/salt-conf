@@ -1,8 +1,12 @@
 #!/usr/bin/env python2
+
+from contextlib import contextmanager
 from datetime import datetime
+
 import sys
 import httplib
 import json
+import socket
 import time
 
 
@@ -17,6 +21,7 @@ API_IG = {
 }
 
 
+@contextmanager
 def get_socket(host, port):
     sock = socket.socket()
     sock.settimeout(1)
