@@ -17,6 +17,7 @@ grafana:
     - owner: grafana
     - owner_recurse: True
 
+# Freifunk Kassel
 /etc/grafana/grafana-ffks.ini:
   file.managed:
     - source: salt://grafana/grafana.ini
@@ -25,7 +26,7 @@ grafana:
     - require:
       - pkg: grafana
     - context:
-      path: /var/lib/grafana/dashboards
+      path: /var/lib/grafana/dashboards/ffks
 
 /var/lib/grafana/dashboards/ffks:
   file.recurse:
