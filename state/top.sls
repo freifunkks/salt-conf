@@ -6,10 +6,6 @@ base:
     - fastd
     - salt
 
-  #{% if pillar.minions[grains.id].build %}
-  #  - buildsrv
-  #{% endif %}
-
   {% if pillar.minions[grains.id].gateway %}
     - common.gateway_pkgs
     - fastd.ffks_vpn.gw_peerings
