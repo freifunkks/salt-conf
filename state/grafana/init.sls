@@ -26,6 +26,7 @@ grafana:
       - pkg: grafana
     - context:
       path: /var/lib/grafana/dashboards/ffks
+      port: 10001
 
 /var/lib/grafana/dashboards/ffks:
   file.recurse:
@@ -84,6 +85,7 @@ grafana-ffks:
       - pkg: grafana
     - context:
       path: /var/lib/grafana/dashboards/flipdot
+      port: 10011
 
 /var/lib/grafana/dashboards/flipdot:
   file.recurse:
