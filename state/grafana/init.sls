@@ -74,3 +74,51 @@ grafana-ffks:
     - user: grafana
     - group: grafana
     - mode: 755
+
+# flipdot
+/etc/grafana/grafana-flipdot.ini:
+  file.managed:
+    - source: salt://grafana/grafana.ini
+    - template: jinja
+    - require:
+      - pkg: grafana
+    - context:
+      path: /var/lib/grafana/dashboards/flipdot
+
+/var/lib/grafana/dashboards/flipdot:
+  file.recurse:
+    - source: salt://grafana/dashboards/flipdot
+    - clean: True
+    - dir_mode: 755
+    - user: grafana
+    - group: grafana
+    - require:
+      - pkg: grafana
+      - user: grafana
+
+grafana-flipdot:
+  service.running:
+    - enable: True
+    - watch:
+      - pkg: grafana
+      - file: /etc/grafana/grafana-flipdot.ini
+      - file: /var/lib/grafana/dashboards/flipdot
+      - file: /var/lib/grafana-flipdot
+
+/etc/systemd/system/grafana-flipdot.service:
+  file.managed:
+    - source: salt://grafana/grafana.service
+    - template: jinja
+    - makedirs: True
+    - context:
+      conf_file: /etc/grafana/grafana-flipdot.ini
+      pid_file: /tmp/grafana-flipdot.pid
+      log_dir: /var/log/grafana-flipdot
+      data_dir: /var/lib/grafana-flipdot
+      plugins_dir: /var/lib/grafana-flipdot/plugins
+
+/var/lib/grafana-flipdot:
+  file.directory:
+    - user: grafana
+    - group: grafana
+    - mode: 755
