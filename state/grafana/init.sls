@@ -134,3 +134,10 @@ grafana-flipdot:
     - user: grafana
     - group: grafana
     - mode: 755
+
+# Heatmap plugin
+https://github.com/mtanda/grafana-heatmap-epoch-panel.git:
+  git.latest:
+    - target: /var/lib/grafana-flipdot/plugins/grafana-heatmap-epoch-panel
+    - require:
+      - pkg: git
