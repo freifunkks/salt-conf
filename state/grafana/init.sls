@@ -14,7 +14,7 @@ grafana:
     - order: 11
 
 # Freifunk Kassel
-grafana-ffks:
+grafana_ffks:
   postgres_user.present: []
   postgres_database.present:
     - owner: grafana
@@ -29,7 +29,7 @@ grafana-ffks:
     - context:
       path: /var/lib/grafana-ffks/dashboards
       port: 10001
-      db_name: grafana-ffks
+      db_name: grafana_ffks
 
 /var/lib/grafana-ffks/dashboards:
   file.recurse:
@@ -79,7 +79,7 @@ grafana-ffks:
     - mode: 755
 
 # flipdot
-grafana-flipdot:
+grafana_flipdot:
   postgres_user.present: []
   postgres_database.present:
     - owner: grafana
@@ -94,7 +94,7 @@ grafana-flipdot:
     - context:
       path: /var/lib/grafana-flipdot/dashboards
       port: 10011
-      db_name: grafana-flipdot
+      db_name: grafana_flipdot
 
 /var/lib/grafana-flipdot/dashboards:
   file.recurse:
