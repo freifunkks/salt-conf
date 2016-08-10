@@ -30,6 +30,7 @@ grafana_ffks:
       path: /var/lib/grafana-ffks/dashboards
       port: 10001
       db_name: grafana_ffks
+      org_name: Freifunk Kassel
 
 /var/lib/grafana-ffks/dashboards:
   file.recurse:
@@ -95,6 +96,7 @@ grafana_flipdot:
       path: /var/lib/grafana-flipdot/dashboards
       port: 10011
       db_name: grafana_flipdot
+      org_name: flipdot
 
 /var/lib/grafana-flipdot/dashboards:
   file.recurse:
