@@ -25,7 +25,7 @@ grafana:
     - require:
       - pkg: grafana
     - context:
-      path: /var/lib/grafana/dashboards/ffks
+      path: /var/lib/grafana-ffks/dashboards
       port: 10001
 
 /var/lib/grafana/dashboards/ffks:
@@ -55,8 +55,7 @@ grafana-ffks:
     - watch:
       - pkg: grafana
       - file: /etc/grafana/grafana-ffks.ini
-      - file: /var/lib/grafana/dashboards/ffks
-      - file: /var/lib/grafana-ffks
+      - file: /var/lib/grafana-ffks/dashboards
 
 /etc/systemd/system/grafana-ffks.service:
   file.managed:
@@ -84,7 +83,7 @@ grafana-ffks:
     - require:
       - pkg: grafana
     - context:
-      path: /var/lib/grafana/dashboards/flipdot
+      path: /var/lib/grafana-flipdot/dashboards
       port: 10011
 
 /var/lib/grafana/dashboards/flipdot:
@@ -104,8 +103,7 @@ grafana-flipdot:
     - watch:
       - pkg: grafana
       - file: /etc/grafana/grafana-flipdot.ini
-      - file: /var/lib/grafana/dashboards/flipdot
-      - file: /var/lib/grafana-flipdot
+      - file: /var/lib/grafana-flipdot/dashboards
 
 /etc/systemd/system/grafana-flipdot.service:
   file.managed:
