@@ -12,12 +12,14 @@ grafana:
   user.present:
     - shell: /usr/sbin/nologin
     - order: 11
+
+# Freifunk Kassel
+grafana-ffks:
   postgres_user.present: []
   postgres_database.present:
     - owner: grafana
     - owner_recurse: True
 
-# Freifunk Kassel
 /etc/grafana/grafana-ffks.ini:
   file.managed:
     - source: salt://grafana/grafana.ini
@@ -27,6 +29,7 @@ grafana:
     - context:
       path: /var/lib/grafana-ffks/dashboards
       port: 10001
+      db_name: grafana-ffks
 
 /var/lib/grafana-ffks/dashboards:
   file.recurse:
@@ -76,6 +79,12 @@ grafana-ffks:
     - mode: 755
 
 # flipdot
+grafana-flipdot:
+  postgres_user.present: []
+  postgres_database.present:
+    - owner: grafana
+    - owner_recurse: True
+
 /etc/grafana/grafana-flipdot.ini:
   file.managed:
     - source: salt://grafana/grafana.ini
@@ -85,6 +94,7 @@ grafana-ffks:
     - context:
       path: /var/lib/grafana-flipdot/dashboards
       port: 10011
+      db_name: grafana-flipdot
 
 /var/lib/grafana-flipdot/dashboards:
   file.recurse:
