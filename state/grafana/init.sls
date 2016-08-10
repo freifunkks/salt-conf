@@ -28,7 +28,7 @@ grafana:
       path: /var/lib/grafana-ffks/dashboards
       port: 10001
 
-/var/lib/grafana/dashboards/ffks:
+/var/lib/grafana-ffks/dashboards:
   file.recurse:
     - source: salt://grafana/dashboards/ffks
     - clean: True
@@ -86,7 +86,7 @@ grafana-ffks:
       path: /var/lib/grafana-flipdot/dashboards
       port: 10011
 
-/var/lib/grafana/dashboards/flipdot:
+/var/lib/grafana-flipdot/dashboards:
   file.recurse:
     - source: salt://grafana/dashboards/flipdot
     - clean: True
