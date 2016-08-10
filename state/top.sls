@@ -28,6 +28,7 @@ base:
     - nginx.sites.ffks-pad
     - nginx.sites.ffks-quassel
     - nginx.sites.ffks-stats
+    - nginx.sites.flipdot-stats
     - postgresql
     - quassel
     - uwsgi
