@@ -139,3 +139,8 @@ grafana-flipdot:
 https://github.com/mtanda/grafana-heatmap-epoch-panel.git:
   git.latest:
     - target: /var/lib/grafana-flipdot/plugins/grafana-heatmap-epoch-panel
+
+# Histogram plugin
+https://github.com/mtanda/grafana-histogram-panel.git:
+  git.latest:
+    - target: /var/lib/grafana-flipdot/plugins/grafana-histogram-panel
