@@ -44,7 +44,7 @@ def main():
     conn.request('GET', API_FD['status'])
 
     r = conn.getresponse()
-    if r.status not 200:
+    if not r.status is 200:
         print r.status, r.reason, "for", SERVER_FD
     else:
         data = json.loads(r.read())
@@ -95,7 +95,7 @@ def main():
     conn.request('GET', API_IG['power'])
 
     r = conn.getresponse()
-    if r.status not 200:
+    if not r.status is 200:
         print r.status, r.reason, "for", SERVER_IG
     else:
         power_consumption = r.read()
