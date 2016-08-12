@@ -3,10 +3,10 @@
 from contextlib import contextmanager
 from datetime import datetime
 
-import sys
 import httplib
 import json
 import socket
+import sys
 import time
 
 
@@ -29,7 +29,7 @@ def get_socket(host, port):
     yield sock
     sock.close()
 
-def write_to_graphite(data, prefix='fd'):
+def write_to_graphite(data, prefix='fd.space'):
     now = time.time()
     with get_socket('localhost', 2003) as s:
         for key, value in data.items():
@@ -42,49 +42,69 @@ def main():
     # Get user data
     conn = httplib.HTTPConnection(SERVER_FD)
     conn.request('GET', API_FD['status'])
+
     r = conn.getresponse()
+    if r.status not 200:
+        print r.status, r.reason, "for", SERVER_FD
+    else:
+        data = json.loads(r.read())
 
-    data = json.loads(r.read())
+        try:
+            known_users = len(data['known_users'])
+        except KeyError:
+            known_users = 0
+
+        try:
+            unknown_users = data['unknown_users']
+        except KeyError:
+            unknown_users = 0
+
+        try:
+            update['heater_setpoint'] = data['temperature_setpoint']
+        except:
+            pass
+
+        try:
+            update['heater_temperature'] = data['temperature_realvalue']
+        except:
+            pass
+
+        try:
+            update['heater_valve'] = data['heater_valve']
+        except:
+            pass
+
+        try:
+            is_open = 1 if data['open'] else 0
+        except KeyError:
+            is_open = 0
+
+        all_users = known_users + unknown_users
+
+        update['users_all'] = all_users
+        update['users_known'] = known_users
+        update['users_unknown'] = unknown_users
+        update['is_open'] = is_open
+
     conn.close()
-
-    try:
-        known_users = len(data['known_users'])
-        known_users_names = map(lambda x: x['nick'], data['known_users'])
-    except KeyError:
-        known_users = 0
-        known_users_names = []
-    try:
-        unknown_users = data['unknown_users']
-    except KeyError:
-        unknown_users = 0
-    try:
-        setpoint = data['temperature_setpoint']
-    except KeyError:
-        setpoint = None
-    try:
-        realvalue = data['temperature_realvalue']
-    except KeyError:
-        realvalue = None
-    try:
-        heater_valve = data['heater_valve']
-    except KeyError:
-        heater_valve = None
-
-    all_users = known_users + unknown_users
 
 
     # Get temperature data
     # TODO: integrate power consumption in space api
     conn = httplib.HTTPConnection(SERVER_IG)
     conn.request('GET', API_IG['power'])
-    power_consumption = conn.getresponse().read()
-    power_consumption = power_consumption.split(',')[-1].strip()
-    power_consumption = int(power_consumption)
 
-    update['space.users_all'] = all_users
-    update['space.users_known'] = known_users
-    update['space.users_unknown'] = unknown_users
-    update['space.power_consumption'] = power_consumption
+    r = conn.getresponse()
+    if r.status not 200:
+        print r.status, r.reason, "for", SERVER_IG
+    else:
+        power_consumption = r.read()
+        power_consumption = power_consumption.split(',')[-1].strip()
+        power_consumption = int(power_consumption)
+
+        update['power_consumption'] = power_consumption
+
+    conn.close()
     write_to_graphite(update)
 
 
