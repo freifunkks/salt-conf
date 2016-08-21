@@ -31,4 +31,5 @@ base:
     - nginx.sites.flipdot-stats
     - postgresql
     - quassel
+    - sopel
     - uwsgi
