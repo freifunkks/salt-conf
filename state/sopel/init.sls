@@ -26,6 +26,7 @@ backports.ssl_match_hostname:
 /home/sopel/.sopel/default.cfg:
   file.managed:
     - source: salt://sopel/sopel.cfg
+    - template: jinja
     - makedirs: True
 
 https://github.com/freifunkks/sopel-modules.git:
