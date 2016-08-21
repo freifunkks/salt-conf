@@ -7,3 +7,4 @@ base:
 
   excalipurr.ffks:
     - grafana
+    - sopel
