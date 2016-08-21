@@ -22,3 +22,8 @@ backports.ssl_match_hostname:
 /etc/ssl/certs/Hackint_IRC_Network_Root_CA.pem:
   file.symlink:
     - target: /usr/share/ca-certificates/hackint/rootca.crt
+
+/home/sopel/.sopel/default.cfg:
+  file.managed:
+    - source: salt://sopel/sopel.cfg
+    - makedirs: True
