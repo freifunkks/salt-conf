@@ -1,11 +1,13 @@
 sopel:
   user.present:
     - shell: /usr/sbin/nologin
+  pkg.installed:
+    - name: enchant
   pip.installed:
     - require:
-      - pkg:
-        - python-pip
-        - backports.ssl_match_hostname
+      - pip: backports.ssl_match_hostname
+      - pkg: python-pip
+      - pkg: enchant
 
 backports.ssl_match_hostname:
   pip.installed:
