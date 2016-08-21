@@ -27,3 +27,8 @@ backports.ssl_match_hostname:
   file.managed:
     - source: salt://sopel/sopel.cfg
     - makedirs: True
+
+https://github.com/freifunkks/sopel-modules.git:
+  git.latest:
+    - target: /home/sopel/.sopel/modules
+    - user: sopel
