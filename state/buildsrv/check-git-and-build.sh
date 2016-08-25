@@ -6,9 +6,10 @@
 # VARIABLES
 #
 
-root_dir="${HOME}"
+root_dir=$(dirname "${0}")
 gluon_dir="${root_dir}/gluon"
 site_dir="${gluon_dir}/site"
+bot_log="/tmp/sopel-build-gluon.log"
 
 gluon_repo="https://github.com/freifunk-gluon/gluon.git"
 site_repo="https://github.com/freifunkks/site-ffks.git"
@@ -106,7 +107,8 @@ build() {
     tag=$(make -f site.mk print_default_release)
     fetch_tag "${gluon_dir}" "${tag}"
     cd "${site_dir}"
-    "./${build_script}"
+    # Start build script with log file
+    "./${build_script}" "${bot_log}"
     # TODO Check output and notify
 }
 
@@ -114,6 +116,9 @@ build() {
 #
 # EXECUTION
 #
+
+# Clean bot log
+echo > "${bot_log}"
 
 # Clone repos if dir nonexistent
 clone_repo "${gluon_dir}" "${gluon_repo}"
