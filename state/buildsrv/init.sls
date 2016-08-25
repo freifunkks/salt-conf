@@ -3,6 +3,7 @@
     - source: salt://buildsrv/check-git-and-build.sh
     - user: sopel
     - group: sopel
+    - mode: 755
     - require:
       - file: /home/buildsrv
 
