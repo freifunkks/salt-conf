@@ -6,7 +6,7 @@ include:
     - source: salt://fastd/ffks_vpn/ffks_vpn.conf
     - template: jinja
     - user: root
-    - owner: root
+    - group: root
     - mode: 600
     - makedirs: True
     - require:
@@ -17,7 +17,7 @@ include:
 /etc/fastd/ffks_vpn/gateways:
   file.directory:
     - user: root
-    - owner: root
+    - group: root
     - mode: 755
     - makedirs: True
     - require:
