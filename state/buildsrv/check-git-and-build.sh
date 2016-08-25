@@ -13,8 +13,11 @@ site_dir="${gluon_dir}/site"
 gluon_repo="https://github.com/freifunk-gluon/gluon.git"
 site_repo="https://github.com/freifunkks/site-ffks.git"
 
-declare -aU site_branches=(beta stable)
-declare -aU build_branches=()
+declare -aU site_branches
+site_branches=(beta stable)
+
+declare -aU build_branches
+build_branches=()
 
 build_script="build.sh"
 
