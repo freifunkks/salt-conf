@@ -1,6 +1,9 @@
 #!/bin/zsh
 # Checks out or clones the gluon repo and
 # notifies admins of build status
+#
+# First argument is taken to choose a branch.
+# If no argument given, every branch with updates is built.
 
 #
 # VARIABLES
@@ -10,6 +13,8 @@ root_dir=$(dirname "${0}")
 gluon_dir="${root_dir}/gluon"
 site_dir="${gluon_dir}/site"
 bot_log="/tmp/sopel-build-gluon.log"
+build_log="/tmp/build-gluon.log"
+branch="${1}"
 
 gluon_repo="https://github.com/freifunk-gluon/gluon.git"
 site_repo="https://github.com/freifunkks/site-ffks.git"
@@ -108,7 +113,7 @@ build() {
     fetch_tag "${gluon_dir}" "${tag}"
     cd "${site_dir}"
     # Start build script with log file
-    "./${build_script}" "${bot_log}"
+    "./${build_script}" "${bot_log}" > "${build_log}"
     # TODO Check output and notify
 }
 
@@ -117,12 +122,21 @@ build() {
 # EXECUTION
 #
 
-# Clean bot log
+# Clean bot/build log
 echo > "${bot_log}"
+echo > "${build_log}"
 
 # Clone repos if dir nonexistent
 clone_repo "${gluon_dir}" "${gluon_repo}"
 clone_repo "${site_dir}" "${site_repo}"
+
+# If branch selected, force building it and skip detection
+if [[ -n "${branch}" ]]; then
+    build "${branch}"
+    return
+elif [[ "${#}" -gt 0 ]]; then
+    die "Selected branch could not be built: ${branch}"
+fi
 
 # Check out and notice changes
 # and build on change
