@@ -3,6 +3,8 @@
     - source: salt://buildsrv/check-git-and-build.sh
     - user: sopel
     - group: sopel
+    - require:
+      - file: /home/buildsrv
 
 /home/buildsrv:
   file.directory:
