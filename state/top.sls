@@ -13,6 +13,7 @@ base:
   {% endif %}
 
   excalipurr.ffks:
+    - buildsrv
     - fastd.ffks_vpn.web_peerings
     - grafana
     - graphite.api
