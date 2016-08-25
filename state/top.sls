@@ -22,6 +22,7 @@ base:
     - nginx
     - nginx.lets_encrypt
     - nginx.sites.ffks-dl
+    - nginx.sites.ffks-gh
     - nginx.sites.ffks-home
     - nginx.sites.ffks-map
     - nginx.sites.ffks-matrix
