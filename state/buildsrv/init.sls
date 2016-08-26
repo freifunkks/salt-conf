@@ -12,3 +12,15 @@
     - user: sopel
     - group: sopel
     - mode: 755
+
+buildsrv_pkgs:
+  pkg.installed:
+    - pkgs:
+      - build-essential
+      - gawk
+      - git
+      - libncurses-dev
+      - libssl-dev
+      - libz-dev
+      - subversion
+      - unzip
