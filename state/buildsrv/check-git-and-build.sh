@@ -114,6 +114,9 @@ build() {
     cd "${site_dir}"
     # Start build script with log file
     "./${build_script}" "${bot_log}" > "${build_log}"
+    paste_url=$(cat "${build_log}" | curl -F 'f:1=<-' ix.io)
+    echo "Build log: ${paste_url}" >> "${bot_log}"
+
     # TODO Check output and notify
 }
 
