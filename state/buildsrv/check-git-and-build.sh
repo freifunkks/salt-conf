@@ -32,6 +32,7 @@ build_script="build.sh"
 # FUNCTIONS
 #
 die() {
+    echo "${@}" &>> "${bot_log}"
     echo "${@}" 1>&2
     exit 1
 }
@@ -113,9 +114,9 @@ build() {
     fetch_tag "${gluon_dir}" "${tag}"
     cd "${site_dir}"
     # Start build script with log file
-    "./${build_script}" "${bot_log}" > "${build_log}"
+    "./${build_script}" "${bot_log}" &> "${build_log}"
     paste_url=$(cat "${build_log}" | curl -F 'f:1=<-' ix.io)
-    echo "Build log: ${paste_url}" >> "${bot_log}"
+    echo "Build log: ${paste_url}" &>> "${bot_log}"
 
     # TODO Check output and notify
 }
