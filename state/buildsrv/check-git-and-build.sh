@@ -115,10 +115,10 @@ build() {
     cd "${site_dir}"
     # Start build script with log file
     "./${build_script}" "${bot_log}" &> "${build_log}"
+    ret=$?
     paste_url=$(cat "${build_log}" | curl -F 'f:1=<-' ix.io)
     echo "Build log: ${paste_url}" &>> "${bot_log}"
-
-    # TODO Check output and notify
+    exit ${ret}
 }
 
 
@@ -157,9 +157,4 @@ if [[ "${#build_branches}" -lt 1 ]]; then
 fi
 for branch in "${build_branches[@]}"; do
     build "${branch}"
-    # TODO Check output and notify
 done
-
-# Mail on error
-# TODO Notify on error
-# TODO Notify on successful copying to firmware download server
