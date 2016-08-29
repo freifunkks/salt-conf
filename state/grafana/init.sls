@@ -98,17 +98,6 @@ grafana_flipdot:
       db_name: grafana_flipdot
       org_name: flipdot
 
-/var/lib/grafana-flipdot/dashboards:
-  file.recurse:
-    - source: salt://grafana/dashboards/flipdot
-    - clean: True
-    - dir_mode: 755
-    - user: grafana
-    - group: grafana
-    - require:
-      - pkg: grafana
-      - user: grafana
-
 grafana-flipdot:
   service.running:
     - enable: True
