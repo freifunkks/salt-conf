@@ -76,7 +76,7 @@ def get_socket(host, port):
     sock.close()
 
 
-def write_to_graphite(data, prefix='fd.forum'):
+def write_to_graphite(data, prefix='fd.comms.forums'):
     now = time.time()
     with get_socket('localhost', 2003) as s:
         for key, value in data.items():
