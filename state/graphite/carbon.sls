@@ -54,3 +54,15 @@ carbon-cache:
     - identifier: update-fd-space-statistics
     - user: graphite-carbon
     # frequency defaults to every minute
+
+/home/graphite-carbon/fd-forumstats.py:
+  file.managed:
+    - source: salt://graphite/fd-forumstats.py
+    - user: graphite-carbon
+    - group: graphite-carbon
+    - mode: 700
+    - template: jinja
+  cron.present:
+    - identifier: update-fd-forum-statistics
+    - user: graphite-carbon
+    # frequency defaults to every minute

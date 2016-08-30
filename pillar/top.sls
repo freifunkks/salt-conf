@@ -6,5 +6,6 @@ base:
     - users
 
   excalipurr.ffks:
+    - discourse
     - grafana
     - sopel
