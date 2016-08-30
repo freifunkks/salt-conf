@@ -104,7 +104,6 @@ grafana-flipdot:
     - watch:
       - pkg: grafana
       - file: /etc/grafana/grafana-flipdot.ini
-      - file: /var/lib/grafana-flipdot/dashboards
 
 /etc/systemd/system/grafana-flipdot.service:
   file.managed:
