@@ -112,6 +112,18 @@ def main():
             if node is not None:
                 update[map_key] = convert_si(node)
 
+        for report in stats['global_reports']:
+            if report['type'] == "posts":
+                update['posts.total'] = report['total']
+            elif report['type'] == "topics":
+                update['topics.total'] = report['total']
+            elif report['type'] == "signups":
+                update['signups.total'] = report['total']
+            elif report['type'] == "likes":
+                update['likes.total'] = report['total']
+            elif report['type'] == "visits":
+                update['visits.total'] = report['total']
+
     conn.close()
     write_to_graphite(update)
 
