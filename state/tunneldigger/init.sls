@@ -54,3 +54,4 @@ tunneldigger:
     - source: salt://tunneldigger/bridge-functions.sh
     - makedirs: True
     - user: tunneldigger
+    - template: jinja
