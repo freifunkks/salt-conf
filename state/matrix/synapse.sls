@@ -12,6 +12,16 @@ matrix-synapse:
   service.running:
     - enable: True
     - reload: True
+    - require:
+      - pkg: matrix-synapse
+  postgres_user.present:
+    - require:
+      - pkg: matrix-synapse
+  postgres_database.present:
+    - owner: matrix-synapse
+    - owner_recurse: True
+    - require:
+      - pkg: matrix-synapse
 
 /etc/matrix-synapse/conf.d/matrix.ffks.de.yaml:
   file.managed:
