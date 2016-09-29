@@ -1,7 +1,7 @@
 matrix-synapse-pkgs:
   pkg.installed:
     - pkgs:
-      - python2-psycopg
+      - python-psycopg2
 
 matrix-synapse:
   pkgrepo.managed:
