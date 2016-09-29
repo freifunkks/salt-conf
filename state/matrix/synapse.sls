@@ -1,3 +1,8 @@
+matrix-synapse-pkgs:
+  pkg.installed:
+    - pkgs:
+      - python2-psycopg
+
 matrix-synapse:
   pkgrepo.managed:
     - name: deb http://matrix.org/packages/debian/ jessie main
@@ -14,6 +19,7 @@ matrix-synapse:
     - reload: True
     - require:
       - pkg: matrix-synapse
+      - pkg: matrix-synapse-pkgs
   postgres_user.present:
     - require:
       - pkg: matrix-synapse

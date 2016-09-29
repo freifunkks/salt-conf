@@ -1,4 +1,10 @@
 enable_registration: true
+database:
+  name: psycopg2
+  args:
+    user: matrix-synapse
+    database: matrix-synapse
+    host: /var/run/postgresql
 
 # configured via dpkg
 #report_stats: true
