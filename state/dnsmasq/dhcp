@@ -14,7 +14,7 @@ dhcp-option=28,10.54.255.255
 
 # Ranges
 dhcp-range=ffks-vpn,{{ pillar['minions'][grains['id']]['dhcp_range_begin'] }},{{ pillar['minions'][grains['id']]['dhcp_range_end'] }},255.255.0.0,1h
-dhcp-range=ffks-vpn,{{ pillar['minions'][grains['id']]['dhcp_range_begin6'] }},f{{ pillar['minions'][grains['id']]['dhcp_range_end6'] }},64,1h
+dhcp-range=ffks-vpn,{{ pillar['minions'][grains['id']]['dhcp_range_begin6'] }},{{ pillar['minions'][grains['id']]['dhcp_range_end6'] }},64,1h
 
 enable-ra
 ra-param=bat0,low,0,0
