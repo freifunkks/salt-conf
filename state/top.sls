@@ -4,6 +4,7 @@ base:
     - common.tools
     - common.users
     - fastd
+    - fastd.ffks_vpn
 
   {% if pillar.minions[grains.id].gateway %}
     - common.gateway_pkgs
