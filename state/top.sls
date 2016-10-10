@@ -3,18 +3,17 @@ base:
     - common.essentials
     - common.tools
     - common.users
-    - fastd
-    - fastd.ffks_vpn
 
   {% if pillar.minions[grains.id].gateway %}
     - common.gateway_pkgs
-    - fastd.ffks_vpn.gw_peerings
+    - fastd
+    - fastd.ffks_vpn
+    - fastd.ffks_vpn.peerings
     - network.batman
   {% endif %}
 
   excalipurr.ffks:
     - buildsrv
-    - fastd.ffks_vpn.web_peerings
     - grafana
     - graphite.api
     - graphite.carbon
