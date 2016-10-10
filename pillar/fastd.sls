@@ -77,6 +77,7 @@ minions:
       -----END PGP MESSAGE-----
 
 fastd_peerings:
+  knocktopus.ffks: []
   spinchilla.ffks:
     - knocktopus.ffks
 #  meowgician.ffks:
