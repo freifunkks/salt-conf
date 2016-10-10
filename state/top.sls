@@ -13,7 +13,6 @@ base:
   {% endif %}
 
   excalipurr.ffks:
-    - buildsrv
     - grafana
     - graphite.api
     - graphite.carbon
@@ -34,3 +33,6 @@ base:
     - quassel
     - sopel
     - uwsgi
+
+  hammibal.ffks:
+    - buildsrv
