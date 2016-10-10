@@ -8,8 +8,7 @@
       - user: buildsrv
 
 buildsrv:
-  user.present:
-    - shell: /usr/sbin/nologin
+  user.present
 
 buildsrv_pkgs:
   pkg.installed:
