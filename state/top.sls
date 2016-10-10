@@ -7,6 +7,7 @@ base:
 
   {% if pillar.minions[grains.id].gateway %}
     - common.gateway_pkgs
+    - dnsmasq
     - fastd.ffks_vpn.gw_peerings
     - network.batman
   {% endif %}

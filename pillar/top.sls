@@ -5,6 +5,10 @@ base:
     - minions
     - users
 
+  {% if pillar.minions[grains.id].gateway %}
+    - dhcp
+  {% endif %}
+
   excalipurr.ffks:
     - discourse
     - grafana
