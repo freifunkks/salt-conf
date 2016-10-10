@@ -5,13 +5,11 @@
     - group: sopel
     - mode: 755
     - require:
-      - file: /home/buildsrv
+      - user: buildsrv
 
-/home/buildsrv:
-  file.directory:
-    - user: sopel
-    - group: sopel
-    - mode: 755
+buildsrv:
+  user.present:
+    - shell: /usr/sbin/nologin
 
 buildsrv_pkgs:
   pkg.installed:
