@@ -1,7 +1,4 @@
 minions:
-  aggrosculpture.ffks:
-    gateway: True
-    zsh_host_color: 136
   excalipurr.ffks:
     gateway: False
     zsh_host_color: 246

@@ -1,11 +1,6 @@
 #!yaml|gpg
 
 minions:
-  aggrosculpture.ffks:
-    fastd_mac: f6:b7:a2:e4:9f:a1
-    fastd_public: |-
-      eff8ae86d2ee7461a0da22fda920eeb983ae867613e74db0f93d8e726cbc6d83
-
   excalipurr.ffks:
     fastd_mac: f6:b7:a2:e4:9f:f0
     fastd_public: |-
@@ -82,12 +77,8 @@ minions:
       -----END PGP MESSAGE-----
 
 fastd_peerings:
-  knocktopus.ffks:
-    - aggrosculpture.ffks
   spinchilla.ffks:
-    - aggrosculpture.ffks
     - knocktopus.ffks
 #  meowgician.ffks:
-#    - aggrosculpture.ffks
 #    - knocktopus.ffks
 #    - spinchilla.ffks
