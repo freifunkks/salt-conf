@@ -12,5 +12,5 @@ minions:
 #    gateway: True
 #    zsh_host_color: 190
   hammibal.ffks:
-    gateway: True
+    gateway: False
     zsh_host_color: 53
