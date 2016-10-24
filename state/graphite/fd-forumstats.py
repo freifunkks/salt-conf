@@ -11,7 +11,7 @@ import time
 import logging
 import re
 
-SERVER_DISCOURSE = 'fd.cfs.im'
+SERVER_DISCOURSE = 'forum.flipdot.org'
 API_DISCOURSE = {
     'stats': '/admin/dashboard.json',
     'api_key': '{{ pillar.discourse.api_key }}',
