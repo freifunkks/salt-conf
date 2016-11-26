@@ -80,6 +80,9 @@ fastd_peerings:
   knocktopus.ffks: []
   spinchilla.ffks:
     - knocktopus.ffks
+  excalipurr.ffks:
+    - knocktopus.ffks
+    - spinchilla.ffks
 #  meowgician.ffks:
 #    - knocktopus.ffks
 #    - spinchilla.ffks

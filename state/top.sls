@@ -13,11 +13,15 @@ base:
   {% endif %}
 
   excalipurr.ffks:
+    - fastd
+    - fastd.ffks_vpn
+    - fastd.ffks_vpn.peerings.gateways
     - grafana
     - graphite.api
     - graphite.carbon
     - matrix.appservice-irc
     - matrix.synapse
+    - network.batman
     - nginx
     - nginx.lets_encrypt
     - nginx.sites.ffks-dl
