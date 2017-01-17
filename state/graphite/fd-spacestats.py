@@ -13,6 +13,11 @@ API_FD = {
     'status': '/spacestatus/status.json',
 }
 
+SERVER_FD_NG = 'api.flipdot.org'
+API_FD_NG = {
+    'api': '',
+}
+
 SERVER_IG = 'infragelb.de'
 API_IG = {
     'power': '/flipdot-power/',
@@ -85,6 +90,25 @@ def main():
         update['users_known'] = known_users
         update['users_unknown'] = unknown_users
         update['is_open'] = is_open
+
+    conn.close()
+
+    # Get the API stuff like co2 sensor
+    conn = httplib.HTTPConnection(SERVER_FD_NG)
+    conn.request('GET', API_FD_NG['api'])
+
+    r = conn.getresponse()
+    if r.status is not 200:
+        print r.status, r.reason, "for", SERVER_IG
+    else:
+        data = json.loads(r.read())
+
+    # co2 values: 0-3000 (unit ppm)
+        try:
+            co2 = data['state']['sensors']['co2'][0]['value']
+        except KeyError:
+            co2 = 0
+        update['co2'] = co2
 
     conn.close()
 
