@@ -1,12 +1,10 @@
 #!/usr/bin/env python2
 
 from contextlib import contextmanager
-from datetime import datetime
 
 import httplib
 import json
 import socket
-import sys
 import time
 
 
@@ -29,12 +27,14 @@ def get_socket(host, port):
     yield sock
     sock.close()
 
+
 def write_to_graphite(data, prefix='fd.space'):
     now = time.time()
     with get_socket('localhost', 2003) as s:
         for key, value in data.items():
             line = "%s.%s %s %s\n" % (prefix, key, float(value), now)
             s.sendall(line.encode('latin-1'))
+
 
 def main():
     update = {}
@@ -44,7 +44,7 @@ def main():
     conn.request('GET', API_FD['status'])
 
     r = conn.getresponse()
-    if not r.status is 200:
+    if r.status is not 200:
         print r.status, r.reason, "for", SERVER_FD
     else:
         data = json.loads(r.read())
@@ -88,14 +88,13 @@ def main():
 
     conn.close()
 
-
     # Get temperature data
     # TODO: integrate power consumption in space api
     conn = httplib.HTTPConnection(SERVER_IG)
     conn.request('GET', API_IG['power'])
 
     r = conn.getresponse()
-    if not r.status is 200:
+    if r.status is not 200:
         print r.status, r.reason, "for", SERVER_IG
     else:
         power_consumption = r.read()
@@ -110,4 +109,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
