@@ -241,8 +241,12 @@ if [[ ! -f "/root/salt-conf/$gpg_name.gpg.pub" ]]; then
 	echo -e ""
 	gpg --homedir "$gpg_dir" --armor --export "$gpg_mail"
 	tput sgr0
-	echo -ne "\n${err} Public GPG keyfile not found in repository. Restart this script after commiting it to the repository.\n"
-	exit 0
+	echo -ne "\n${err} Public GPG keyfile not found in repository. Press ENTER to restart this script after successfully commiting the public keyfile to the repository.\n"
+	read
+	cd /root/salt-conf
+	git pull
+	/root/salt-conf/bootstrap/bootstrap-minion.sh
+	exit 1
 fi
 echo -ne "\n${ok} Public GPG keyfile found in repository.\n"
 
