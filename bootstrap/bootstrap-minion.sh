@@ -68,7 +68,9 @@ done
 [[ ${#repo_new[@]} -gt 0 ]] && echo
 
 # Check system packages
-declare -a pkg_req=(salt-minion python-pip git)
+# procps    - contains pgrep
+# rng-tools - faster entropy generation for gpg key
+declare -a pkg_req=(salt-minion python-pip git procps rng-tools)
 
 echo "Updating repositories..."
 [[ $(apt-get update 1>/dev/null 2> >(wc -l)) -gt 0 ]] && (echo "Error updating repositories..." 1>&2; exit 3)
@@ -206,8 +208,46 @@ sysctl kernel.hostname="${hostname}" &>/dev/null
 # Make the change permanent
 echo ${hostname} > /etc/hostname
 
+# Generate GPG key if needed
+gpg_dir=/etc/salt/gpgkeys
+gpg_name=$(hostname -s)
+gpg_domain="ffks"
+gpg_fullname="$gpg_name.$gpg_domain"
+gpg_mail="$gpg_name@$gpg_domain"
+gpg_opts="""Key-Type: RSA
+Key-Length: 4096
+Name-Real: $gpg_fullname
+Name-Email: $gpg_mail
+"""
+
+if ! gpg --homedir "$gpg_dir" -K "$gpg_mail" > /dev/null; then
+	echo "Generating GPG key with following options:"
+	echo "$gpg_opts"
+
+	mkdir -p "$gpg_dir"
+	chmod 0700 "$gpg_dir"
+
+	# Create entropy in background
+	rngd --rng-device /dev/urandom
+	gpg --gen-key --batch --homedir "$gpg_dir" <<< "$gpg_opts"
+else
+	echo "GPG key already found. Skipping creation..."
+fi
+
+# Check for pubkey, on failure prompt for a git commit
+if [[ ! -f "/root/salt-conf/$gpg_name.gpg.pub" ]]; then
+	echo -ne "\n${info} Paste the following key to the salt-conf repository's root in a file named:\n$gpg_fullname.gpg.pub\n\nAfter a successfully pushed commit restart this script\n"
+	tput setaf 2
+	echo -e ""
+	gpg --homedir "$gpg_dir" --armor --export "$gpg_mail"
+	tput sgr0
+	echo -ne "\n${err} Public GPG keyfile not found in repository. Restart this script after commiting it to the repository.\n"
+	exit 0
+fi
+echo -ne "\n${ok} Public GPG keyfile found in repository.\n"
+
 # Salt's first run
-echo -e "\nSalt is taking over now...\n"
+echo -ne "\n${info} Salt is taking over now...\n"
 salt-call state.highstate 2>/dev/null
 
 # Reload new hostname in newly opened shell
