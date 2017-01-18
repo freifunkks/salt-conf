@@ -76,10 +76,36 @@ minions:
       =Qc7J
       -----END PGP MESSAGE-----
 
+  lleviathan.ffks:
+    fastd_mac: f6:b7:a2:e4:9f:f0
+    fastd_public: |-
+      da0f1ea0e49d83eead0fc8e95eb1d4ffa0a06dd8225a962afb6c63d6d0d00430
+    fastd_secret: |-
+      -----BEGIN PGP MESSAGE-----
+
+      hQIMA3gYOzU4u9qiARAAjtaaVeLyNwJKmg1kcWynWRxq0JOc4xOexQ3nFI14Preo
+      8bAaO+FMfHaSBIJoXBrvwHfHjo2asRqlZbZNbGht3tEg13ybSkYRcrJLXATXIO0K
+      LBaFsod2PU63fmehQK6XzWjJMfXgmtst4/Agp9R5rK1sIZ82PSrEh74Da3KRXK3h
+      MCkHOcsU/g1ODpJOHe9hV07NlLAZariSA/m4xv/b2qaPiC+LWaXBTeCaM7OwpdJr
+      p+O4gly19qFZc7NiECAxqXc0Rtep4SJEM91KE8OFr2fLwm1gmj0U7kJ8vbzQB0k0
+      8yZZFWu98gPVbQqoVo37bnK9VwTrdPtxvWrYcUg/35WL4W9PRsAAdLQfICEQvKLo
+      kib2EIo/vJkXlkNH7zt+T9MXcgDkYxYTxqKYfJ7Gzh/Suxn7BHyU+xTYrU1bgKSs
+      ZhVdOS06jYnzzDV5HDI2yLv2fXJ6G7JONC4op4UZUf1uOwejcPDCymAPGq2lYKLa
+      Pi/krrcQ2M766bEJOqOEqDUMKjMqTEpNq1ekhdzv881pqsQBrg7sI702CLNEL1/V
+      GSL8h4+soPzNr42wypqEyprvIC7odRpTYb56T7Fu74LUVyaWfsyY5ghFj4kd4TMg
+      BwV23jjJo8aHH2eYb4DXyxGe59UxQqtIKYkxMl/HUVmDjrcDn2QqVQVBJ1qp6VDS
+      cwEnV9kudKjBG0fhqAsIA1o3R5DTs0a3CE+MVoGoZGANbR5fRLk8dLCL2kpAEBVp
+      zsnRufHOVj9mYkQFIxT7psxYrgBWoEEZf03N1wEDHK7X7aEGX8f93K2Gzj9Wb0Ru
+      LFlDTulpJLp2Pep33P+4C9nJYfQ=
+      =Y+aV
+      -----END PGP MESSAGE-----
+
 fastd_peerings:
   knocktopus.ffks: []
   spinchilla.ffks:
     - knocktopus.ffks
+  lleviathan.ffks:
+    - spinchilla.ffks
   excalipurr.ffks:
     - knocktopus.ffks
     - spinchilla.ffks
