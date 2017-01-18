@@ -8,6 +8,9 @@ minions:
   spinchilla.ffks:
     gateway: True
     zsh_host_color: 46
+  lleviathan.ffks:
+    gateway: True
+    zsh_host_color: 204
 #  meowgician.ffks:
 #    gateway: True
 #    zsh_host_color: 190
