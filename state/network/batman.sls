@@ -6,3 +6,7 @@
 /etc/iproute2/rt_tables:
   file.managed:
     - source: salt://network/rt_tables
+
+batman-adv:
+  kmod.present:
+    - persist: True
