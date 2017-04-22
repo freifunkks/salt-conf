@@ -1,0 +1,12 @@
+[Unit]
+Description=respondd service
+After=network.target
+
+[Service]
+ExecStart=/opt/respondder/respondd.py
+Restart=always
+WorkingDirectory=/opt/respondder
+Environment=PATH=/usr/bin:/usr/local/bin:/sbin
+
+[Install]
+WantedBy=multi-user.target
