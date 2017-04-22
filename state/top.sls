@@ -18,8 +18,6 @@ base:
     - grafana
     - graphite.api
     - graphite.carbon
-    - matrix.appservice-irc
-    - matrix.synapse
     - network.batman
     - nginx
     - nginx.lets_encrypt
@@ -27,7 +25,6 @@ base:
     - nginx.sites.ffks-gh
     - nginx.sites.ffks-home
     - nginx.sites.ffks-map
-    - nginx.sites.ffks-matrix
     - nginx.sites.ffks-pad
     - nginx.sites.ffks-quassel
     - nginx.sites.ffks-stats
