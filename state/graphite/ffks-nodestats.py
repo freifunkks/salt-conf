@@ -27,7 +27,7 @@ def write_to_graphite(data, prefix='ffks'):
 def main():
     logging.basicConfig(level=logging.WARN)
 
-    path = '/home/ffks-map/meshviewer/build/data/nodes.json'
+    path = '/home/ffks-map/hopglass/build/data/nodes.json'
 
     gateways = []
 
