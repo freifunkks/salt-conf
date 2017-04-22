@@ -10,6 +10,7 @@ base:
     - fastd.ffks_vpn
     - fastd.ffks_vpn.peerings
     - network.batman
+    - openvpn.airvpn
   {% endif %}
 
   excalipurr.ffks:
