@@ -18,6 +18,7 @@ base:
     - grafana
     - graphite.api
     - graphite.carbon
+    - hopglass-server
     - network.batman
     - nginx
     - nginx.lets_encrypt
