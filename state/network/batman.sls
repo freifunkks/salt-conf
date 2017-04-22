@@ -7,6 +7,6 @@
   file.managed:
     - source: salt://network/rt_tables
 
-batman-adv:
+batman_adv:
   kmod.present:
     - persist: True
