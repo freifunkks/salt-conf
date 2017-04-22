@@ -30,32 +30,32 @@ grunt-cli:
     - require:
       - pkg: nodejs
 
-https://github.com/freifunkks/meshviewer.git:
+https://github.com/freifunkks/hopglass.git:
   git.latest:
     - rev: community-specific-adjustments
-    - target: /home/ffks-map/meshviewer
+    - target: /home/ffks-map/hopglass
     - force_fetch: True
     - force_reset: True
     - user: ffks-map
 
-/home/ffks-map/meshviewer:
+/home/ffks-map/hopglass:
   npm.bootstrap:
     - user: ffks-map
     - require:
       - npm: grunt-cli
 
-/home/ffks-map/meshviewer/build:
+/home/ffks-map/hopglass/build:
   cmd.wait:
     # default tasks without lint, could potentially be shortened
     - name: grunt bower-install-simple saveRevision copy sass requirejs
-    - cwd: /home/ffks-map/meshviewer
+    - cwd: /home/ffks-map/hopglass
     - user: ffks-map
     - watch:
-      - git: https://github.com/freifunkks/meshviewer.git
-      - npm: /home/ffks-map/meshviewer
+      - git: https://github.com/freifunkks/hopglass.git
+      - npm: /home/ffks-map/hopglass
       - pkg: ruby-sass
 
-/home/ffks-map/meshviewer/build/config.json:
+/home/ffks-map/hopglass/build/config.json:
   file.managed:
     - source: salt://nginx/configs/ffks-map.config.json
     - user: ffks-map
@@ -63,4 +63,4 @@ https://github.com/freifunkks/meshviewer.git:
     - mode: 644
     - makedirs: True
     - require:
-      - npm: /home/ffks-map/meshviewer
+      - npm: /home/ffks-map/hopglass
