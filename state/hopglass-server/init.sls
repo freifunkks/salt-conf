@@ -10,7 +10,6 @@ https://github.com/hopglass/hopglass-server.git:
     - force_reset: True
     - user: hopglass-server
     - require:
-      - pkg: git
       - pkg: nodejs
       - user: hopglass-server
 
@@ -18,6 +17,7 @@ https://github.com/hopglass/hopglass-server.git:
   npm.bootstrap:
     - user: hopglass-server
     - require:
+      - git: https://github.com/hopglass/hopglass-server.git
       - npm: grunt-cli
 
 /etc/systemd/system/hopglass-server@.service:
