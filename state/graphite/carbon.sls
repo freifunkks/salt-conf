@@ -33,17 +33,6 @@ carbon-cache:
       - file: /etc/carbon/carbon.conf
       - file: /etc/carbon/storage-schemas.conf
 
-/home/graphite-carbon/ffks-nodestats.py:
-  file.managed:
-    - source: salt://graphite/ffks-nodestats.py
-    - user: graphite-carbon
-    - group: graphite-carbon
-    - mode: 700
-  cron.present:
-    - identifier: update-ffks-node-statistics
-    - user: graphite-carbon
-    # frequency defaults to every minute
-
 /home/graphite-carbon/fd-spacestats.py:
   file.managed:
     - source: salt://graphite/fd-spacestats.py
