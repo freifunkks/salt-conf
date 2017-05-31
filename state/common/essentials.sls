@@ -37,7 +37,7 @@ grml-etc-core:
     - dist: grml-stable
     - file: /etc/apt/sources.list.d/grml.list
     - refresh_db: True
-    - keyid: F61E2E7CECDEA787
+    - keyid: 21E0CA38EA2EA4AB
     - keyserver: pgp.mit.edu
   pkg.installed:
     - require:
