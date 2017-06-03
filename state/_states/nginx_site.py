@@ -223,3 +223,18 @@ def redirect(name, target, address='*', port=80, server_names=[]):
   '''
   return _create_config(default_tpl, name, server_names=server_names,
     addr=address, port=port, config=('return 301 %s$request_uri;' % target))
+
+def redirect_le(name, target, server_names=[]):
+  '''
+  Ensure a (sub)domain redirects to somewhere else. (http port 80, https port 443 via Let's Encrypt)
+  Currently all redirects are permanent ones.
+
+  name
+    Name of the site
+
+  configfile
+    Config file, in case you need more fine-grained control over the configuration.
+    Will be included as part of the server block.
+  '''
+  return _create_config(default_tpl, name, server_names=server_names,
+    config=('return 301 %s$request_uri;' % target))
