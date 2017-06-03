@@ -13,7 +13,7 @@ freifunk-kassel.de:
       - service: nginx
 
 ffks-home-redirects:
-  nginx_site.redirect:
+  nginx_site.redirect_le:
     - server_names:
       - ffks.de
       - kassel-freifunk.de
