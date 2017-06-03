@@ -236,5 +236,5 @@ def redirect_le(name, target, server_names=[]):
     Config file, in case you need more fine-grained control over the configuration.
     Will be included as part of the server block.
   '''
-  return _create_config(default_tpl, name, server_names=server_names,
+  return _create_config(lets_encrypt_tpl, name, server_names=server_names,
     config=('return 301 %s$request_uri;' % target))
