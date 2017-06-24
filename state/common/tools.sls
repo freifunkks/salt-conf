@@ -5,6 +5,7 @@ tools:
       - dstat
       - gdb
       - htop
+      - iptraf-ng
       - iputils-tracepath
       - iotop
       - mg # Mini-Emacs
