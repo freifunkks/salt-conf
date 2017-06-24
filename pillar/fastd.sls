@@ -3,6 +3,7 @@
 minions:
   excalipurr.ffks:
     fastd_mac: f6:b7:a2:e4:9f:f0
+    fastd_mtu: 1312
     fastd_public: |-
       4c1c4342d01a8ba8d558a2997b1d767b7b8070e7e941fafb86c39015238dda2f
     fastd_secret: |-
@@ -28,6 +29,7 @@ minions:
 
   knocktopus.ffks:
     fastd_mac: f6:b7:a2:e4:9f:a3
+    fastd_mtu: 1280
     fastd_public: |-
       4ad16102b0c693f4e1127f23c97cf48ce3b4378d3201fb0c2fbd3e9760e790d3
     fastd_secret: |-
@@ -53,6 +55,7 @@ minions:
 
   spinchilla.ffks:
     fastd_mac: f6:b7:a2:e4:9f:a4
+    fastd_mtu: 1280
     fastd_public: |-
       8bd3d122c28685f0519756715890eebb863e4efb28d933b8d27499a8a5bb688c
     fastd_secret: |-
@@ -78,6 +81,7 @@ minions:
 
   lleviathan.ffks:
     fastd_mac: f6:b7:a2:e4:9f:f0
+    fastd_mtu: 1312
     fastd_public: |-
       da0f1ea0e49d83eead0fc8e95eb1d4ffa0a06dd8225a962afb6c63d6d0d00430
     fastd_secret: |-
