@@ -1,7 +1,4 @@
-/etc/network/interfaces.d/bat0:
-  file.managed:
-    - source: salt://network/bat0
-    - template: jinja
+# bat0 interface is managed within fastd
 
 /etc/iproute2/rt_tables:
   file.managed:

@@ -3,14 +3,17 @@ minions:
     bat_mac: f6:b7:a2:e4:8f:a3
     bat_ip: 10.54.3.1
     bat_ip6: fdca:55e1:baca:baca::3:1
+    bat_max_speed: 75mbit/75mbit
   spinchilla.ffks:
     bat_mac: f6:b7:a2:e4:8f:a4
     bat_ip: 10.54.4.1
     bat_ip6: fdca:55e1:baca:baca::4:1
+    bat_max_speed: 50mbit/50mbit
   lleviathan.ffks:
     bat_mac: f6:b7:a2:e4:8f:a9
     bat_ip: 10.54.9.1
     bat_ip6: fdca:55e1:baca:baca::9:1
+    bat_max_speed: 50mbit/50mbit
   excalipurr.ffks:
     bat_mac: f6:b7:a2:e4:8f:f1
     bat_ip: 10.54.192.1
