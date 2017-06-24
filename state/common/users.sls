@@ -16,5 +16,9 @@
     - dir_mode: 700
 {% endfor %}
 
+root:
+  user.present:
+    - shell: /usr/bin/zsh
+
 # Command to get ssh keys from GitHub (requires jshon and curl):
 # curl "https://api.github.com/users/GITHUB_USERNAME/keys" | jshon -a -e key -u
