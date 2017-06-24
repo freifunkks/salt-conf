@@ -6,7 +6,7 @@ base:
     - minions
     - users
 
-  excalipurr.ffks:
+  web-01.ffks:
     - discourse
     - grafana
     - sopel

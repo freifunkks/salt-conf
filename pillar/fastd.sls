@@ -1,7 +1,7 @@
 #!yaml|gpg
 
 minions:
-  excalipurr.ffks:
+  web-01.ffks:
     fastd_mac: f6:b7:a2:e4:9f:f0
     fastd_mtu: 1312
     fastd_public: |-
@@ -27,7 +27,7 @@ minions:
       =hWGk
       -----END PGP MESSAGE-----
 
-  knocktopus.ffks:
+  gw-01.ffks:
     fastd_mac: f6:b7:a2:e4:9f:a3
     fastd_mtu: 1280
     fastd_public: |-
@@ -53,7 +53,7 @@ minions:
       =yLy+
       -----END PGP MESSAGE-----
 
-  spinchilla.ffks:
+  gw-04.ffks:
     fastd_mac: f6:b7:a2:e4:9f:a4
     fastd_mtu: 1280
     fastd_public: |-
@@ -79,7 +79,7 @@ minions:
       =Qc7J
       -----END PGP MESSAGE-----
 
-  lleviathan.ffks:
+  gw-07.ffks:
     fastd_mac: f6:b7:a2:e4:9f:f0
     fastd_mtu: 1312
     fastd_public: |-
@@ -105,14 +105,14 @@ minions:
       -----END PGP MESSAGE-----
 
 fastd_peerings:
-  knocktopus.ffks: []
-  spinchilla.ffks:
-    - knocktopus.ffks
-  lleviathan.ffks:
-    - spinchilla.ffks
-  excalipurr.ffks:
-    - knocktopus.ffks
-    - spinchilla.ffks
+  gw-01.ffks: []
+  gw-04.ffks:
+    - gw-01.ffks
+  gw-07.ffks:
+    - gw-04.ffks
+  web-01.ffks:
+    - gw-01.ffks
+    - gw-04.ffks
 #  meowgician.ffks:
-#    - knocktopus.ffks
-#    - spinchilla.ffks
+#    - gw-01.ffks
+#    - gw-04.ffks

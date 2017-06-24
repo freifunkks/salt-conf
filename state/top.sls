@@ -13,7 +13,7 @@ base:
     - openvpn.airvpn
   {% endif %}
 
-  excalipurr.ffks:
+  web-01.ffks:
     - fastd.ffks_vpn.peerings.gateways
     - grafana
     - graphite.api

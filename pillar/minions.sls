@@ -1,14 +1,14 @@
 minions:
-  excalipurr.ffks:
+  web-01.ffks:
     gateway: False
     zsh_host_color: 246
-  knocktopus.ffks:
+  gw-01.ffks:
     gateway: True
     zsh_host_color: 196
-  spinchilla.ffks:
+  gw-04.ffks:
     gateway: True
     zsh_host_color: 46
-  lleviathan.ffks:
+  gw-07.ffks:
     gateway: True
     zsh_host_color: 204
 #  meowgician.ffks:
