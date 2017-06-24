@@ -104,6 +104,31 @@ minions:
       =Y+aV
       -----END PGP MESSAGE-----
 
+  gw-10.ffks:
+    fastd_mac: f6:b7:a2:e4:9f:b0
+    fastd_mtu: 1312
+    fastd_public: |-
+      c9d9c99a25ea83de9e93934b89de435c153c8408cae0b5890a18139651fafc4b
+    fastd_secret: |-
+      -----BEGIN PGP MESSAGE-----
+
+      hQIMA6QwHrzLTRVZARAAtWnQ3zQL2r2A9D/ThUX/i/SCfn94piuvvBoWCdaek01j
+      wRN9mLzUr/SlSuLcmP5m007km83Q/2z37Py0EoXFrDBneVc2slK3Qtf68TGBOKvY
+      4DiuYZCeR+SqgeJacpst+QC3AuPBMyiuZ3pWmlk+Vwj6SCGw3leI4kZ4E3+GF6Ki
+      1TEklTy++8VAskOymxQWDoiUYUA7+4Ej+C4cZOe3C+dx9TW1EXjaASbmBbY2oor6
+      t1NO2fbpWuoN1svIB9ZinWz2yM0NOJtP3P1Q/DMuYGEsdEe8ayp5TXKjDkhHOun+
+      S0ZnHFVz3jDgyscCb/zgISAKu41jyyVzXX9B8RdAug2fS0sClggIzy6EC2hW1FqC
+      o18GlFawqf69r/HXvUlwkZBlgEyKnt7sWW+ZluT4dmd2Ox4jOxvr+SjxGwnnPUJt
+      FpdjyV5HnvtrqshGJF3CyiYvv54NKi1qbHYku8ChJDoAk0o1H0xUJgSzk7qH88qV
+      hLGoGhLxFG03YAPmHKJ/87/63DET7bVnltqzP5UeMszHsOPutjzgvEQJv0SLLhv+
+      J9tc2DR2RbPBMMD3TFPIZvExUUNv3kGExHdwQSuvJFcxKKQm48pNmIvSb41Mqtlj
+      dSdHQi50HADrAyB/dm6l4zh75rbosL33k6hrCu8ji0ywx/O19ZrsSSp+PSzNwPbS
+      cgG8ZnDV/T8mUBcPNkviwDRVrI6KvxfMUovyf+P9r/V+0/R6xNasl+SqB+8vVQTe
+      qfQIa6+7c6Eeac0HwRjYhGdEM1b/kQo7XraHEm+IRUoh8Am0qQ4pTmZcTgrf9wQa
+      tYLVqZ9yJnduRmlvIb+CysvlOQ==
+      =KxjI
+      -----END PGP MESSAGE-----
+
 fastd_peerings:
   gw-01.ffks: []
   gw-04.ffks:
