@@ -113,6 +113,3 @@ fastd_peerings:
   web-01.ffks:
     - gw-01.ffks
     - gw-04.ffks
-#  meowgician.ffks:
-#    - gw-01.ffks
-#    - gw-04.ffks

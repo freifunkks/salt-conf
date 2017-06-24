@@ -11,9 +11,3 @@ minions:
   gw-07.ffks:
     gateway: True
     zsh_host_color: 204
-#  meowgician.ffks:
-#    gateway: True
-#    zsh_host_color: 190
-  hammibal.ffks:
-    gateway: False
-    zsh_host_color: 53
