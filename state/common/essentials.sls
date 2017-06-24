@@ -19,6 +19,7 @@ admin:
     - user: root
     - group: root
     - mode: 640
+    - makedirs: True
     - order: 1
 
 ssh:
