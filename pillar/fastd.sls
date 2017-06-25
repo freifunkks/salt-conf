@@ -135,6 +135,8 @@ fastd_peerings:
     - gw-01.ffks
   gw-07.ffks:
     - gw-04.ffks
+  gw-10.ffks:
+    - gw-07.ffks
   web-01.ffks:
     - gw-01.ffks
     - gw-04.ffks
