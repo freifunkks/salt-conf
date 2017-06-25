@@ -1,6 +1,3 @@
-include:
-  - openvpn
-
 # TODO
 #/etc/openvpn/airvpn.conf
 #  file.managed:
@@ -15,20 +12,6 @@ include:
         [Unit]
         Requires=fastd@ffks_vpn.service
 
-/etc/openvpn/airvpn/route-up.sh:
-  file.managed:
-    - source: salt://openvpn/airvpn/route-up.sh
-    - makedirs: True
-    - mode: 755
-    - template: jinja
-
-/etc/openvpn/airvpn/down.sh:
-  file.managed:
-    - source: salt://openvpn/airvpn/down.sh
-    - makedirs: True
-    - mode: 755
-    - template: jinja
-
 openvpn@airvpn:
   service.running:
     - enable: True
@@ -36,5 +19,5 @@ openvpn@airvpn:
       - pkg: openvpn
       - file: /etc/systemd/system/openvpn@airvpn.service.d/service.conf
       #- file: /etc/openvpn/airvpn.conf
-      - file: /etc/openvpn/airvpn/route-up.sh
-      - file: /etc/openvpn/airvpn/down.sh
+      - file: /etc/openvpn/up.sh
+      - file: /etc/openvpn/down.sh
