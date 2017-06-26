@@ -15,3 +15,7 @@ minions:
     gw_dhcp: isc-dhcp-server
     gw_dns: dnsmasq
     gw_vpn: perfectprivacy
+  web-01.ffks:
+    gw_dhcp: None
+    gw_dns: None
+    gw_vpn: None
