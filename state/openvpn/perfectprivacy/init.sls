@@ -4,6 +4,8 @@
 #    - source: salt://openvpn/perfectprivacy.conf
 #    - makedirs: True
 #    - ...
+include:
+  - openvpn
 
 /etc/systemd/system/openvpn@perfectprivacy.service.d/service.conf:
   file.managed:
@@ -11,20 +13,6 @@
     - contents: |
         [Unit]
         Requires=fastd@ffks_vpn.service
-
-/etc/openvpn/up.sh:
-  file.managed:
-    - source: salt://openvpn/up.sh
-    - makedirs: True
-    - mode: 755
-    - template: jinja
-
-/etc/openvpn/down.sh:
-  file.managed:
-    - source: salt://openvpn/down.sh
-    - makedirs: True
-    - mode: 755
-    - template: jinja
 
 openvpn@perfectprivacy:
   service.running:

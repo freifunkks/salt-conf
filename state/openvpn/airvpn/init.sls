@@ -4,6 +4,8 @@
 #    - source: salt://openvpn/airvpn.conf
 #    - makedirs: True
 #    - ...
+include:
+  - openvpn
 
 /etc/systemd/system/openvpn@airvpn.service.d/service.conf:
   file.managed:
