@@ -1,3 +1,6 @@
+include:
+  - mesh-announce
+
 fastd:
   pkgrepo.managed:
     - name: deb https://repo.universe-factory.net/debian/ sid main
