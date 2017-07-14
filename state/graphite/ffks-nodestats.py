@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python2
 
 import json
 import sys
@@ -19,6 +19,9 @@ def get_socket(host, port):
 
 def write_to_graphite(data, prefix='ffks'):
     now = time.time()
+    for key, value in data.items():
+        print(key, value)
+
     with get_socket('localhost', 2003) as s:
         for key, value in data.items():
             line = "%s.%s %s %s\n" % (prefix, key, float(value), now)
@@ -36,11 +39,11 @@ def main():
 
         data = json.load(open(path, 'r'))
         nodes = data['nodes']
-        known_nodes = len(nodes.keys())
+        known_nodes = len(nodes)
         online_nodes = 0
         update = {}
         gateway_count = 0
-        for node_mac, node in nodes.items():
+        for node in nodes:
             try:
                 hostname = node['nodeinfo']['hostname'].replace('.', '-')
 
@@ -79,10 +82,20 @@ def main():
                 try:
                   traffic = statistics['traffic']
                   for key in ['tx', 'rx', 'mgmt_tx', 'mgmt_rx', 'forward']:
-                      update['nodes.%s.traffic.%s.packets' % (hostname, key)] = traffic[key]['packets']
-                      update['nodes.%s.traffic.%s.bytes' % (hostname, key)] = traffic[key]['bytes']
+
+                    if not traffic[key] or not traffic[key]['packets']:
+                        update['nodes.%s.traffic.%s.packets' % (hostname, key)] = -1
+                    else:
+                        update['nodes.%s.traffic.%s.packets' % (hostname, key)] = traffic[key]['packets']
+
+                    if not traffic[key] or not traffic[key]['bytes']:
+                        update['nodes.%s.traffic.%s.bytes' % (hostname, key)] = -1
+                    else:
+                        update['nodes.%s.traffic.%s.bytes' % (hostname, key)] = traffic[key]['bytes']
+
                 except KeyError:
                   pass
+
             except KeyError as e:
                 print(time.time())
                 print('error while reading ', node_mac)
