@@ -3,6 +3,7 @@ tools:
     - pkgs:
       - curl
       - dstat
+      - dhcpdump
       - gdb
       - htop
       - iptraf-ng
