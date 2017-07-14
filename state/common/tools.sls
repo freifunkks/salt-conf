@@ -4,6 +4,7 @@ tools:
       - curl
       - dstat
       - dhcpdump
+      - ethtool
       - gdb
       - htop
       - iptraf-ng
