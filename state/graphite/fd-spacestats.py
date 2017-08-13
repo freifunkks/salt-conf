@@ -45,7 +45,7 @@ def main():
     update = {}
 
     # Get user data
-    conn = httplib.HTTPConnection(SERVER_FD)
+    conn = httplib.HTTPSConnection(SERVER_FD)
     conn.request('GET', API_FD['status'])
 
     r = conn.getresponse()
@@ -94,7 +94,7 @@ def main():
     conn.close()
 
     # Get the API stuff like co2 sensor
-    conn = httplib.HTTPConnection(SERVER_FD_NG)
+    conn = httplib.HTTPSConnection(SERVER_FD_NG)
     conn.request('GET', API_FD_NG['api'])
 
     r = conn.getresponse()
