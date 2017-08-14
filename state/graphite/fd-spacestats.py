@@ -37,19 +37,19 @@ def write_to_graphite(data, prefix='fd.space'):
     now = time.time()
     with get_socket('localhost', 2003) as s:
         for key, value in data.items():
-        if type(value) is dict:
-        for k, v in value.items():
+            if type(value) is dict:
+                for k, v in value.items():
                     line = "%s.%s.%s %s %s\n" % (prefix, key, k, float(v), now)
-            s.sendall(line.encode('latin-1'))
-        elif type(value) is list:
-        for item in value:
-                # Beverages
+                    s.sendall(line.encode('latin-1'))
+            elif type(value) is list:
+                for item in value:
+                    # Beverages
                     line = "%s.%s.%s.%s.%s %s %s\n" % (prefix, key, item['location'], item['name'], item['unit'], float(item['value']), now)
-            s.sendall(line.encode('latin-1'))
-        else:
-        # Must be int or something
+                    s.sendall(line.encode('latin-1'))
+            else:
+                # Must be int or something
                 line = "%s.%s %s %s\n" % (prefix, key, float(value), now)
-        s.sendall(line.encode('latin-1'))
+                s.sendall(line.encode('latin-1'))
 
 
 def main():
