@@ -37,8 +37,19 @@ def write_to_graphite(data, prefix='fd.space'):
     now = time.time()
     with get_socket('localhost', 2003) as s:
         for key, value in data.items():
-            line = "%s.%s %s %s\n" % (prefix, key, float(value), now)
+        if type(value) is dict:
+        for k, v in value.items():
+                    line = "%s.%s.%s %s %s\n" % (prefix, key, k, float(v), now)
             s.sendall(line.encode('latin-1'))
+        elif type(value) is list:
+        for item in value:
+                # Beverages
+                    line = "%s.%s.%s.%s.%s %s %s\n" % (prefix, key, item['location'], item['name'], item['unit'], float(item['value']), now)
+            s.sendall(line.encode('latin-1'))
+        else:
+        # Must be int or something
+                line = "%s.%s %s %s\n" % (prefix, key, float(value), now)
+        s.sendall(line.encode('latin-1'))
 
 
 def main():
@@ -99,16 +110,19 @@ def main():
 
     r = conn.getresponse()
     if r.status is not 200:
-        print r.status, r.reason, "for", SERVER_IG
+        print r.status, r.reason, "for", SERVER_FD_NG
     else:
         data = json.loads(r.read())
 
-    # co2 values: 0-3000 (unit ppm)
+        # co2 values: 0-3000 (unit ppm)
         try:
             co2 = data['state']['sensors']['co2'][0]['value']
-        except KeyError:
+        except keyerror:
             co2 = 0
         update['co2'] = co2
+
+        # drinks storage 0-XX per drink (unit crates)
+        update['drinks'] = data['state']['sensors']['beverage_supply']
 
     conn.close()
 
