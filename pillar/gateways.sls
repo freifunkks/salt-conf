@@ -2,7 +2,7 @@ minions:
   gw-01.ffks:
     gw_dhcp: dnsmasq
     gw_dns: dnsmasq
-    gw_vpn: airvpn
+    gw_vpn: perfectprivacy
   gw-04.ffks:
     gw_dhcp: dnsmasq
     gw_dns: dnsmasq
