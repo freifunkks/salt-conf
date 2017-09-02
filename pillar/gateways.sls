@@ -10,7 +10,7 @@ minions:
   gw-07.ffks:
     gw_dhcp: isc-dhcp-server
     gw_dns: dnsmasq
-    gw_vpn: airvpn
+    gw_vpn: perfectprivacy
   gw-10.ffks:
     gw_dhcp: isc-dhcp-server
     gw_dns: dnsmasq
