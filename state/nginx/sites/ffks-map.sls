@@ -11,9 +11,6 @@ map.ffks:
 map.freifunk-kassel.de:
   nginx_site.present_le:
     - configfile: salt://nginx/configs/ffks-map.nginx-conf
-    - server_names:
-      - map.freifunk-kassel.de
-      - map.{{ grains.host }}.ffks.de
     - watch_in:
       - service: nginx
 

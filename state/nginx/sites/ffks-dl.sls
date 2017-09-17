@@ -10,9 +10,6 @@ dl.ffks:
 dl.freifunk-kassel.de:
   nginx_site.present_le:
     - configfile: salt://nginx/configs/ffks-dl.nginx-conf
-    - server_names:
-      - dl.freifunk-kassel.de
-      - dl.{{ grains.host }}.ffks.de
     - watch_in:
       - service: nginx
 

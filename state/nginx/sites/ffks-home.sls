@@ -8,7 +8,6 @@ freifunk-kassel.de:
     - server_names:
       - home.ffks.de
       - freifunk-kassel.de
-      - home.{{ grains.host }}.ffks.de
     - watch_in:
       - service: nginx
 
