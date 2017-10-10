@@ -9,11 +9,11 @@ minions:
     gw_vpn: airvpn
   gw-07.ffks:
     gw_dhcp: isc-dhcp-server
-    gw_dns: dnsmasq
+    gw_dns: bind9
     gw_vpn: perfectprivacy
   gw-10.ffks:
     gw_dhcp: isc-dhcp-server
-    gw_dns: dnsmasq
+    gw_dns: bind9
     gw_vpn: perfectprivacy
   web-01.ffks:
     gw_dhcp: None
