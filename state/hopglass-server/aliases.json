@@ -1,11 +1,21 @@
 {
-   "gw-10":{
+   "gw-01":{
       "firstseen":"2017-10-06T18:40:00",
       "nodeinfo":{
          "hostname":"gw-10",
-         "node_id":"56:ae:94:47:77:10",
+         "node_id":"9a:ed:42:74:74:c8",
          "network":{
-            "mac":"56:ae:94:47:77:10"
+            "mac":"9a:ed:42:74:74:c8"
+         }
+      }
+   },
+   "gw-04":{
+      "firstseen":"2017-10-06T18:40:00",
+      "nodeinfo":{
+         "hostname":"gw-10",
+         "node_id":"ce:5a:d7:a0:6e:70",
+         "network":{
+            "mac":"ce:5a:d7:a0:6e:70"
          }
       }
    },
@@ -16,6 +26,16 @@
          "node_id":"56:ae:94:47:77:07",
          "network":{
             "mac":"56:ae:94:47:77:07"
+         }
+      }
+   },
+   "gw-10":{
+      "firstseen":"2017-10-06T18:40:00",
+      "nodeinfo":{
+         "hostname":"gw-10",
+         "node_id":"56:ae:94:47:77:10",
+         "network":{
+            "mac":"56:ae:94:47:77:10"
          }
       }
    }
