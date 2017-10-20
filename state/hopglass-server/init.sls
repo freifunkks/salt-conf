@@ -42,3 +42,14 @@ hopglass-server@default.service:
     - require:
        - user: hopglass-server
        - git: https://github.com/hopglass/hopglass-server.git
+
+/home/hopglass-server/hopglass-server/default/aliases.json:
+   file.managed:
+    - makedirs: True
+    - user: hopglass-server
+    - group: hopglass-server
+    - source: salt://hopglass-server/aliases.json
+    - template: jinja
+    - require:
+       - user: hopglass-server
+       - git: https://github.com/hopglass/hopglass-server.git
