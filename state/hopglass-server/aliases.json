@@ -2,7 +2,7 @@
    "gw-01":{
       "firstseen":"2017-10-06T18:40:00",
       "nodeinfo":{
-         "hostname":"gw-10",
+         "hostname":"gw-01",
          "node_id":"9a:ed:42:74:74:c8",
          "network":{
             "mac":"9a:ed:42:74:74:c8"
@@ -12,7 +12,7 @@
    "gw-04":{
       "firstseen":"2017-10-06T18:40:00",
       "nodeinfo":{
-         "hostname":"gw-10",
+         "hostname":"gw-04",
          "node_id":"ce:5a:d7:a0:6e:70",
          "network":{
             "mac":"ce:5a:d7:a0:6e:70"
