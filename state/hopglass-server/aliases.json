@@ -1,0 +1,22 @@
+{
+   "gw-10":{
+      "firstseen":"2017-10-06T18:40:00",
+      "nodeinfo":{
+         "hostname":"gw-10",
+         "node_id":"56:ae:94:47:77:10",
+         "network":{
+            "mac":"56:ae:94:47:77:10"
+         }
+      }
+   },
+   "gw-07":{
+      "firstseen":"2017-10-06T18:40:00",
+      "nodeinfo":{
+         "hostname":"gw-07",
+         "node_id":"56:ae:94:47:77:07",
+         "network":{
+            "mac":"56:ae:94:47:77:07"
+         }
+      }
+   }
+}
