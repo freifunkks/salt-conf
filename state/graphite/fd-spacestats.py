@@ -18,11 +18,6 @@ API_FD_NG = {
     'api': '',
 }
 
-SERVER_IG = 'infragelb.de'
-API_IG = {
-    'power': '/flipdot-power/',
-}
-
 
 @contextmanager
 def get_socket(host, port):
@@ -44,7 +39,10 @@ def write_to_graphite(data, prefix='fd.space'):
             elif type(value) is list:
                 for item in value:
                     # Beverages
-                    line = "%s.%s.%s.%s.%s %s %s\n" % (prefix, key, item['location'], item['name'], item['unit'], float(item['value']), now)
+                    if 'location' in item:
+                        line = "%s.%s.%s.%s.%s %s %s\n" % (prefix, key, item['location'], item['name'], item['unit'], float(item['value']), now)
+                    else:
+                        line = "%s.%s.%s.%s %s %s\n" % (prefix, key, item['name'], item['unit'], float(item['value']), now)
                     s.sendall(line.encode('latin-1'))
             else:
                 # Must be int or something
@@ -104,7 +102,7 @@ def main():
 
     conn.close()
 
-    # Get the API stuff like co2 sensor
+    # Get the API stuff like co2 and power consumption
     conn = httplib.HTTPSConnection(SERVER_FD_NG)
     conn.request('GET', API_FD_NG['api'])
 
@@ -117,31 +115,31 @@ def main():
         # co2 values: 0-3000 (unit ppm)
         try:
             co2 = data['state']['sensors']['co2'][0]['value']
-        except keyerror:
+        except KeyError:
             co2 = 0
         update['co2'] = co2
+
+        # power
+        try:
+            power = data['state']['sensors']['power']
+            power_api = []
+            for i in power:
+                tmp = {}
+                # prefix / key
+                tmp['name'] = i['location']
+                tmp['unit'] = i['unit']
+                tmp['value'] = i['value']
+                power_api.append(tmp)
+
+            update['power'] = power_api
+        except:
+            pass
 
         # drinks storage 0-XX per drink (unit crates)
         update['drinks'] = data['state']['sensors']['beverage_supply']
 
     conn.close()
 
-    # Get temperature data
-    # TODO: integrate power consumption in space api
-    conn = httplib.HTTPConnection(SERVER_IG)
-    conn.request('GET', API_IG['power'])
-
-    r = conn.getresponse()
-    if r.status is not 200:
-        print r.status, r.reason, "for", SERVER_IG
-    else:
-        power_consumption = r.read()
-        power_consumption = power_consumption.split(',')[-1].strip()
-        power_consumption = int(power_consumption)
-
-        update['power_consumption'] = power_consumption
-
-    conn.close()
     write_to_graphite(update)
 
 
