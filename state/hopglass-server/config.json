@@ -39,22 +39,21 @@
     "metricsOfflineTime": 60,
     "ffapiPath": "./ffapi/",
     "named": {
-      "mapTemplate": "https://map.community.freifunk.net/#!v:g;n:{node_id}",
-      "origin": "nodes.community.freifunk.net.",
+      "mapTemplate": "https://map.freifunk-kassel.de/#!v:g;n:{node_id}",
+      "origin": "nodes.ffks.",
       "defaultTtl": 86400,
-      "ns": "ns1.community.freifunk.net.",
+      "ns": "gw-10.ffks.",
       "postmaster": "admin+community.freifunk.net.",
       "refresh": 28800,
       "retry": 7200,
       "expire": 864000,
       "minTtl": 86400,
       "nameservers":  [
-        "ns1.community.freifunk.net.",
-        "ns2.community.freifunk.net."
+        "gw-07.ffks.",
+        "gw-10.ffks."
       ],
       "subdomainNet": [
-          "fd2b:a015:20bd::/48",
-          "fd4c:1f09:efca::/48"
+          "fdca:55e1:baca:baca::/64"
       ],
       "namePadding" : 40
     }
