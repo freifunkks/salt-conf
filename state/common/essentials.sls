@@ -29,7 +29,7 @@ ssh:
     - order: 2
 
 systemd-timesyncd:
-  service.running:
+  service.dead:
     - enable: False
 
 grml-etc-core:
