@@ -10,7 +10,7 @@ base:
   {% if pillar.minions[grains.id].gateway %}
     - common.gateway_pkgs
     - fastd.ffks_vpn.peerings
-    - openvpn.airvpn
+    - openvpn
   {% endif %}
 
   web-01.ffks:
