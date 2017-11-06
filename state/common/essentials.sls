@@ -4,6 +4,7 @@ essential_pkgs:
       - apt-transport-https
       - git
       - openssh-server
+      - openntpd
       - sudo
       - zsh
     - order: 1
@@ -29,7 +30,7 @@ ssh:
 
 systemd-timesyncd:
   service.running:
-    - enable: True
+    - enable: False
 
 grml-etc-core:
   pkgrepo.managed:
