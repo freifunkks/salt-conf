@@ -69,9 +69,9 @@ def main():
             known_users = 0
 
         try:
-            unknown_users = sensors['people_now_present'][0]['value']
+            all_users = sensors['people_now_present'][0]['value']
         except:
-            unknown_users = 0
+            all_users = 0
 
         try:
             update['heater_setpoint'] = sensors['heater_set_point'][0]['value']
@@ -89,7 +89,7 @@ def main():
             pass
 
         is_open = 1 if data['open'] else 0
-        all_users = known_users + unknown_users
+        unknown_users = all_users - known_users
 
         update['users_all'] = all_users
         update['users_known'] = known_users
