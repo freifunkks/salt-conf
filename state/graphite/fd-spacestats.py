@@ -69,7 +69,7 @@ def main():
             known_users = 0
 
         try:
-            unknown_users = sensors['people_now_present'][0]['value'] - known_users
+            unknown_users = sensors['people_now_present'][0]['value']
         except:
             unknown_users = 0
 
