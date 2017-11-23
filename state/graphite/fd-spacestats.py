@@ -6,6 +6,7 @@ import httplib
 import json
 import socket
 import time
+import sys
 
 
 SERVER_FD_NG = 'api.flipdot.org'
@@ -25,6 +26,8 @@ def get_socket(host, port):
 
 def write_to_graphite(data, prefix='fd.space'):
     now = time.time()
+    if "--debug" in sys.argv:
+        print "updating:", data
     with get_socket('localhost', 2003) as s:
         for key, value in data.items():
             if type(value) is dict:
@@ -64,7 +67,9 @@ def main():
 
         # user values
         try:
-            known_users = len(sensors['people_now_present'][0]['names'].split(','))
+            list_known_users = sensors['people_now_present'][0]['names'].split(',')
+            list_known_users = filter(None, list_known_users) # remove empty users
+            known_users = len(list_known_users)
         except:
             known_users = 0
 
