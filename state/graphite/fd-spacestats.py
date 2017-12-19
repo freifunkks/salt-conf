@@ -41,7 +41,7 @@ def check_recent(timestamp_str):
 def write_to_graphite(data, prefix='fd.space'):
     now = time.time()
     if "--debug" in sys.argv:
-        print "updating:", data
+        print("updating:", data)
     with get_socket('localhost', 2003) as s:
         for key, value in data.items():
             if type(value) is dict:
