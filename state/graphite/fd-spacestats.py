@@ -1,18 +1,24 @@
 #!/usr/bin/env python2
 
+from __future__ import print_function
 from contextlib import contextmanager
+from dateutil import parser
 
+import datetime
 import httplib
 import json
+import pytz
 import socket
 import time
 import sys
 
 
+TIME_DIFF_MAX_SECONDS = 600  # 10 minutes
 SERVER_FD_NG = 'api.flipdot.org'
 API_FD_NG = {
     'api': '',
 }
+MSG_SKIP = "Skipping '%s', because it's too old"
 
 
 @contextmanager
@@ -24,6 +30,14 @@ def get_socket(host, port):
     sock.close()
 
 
+def check_recent(timestamp_str):
+    now = datetime.datetime.now(pytz.utc)
+    timestamp = parser.parse(timestamp_str)
+    diff = now - timestamp
+    if diff.seconds > TIME_DIFF_MAX_SECONDS:
+        return False
+    return True
+
 def write_to_graphite(data, prefix='fd.space'):
     now = time.time()
     if "--debug" in sys.argv:
@@ -33,6 +47,14 @@ def write_to_graphite(data, prefix='fd.space'):
             if type(value) is dict:
                 for k, v in value.items():
                     line = "%s.%s.%s %s %s\n" % (prefix, key, k, float(v), now)
+
+                    try:
+                        if not check_recent(key['ext_modified']):
+                            print(MSG_SKIP % line.split(' ')[0])
+                            continue
+                    except:
+                        pass
+
                     s.sendall(line.encode('latin-1'))
             elif type(value) is list:
                 for item in value:
@@ -44,10 +66,25 @@ def write_to_graphite(data, prefix='fd.space'):
                         line = "%s.%s.%s.%s %s %s\n" % (prefix, key, item['location'], item['unit'], float(item['value']), now)
                     else:
                         line = "%s.%s.%s.%s %s %s\n" % (prefix, key, item['name'], item['unit'], float(item['value']), now)
+
+                    try:
+                        if not check_recent(item['ext_modified']):
+                            print(MSG_SKIP % line.split(' ')[0])
+                            continue
+                    except:
+                        pass
                     s.sendall(line.encode('latin-1'))
             else:
                 # Must be int or something
                 line = "%s.%s %s %s\n" % (prefix, key, float(value), now)
+
+                try:
+                    if not check_recent(item['ext_modified']):
+                        print(MSG_SKIP % line.split(' ')[0])
+                        continue
+                except:
+                    pass
+
                 s.sendall(line.encode('latin-1'))
 
 
@@ -60,7 +97,7 @@ def main():
 
     r = conn.getresponse()
     if r.status is not 200:
-        print r.status, r.reason, "for", SERVER_FD_NG
+        print(r.status, r.reason, "for", SERVER_FD_NG)
     else:
         data = json.loads(r.read())
         sensors = data['state']['sensors']
