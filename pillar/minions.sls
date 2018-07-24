@@ -1,7 +1,4 @@
 minions:
-  web-01.ffks:
-    gateway: False
-    zsh_host_color: 246
   gw-01.ffks:
     gateway: True
     zsh_host_color: 196

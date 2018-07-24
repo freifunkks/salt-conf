@@ -1,32 +1,6 @@
 #!yaml|gpg
 
 minions:
-  web-01.ffks:
-    fastd_mac: f6:b7:a2:e4:9f:f0
-    fastd_mtu: 1280
-    fastd_public: |-
-      4c1c4342d01a8ba8d558a2997b1d767b7b8070e7e941fafb86c39015238dda2f
-    fastd_secret: |-
-      -----BEGIN PGP MESSAGE-----
-      Version: GnuPG v2
-
-      hQIMA10k1h5Q5Db6ARAAt2iYbxv6mwagTJY+nbbAt/8kQ1fJEKAsEpraoiGCZjai
-      aiKzgfTWpBJcTdfFkgxrgD9r9lvOrfcFqSyVmXxP5oT+1zlLQ6iNSSQRSkWQQstx
-      DoSe1AL6Qi53BwaNV+RxStj4ALjY0v7D5BJUv2NYMZc7v+wNoIVwl8A5hKHCSwa6
-      aass0OZfqXenwpcYiqEwNrbjNRWON1LWzpU4ulATXTLj9V0C6MFfhxE3rFDosiGL
-      Kal6D5ss4G2kPovGgsJ7ae/qzt/8DatLrLm9heRWgYE6ew8mv/6F1opFwUIb7b+Q
-      3qqCWOuPmPaxJdXpVe+f9kXswzz3+q6C0XBqYLJGCLNx5pLC+DW6wOAt59aYVuxj
-      HHWfXEhJRJNc5ZGJevhODg8YMlXwk8hZFhIUKJJtmq6kh3j1mqkvZeO5foYZaeqT
-      SnyvJSDDTkOv/rSVTRUeJkbea4wiQGSglPy4SwPrlSfQQDaaEfDaAHkNel0tOkHJ
-      +mdhPGO7X+4anuZvpzsWI2F8S3xRbH73MtdKREWAJASN6gz6IYOiHAN9xPvmFFIn
-      GiFjPY6qPAMGRitRwUDWMTKSNNPbng5Gs1S0O1lANsw6pu39E97w19V+dRPLXAtQ
-      THypQcEFMNu3dg/EJ3kendkjBADTdhlPgN4GYYJjqioolvT1EMRo6W02WlspVV/S
-      dgEx/d+WaeH3NtjFELGhfP2BoUe19KXMdfSqXxNq+41t/iT3R0t/qvy4s9tL6+Sz
-      Yozl+0rKCWIHB/BBVARQG7H7+w/Gw8Gwu2HZ5NR7X/shVTO7b7qSnFlzl2nhtmTA
-      esxE8erp64cTpE7k5tzRfFAcjsxs/Qc=
-      =hWGk
-      -----END PGP MESSAGE-----
-
   gw-01.ffks:
     fastd_mac: f6:b7:a2:e4:9f:a3
     fastd_mtu: 1280
@@ -137,6 +111,3 @@ fastd_peerings:
     - gw-04.ffks
   gw-10.ffks:
     - gw-07.ffks
-  web-01.ffks:
-    - gw-01.ffks
-    - gw-04.ffks

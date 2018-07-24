@@ -1,6 +1,0 @@
-root /srv/http/ffks-dl;
-autoindex on;
-add_before_body /.bgcolor-fix.html;
-
-# allow symlinks if symlink owner = symlink target owner
-disable_symlinks if_not_owner;

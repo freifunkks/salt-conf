@@ -13,27 +13,5 @@ base:
     - openvpn.airvpn
   {% endif %}
 
-  web-01.ffks:
-    - fastd.ffks_vpn.peerings.gateways
-    - grafana
-    - graphite.api
-    - graphite.carbon
-    - hopglass-server
-    - network.batman
-    - nginx
-    - nginx.lets_encrypt
-    - nginx.sites.ffks-dl
-    - nginx.sites.ffks-gh
-    - nginx.sites.ffks-home
-    - nginx.sites.ffks-map
-    - nginx.sites.ffks-pad
-    - nginx.sites.ffks-quassel
-    - nginx.sites.ffks-stats
-    - nginx.sites.flipdot-stats
-    - postgresql
-    - quassel
-    - sopel
-    - uwsgi
-
   hammibal.ffks:
     - buildsrv
