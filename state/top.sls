@@ -12,6 +12,3 @@ base:
     - fastd.ffks_vpn.peerings
     - openvpn.airvpn
   {% endif %}
-
-  hammibal.ffks:
-    - buildsrv
