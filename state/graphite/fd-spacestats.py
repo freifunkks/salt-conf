@@ -163,6 +163,7 @@ def main():
 
         # drinks storage 0-XX per drink (unit crates)
         update['drinks'] = sensors['beverage_supply']
+        update['drinks_raw'] = sensors['beverage_supply_raw']
 
     conn.close()
 
