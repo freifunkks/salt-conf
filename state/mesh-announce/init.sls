@@ -1,5 +1,5 @@
 include:
-  apt.jessie-backports
+  - apt.jessie-backports
 
 https://github.com/freifunkks/mesh-announce.git:
   git.latest:
