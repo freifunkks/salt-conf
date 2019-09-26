@@ -162,9 +162,18 @@ def main():
             pass
 
         # drinks storage 0-XX per drink (unit crates)
-        update['drinks'] = sensors['beverage_supply']
-        update['drinks_raw'] = sensors['beverage_supply_raw']
-        update['hackumenta.drinks'] = sensors['beverage_consumption']
+        try:
+            update['drinks'] = sensors['beverage_supply']
+        except:
+            pass
+        try:
+            update['drinks_raw'] = sensors['beverage_supply_raw']
+        except:
+            pass
+        try:
+            update['hackumenta.drinks'] = sensors['beverage_consumption']
+        except:
+            pass
 
     conn.close()
 
