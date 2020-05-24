@@ -37,7 +37,7 @@ grml-etc-core:
     - humanname: fastd
     - dist: grml-stable
     - file: /etc/apt/sources.list.d/grml.list
-    - refresh_db: True
+    - refresh: True
     - keyid: 21E0CA38EA2EA4AB
     - keyserver: pgp.mit.edu
   pkg.installed:

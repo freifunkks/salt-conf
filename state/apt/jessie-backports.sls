@@ -7,7 +7,7 @@ jessie-backports:
     - humanname: jessie-backports
     - dist: jessie
     - file: /etc/apt/sources.list.d/jessie-backports.list
-    - refresh_db: True
+    - refresh: True
 
 /etc/apt/apt.conf.d/90check-valid-until:
   file.managed:

@@ -7,7 +7,7 @@ fastd:
     - humanname: fastd
     - dist: sid
     - file: /etc/apt/sources.list.d/fastd.list
-    - refresh_db: True
+    - refresh: True
     - keyid: CB201D9C
     - keyserver: pgp.mit.edu
     - order: 2
